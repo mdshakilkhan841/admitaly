@@ -8,12 +8,14 @@ import bgImage from "@/public/Politecnico-di-Milano.jpg";
 export interface University {
     id: number;
     name: string;
+    call: string | null;
     applicationLink: string;
     admissionFee: string;
     languageProficiency: string[];
     startDate: string;
     deadline: string;
-    requirements: string[];
+    cgpa: string;
+    others: string[];
 }
 
 export default function UniversityCard({
@@ -75,103 +77,127 @@ export default function UniversityCard({
     const statusLabel = formatDeadlineStatus(university.status);
 
     return (
-        <div
-            className={`relative border border-gray-200 rounded bg-white hover:shadow-sm transition-shadow`}
-        >
-            {/* <div className="absolute inset-0 opacity-10">
-                <img
-                    src={bgImage.src}
-                    alt="Background"
-                    className="w-full h-full object-cover rounded"
-                />
-            </div> */}
-            <div className="px-3 py-2 border-b border-gray-100 flex items-start justify-between gap-2">
-                <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-sm text-gray-900">
-                        {university.name}
-                    </h3>
+        <div className="relative overflow-hidden">
+            {university.admissionFee === "No Fee" && (
+                <div className="absolute top-4 -left-6 transform -rotate-45 bg-red-600 text-white px-6 py-0 text-xs font-bold shadow-2xl">
+                    <div className="items-center">
+                        <span>No Fees</span>
+                    </div>
                 </div>
-                <div
-                    className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${statusColor.bg} ${statusColor.text}`}
-                >
-                    <span
-                        className={`w-2 h-2 rounded-full ${statusColor.bgButton}`}
-                    ></span>
-                    {statusLabel}
+            )}
+            <div
+                className={`border border-gray-200 rounded bg-white hover:shadow-sm transition-shadow overflow-hidden`}
+            >
+                <div className="border-b border-gray-100 flex items-start justify-between gap-2">
+                    <img
+                        src={bgImage.src}
+                        alt="Background"
+                        className="w-full h-24 object-cover"
+                    />
                 </div>
-            </div>
 
-            <div className="px-3 py-2 space-y-2">
-                <div
-                    className={`${statusColor.bg} border ${statusColor.border} rounded px-2 py-1.5`}
-                >
-                    <div className="flex">
-                        <div className="w-1/2">
-                            <p className="text-xs text-gray-600 font-medium">
-                                Application Start
-                            </p>
-                            <p
-                                className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
-                            >
-                                {university.startDate}
-                            </p>
-                        </div>
-                        {university.deadline && (
+                <div className="px-3 py-2 border-b border-gray-100 flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                        <h3 className="font-medium text-sm text-gray-900">
+                            {university.name}{" "}
+                            {university.call && `(${university.call})`}
+                        </h3>
+                    </div>
+                    <div
+                        className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${statusColor.bg} ${statusColor.text}`}
+                    >
+                        <span
+                            className={`w-2 h-2 rounded-full ${statusColor.bgButton}`}
+                        ></span>
+                        {statusLabel}
+                    </div>
+                </div>
+
+                <div className="px-3 py-2 space-y-2">
+                    <div
+                        className={`${statusColor.bg} border ${statusColor.border} rounded px-2 py-1.5`}
+                    >
+                        <div className="flex">
                             <div className="w-1/2">
                                 <p className="text-xs text-gray-600 font-medium">
-                                    Deadline
+                                    Application Start
                                 </p>
                                 <p
                                     className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
                                 >
-                                    {university.deadline}
+                                    {university.startDate}
                                 </p>
                                 <p className="text-xs text-gray-500 mt-0.5">
-                                    {daysLeft > 0
-                                        ? `${daysLeft} days left`
-                                        : "Passed"}
+                                    {statusLabel}
                                 </p>
                             </div>
-                        )}
+                            {university.deadline && (
+                                <div className="w-1/2">
+                                    <p className="text-xs text-gray-600 font-medium">
+                                        Deadline
+                                    </p>
+                                    <p
+                                        className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
+                                    >
+                                        {university.deadline}
+                                    </p>
+                                    <p className="text-xs text-gray-500 mt-0.5">
+                                        {daysLeft > 0
+                                            ? `${daysLeft} days left`
+                                            : "Passed"}
+                                    </p>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
 
-                <div className="grid grid-cols-2 gap-1.5 text-xs">
-                    <div className="bg-gray-50 rounded px-1.5 py-1">
-                        <p className="text-gray-600 font-medium">Fee</p>
+                    <div className="grid grid-cols-2 gap-1.5 text-xs">
+                        <div className="bg-gray-50 rounded px-1.5 py-1">
+                            <p className="text-gray-600 font-medium">Fee</p>
+                            <p className="text-gray-900 font-medium mt-0.5">
+                                {university.admissionFee}
+                            </p>
+                        </div>
+                        <div className="bg-gray-50 rounded px-1.5 py-1">
+                            <p className="text-gray-600 font-medium">
+                                Language Proficiency
+                            </p>
+                            <p className="text-gray-900 font-medium mt-0.5">
+                                {university.languageProficiency.join(" | ")}
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* CGPA */}
+                    <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
+                        <p className="text-gray-600 font-medium">CGPA</p>
                         <p className="text-gray-900 font-medium mt-0.5">
-                            {university.admissionFee}
+                            {university.cgpa}
                         </p>
                     </div>
-                    <div className="bg-gray-50 rounded px-1.5 py-1">
-                        <p className="text-gray-600 font-medium">
-                            Language Proficiency
-                        </p>
-                        <p className="text-gray-900 font-medium mt-0.5">
-                            {university.languageProficiency}
-                        </p>
-                        {/* <p className="text-gray-900 font-medium mt-0.5">
-                            • PTE-6
-                        </p> */}
-                    </div>
-                </div>
 
-                {/* CGPA */}
-                <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
-                    <p className="text-gray-600 font-medium">CGPA</p>
-                    <p className="text-gray-900 font-medium mt-0.5">
-                        {university.requirements}
-                    </p>
-                </div>
+                    {/* Others */}
 
-                <a
-                    href={university.applicationLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`block w-full text-center px-2 py-1.5 text-xs font-medium rounded ${statusColor.bgButton} text-white ${statusColor.bgButtonHover} transition-colors mt-1`}
-                >
-                    Apply Link
-                </a>
+                    {university.others.length > 0 && (
+                        <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
+                            <p className="text-gray-600 font-medium">OTHERS</p>
+                            <ul className="list-disc list-outside text-gray-900 font-medium mt-0.5 space-y-1 pl-4">
+                                {university.others.map((other, index) => (
+                                    <li key={index}>{other}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    <a
+                        href={university.applicationLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`block w-full text-center px-2 py-1.5 text-xs font-medium rounded ${statusColor.bgButton} text-white ${statusColor.bgButtonHover} transition-colors mt-1`}
+                    >
+                        Apply Link
+                    </a>
+                </div>
             </div>
         </div>
     );

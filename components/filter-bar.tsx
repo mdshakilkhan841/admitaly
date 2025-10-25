@@ -15,6 +15,7 @@ export default function FilterBar({
         { value: "opening-soon", label: "Opening Soon" },
         { value: "closing-soon", label: "Closing Soon" },
         { value: "closed", label: "Closed" },
+        { value: "No Fee", label: "No Fees" },
     ];
 
     return (
