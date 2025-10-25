@@ -10,10 +10,10 @@ export interface University {
     name: string;
     call: string | null;
     applicationLink: string;
-    admissionFee: string;
+    applicationFee: string;
     languageProficiency: string[];
     startDate: string;
-    deadline: string;
+    endDate: string;
     cgpa: string;
     others: string[];
 }
@@ -25,7 +25,7 @@ export default function UniversityCard({
         status: "open" | "closing-soon" | "closed" | "opening-soon";
     };
 }) {
-    const daysLeft = getDaysUntilDeadline(university.deadline);
+    const daysLeft = getDaysUntilDeadline(university.endDate);
 
     const getStatusColor = () => {
         // The 'opening-soon' case was missing here, I've added it.
@@ -78,7 +78,7 @@ export default function UniversityCard({
 
     return (
         <div className="relative overflow-hidden">
-            {university.admissionFee === "No Fee" && (
+            {university.applicationFee === "No Fee" && (
                 <div className="absolute top-4 -left-6 transform -rotate-45 bg-red-600 text-white px-6 py-0 text-xs font-bold shadow-2xl">
                     <div className="items-center">
                         <span>No Fees</span>
@@ -131,7 +131,7 @@ export default function UniversityCard({
                                     {statusLabel}
                                 </p>
                             </div>
-                            {university.deadline && (
+                            {university.endDate && (
                                 <div className="w-1/2">
                                     <p className="text-xs text-gray-600 font-medium">
                                         Deadline
@@ -139,7 +139,7 @@ export default function UniversityCard({
                                     <p
                                         className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
                                     >
-                                        {university.deadline}
+                                        {university.endDate}
                                     </p>
                                     <p className="text-xs text-gray-500 mt-0.5">
                                         {daysLeft > 0
@@ -155,7 +155,7 @@ export default function UniversityCard({
                         <div className="bg-gray-50 rounded px-1.5 py-1">
                             <p className="text-gray-600 font-medium">Fee</p>
                             <p className="text-gray-900 font-medium mt-0.5">
-                                {university.admissionFee}
+                                {university.applicationFee}
                             </p>
                         </div>
                         <div className="bg-gray-50 rounded px-1.5 py-1">
