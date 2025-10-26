@@ -1,9 +1,9 @@
 import React from "react";
 
-const SigninLayout = ({
+const UniversityLayout = ({
     children,
 }: Readonly<{ children: React.ReactNode }>) => {
     return <div>{children}</div>;
 };
 
-export default SigninLayout;
+export default UniversityLayout;

@@ -8,7 +8,7 @@ const ApplicationSchema = new mongoose.Schema(
             required: true,
         },
         call: {
-            type: String | null,
+            type: String,
         },
         applicationLink: {
             type: String,
@@ -28,10 +28,10 @@ const ApplicationSchema = new mongoose.Schema(
             default: "Not specified",
         },
         others: {
-            type: [{ type: String }],
+            type: [String],
         },
         languageProficiency: {
-            type: [{ type: String }],
+            type: [String],
         },
     },
     { timestamps: true }

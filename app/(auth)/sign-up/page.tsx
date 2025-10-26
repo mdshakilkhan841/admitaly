@@ -13,38 +13,71 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
+import { se } from "date-fns/locale";
 
-const SigninPage = () => {
+const SignupPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-    const handleSignIn = async (event: React.FormEvent) => {
+    const handleSignUp = async (event: React.FormEvent) => {
         event.preventDefault();
-        // TODO: Replace with actual sign-in logic (e.g., API call)
-        console.log("Attempting to sign in with:");
-        console.log("Email:", email);
-        console.log("Password:", password);
 
-        const { data, error } = await authClient.signIn.email({
-            email,
-            password,
-            callbackURL: "/admin",
-        });
+        const { data, error } = await authClient.signUp.email(
+            {
+                name,
+                email, // required
+                password, // required
+                callbackURL: "/sign-in",
+            },
+            {
+                onRequest: (ctx) => {
+                    setLoading(true);
+                },
+                onSuccess: (ctx) => {
+                    setLoading(false);
+                    setError("");
+                    redirect("/sign-in");
+                },
+                onError: (ctx) => {
+                    setError(ctx.error.message);
+                    setLoading(false);
+                },
+            }
+        );
+        console.log("🚀 ~ handleSignUp ~ error:", error);
+        console.log("🚀 ~ handleSignUp ~ data:", data);
     };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <Card className="w-full max-w-md">
+            <Card className="w-full max-w-sm">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl">Sign In</CardTitle>
+                    <CardTitle className="text-2xl">
+                        Create an account
+                    </CardTitle>
                     <CardDescription>
-                        Enter your email below to sign in to your account.
+                        Enter your information to create an account.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <form className="grid gap-4" onSubmit={handleSignIn}>
+                    <form className="grid gap-4" onSubmit={handleSignUp}>
+                        <div className="grid gap-2">
+                            <Label htmlFor="name">Name</Label>
+                            <Input
+                                id="name"
+                                type="text"
+                                placeholder="John Doe"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
                             <Input
@@ -88,8 +121,19 @@ const SigninPage = () => {
                                 </button>
                             </div>
                         </div>
-                        <Button type="submit" className="w-full">
-                            Sign in
+                        {error && (
+                            <div className="flex items-center justify-center">
+                                <p className="text-sm font-medium text-destructive">
+                                    {error}
+                                </p>
+                            </div>
+                        )}
+                        <Button
+                            type="submit"
+                            className="w-full"
+                            disabled={loading}
+                        >
+                            Sign up
                         </Button>
                     </form>
                 </CardContent>
@@ -98,4 +142,4 @@ const SigninPage = () => {
     );
 };
 
-export default SigninPage;
+export default SignupPage;

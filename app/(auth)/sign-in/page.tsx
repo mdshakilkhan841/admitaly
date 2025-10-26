@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -14,35 +14,27 @@ import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
-import { se } from "date-fns/locale";
 
-const SignupPage = () => {
+const SigninPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => setShowPassword(!showPassword);
-    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const handleSignUp = async (event: React.FormEvent) => {
+    const handleSignIn = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        const { data, error } = await authClient.signUp.email(
+        const { data, error } = await authClient.signIn.email(
             {
-                name,
-                email, // required
-                password, // required
-                callbackURL: "/admin/sign-in",
+                email,
+                password,
+                callbackURL: "/admin",
             },
             {
                 onRequest: (ctx) => {
                     setLoading(true);
-                },
-                onSuccess: (ctx) => {
-                    setLoading(false);
-                    setError("");
-                    redirect("/admin/sign-in");
                 },
                 onError: (ctx) => {
                     setError(ctx.error.message);
@@ -50,34 +42,19 @@ const SignupPage = () => {
                 },
             }
         );
-        console.log("🚀 ~ handleSignUp ~ error:", error);
-        console.log("🚀 ~ handleSignUp ~ data:", data);
     };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <Card className="w-full max-w-sm">
+            <Card className="w-full max-w-md">
                 <CardHeader className="text-center">
-                    <CardTitle className="text-2xl">
-                        Create an account
-                    </CardTitle>
+                    <CardTitle className="text-2xl">Sign In</CardTitle>
                     <CardDescription>
-                        Enter your information to create an account.
+                        Enter your email below to sign in to your account.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <form className="grid gap-4" onSubmit={handleSignUp}>
-                        <div className="grid gap-2">
-                            <Label htmlFor="name">Name</Label>
-                            <Input
-                                id="name"
-                                type="text"
-                                placeholder="John Doe"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                            />
-                        </div>
+                    <form className="grid gap-4" onSubmit={handleSignIn}>
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
                             <Input
@@ -133,7 +110,7 @@ const SignupPage = () => {
                             className="w-full"
                             disabled={loading}
                         >
-                            Sign up
+                            Sign in
                         </Button>
                     </form>
                 </CardContent>
@@ -142,4 +119,4 @@ const SignupPage = () => {
     );
 };
 
-export default SignupPage;
+export default SigninPage;
