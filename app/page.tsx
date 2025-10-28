@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import UniversityCard, { type University } from "@/components/university-card";
+import UniversityCard, {
+    type University,
+} from "@/components/university/university-card";
 import { getUniversityStatus } from "@/lib/deadline-utils";
 import FilterBar from "@/components/filter-bar";
 import Header from "@/components/header";

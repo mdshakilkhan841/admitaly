@@ -1,9 +1,19 @@
 "use client";
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/outline";
 import AdminLayout from "@/components/AdminLayout";
 import Modal from "@/components/Modal";
 import ApplicationForm from "@/components/ApplicationForm";
+=======
+import { useState } from "react";
+import useSWR from "swr";
+import AdminLayout from "@/components/AdminLayout";
+import Modal from "@/components/Modal";
+import ApplicationForm from "@/components/ApplicationForm";
+import axios from "axios";
+import fetcher from "@/lib/fetcher";
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
 
 interface IApplication {
     _id: string;
@@ -26,6 +36,7 @@ interface IApplicationFormData extends Omit<IApplication, "_id" | "uniId"> {
 }
 
 export default function ApplicationsManagement() {
+<<<<<<< HEAD
     const [applications, setApplications] = useState<IApplication[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedApplication, setSelectedApplication] =
@@ -47,6 +58,18 @@ export default function ApplicationsManagement() {
             setLoading(false);
         }
     };
+=======
+    const {
+        data: applications,
+        error,
+        isLoading,
+        mutate,
+    } = useSWR<IApplication[]>("/api/applications", fetcher);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedApplication, setSelectedApplication] =
+        useState<IApplication | null>(null);
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
 
     const handleCreate = () => {
         setSelectedApplication(null);
@@ -61,8 +84,13 @@ export default function ApplicationsManagement() {
     const handleDelete = async (id: string) => {
         if (confirm("Are you sure you want to delete this application?")) {
             try {
+<<<<<<< HEAD
                 await fetch(`/api/applications/${id}`, { method: "DELETE" });
                 fetchApplications();
+=======
+                await axios.delete(`/api/applications/${id}`);
+                mutate();
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
             } catch (error) {
                 console.error("Error deleting application:", error);
             }
@@ -77,6 +105,7 @@ export default function ApplicationsManagement() {
 
             const method = selectedApplication ? "PUT" : "POST";
 
+<<<<<<< HEAD
             const response = await fetch(url, {
                 method,
                 headers: { "Content-Type": "application/json" },
@@ -87,11 +116,21 @@ export default function ApplicationsManagement() {
                 setIsModalOpen(false);
                 fetchApplications();
             }
+=======
+            if (method === "POST") {
+                await axios.post(url, formData);
+            } else {
+                await axios.put(url, formData);
+            }
+            setIsModalOpen(false);
+            mutate();
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
         } catch (error) {
             console.error("Error saving application:", error);
         }
     };
 
+<<<<<<< HEAD
     if (loading) {
         return (
             <AdminLayout>
@@ -105,6 +144,22 @@ export default function ApplicationsManagement() {
     return (
         <AdminLayout>
             <div className="space-y-6">
+=======
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
+            </div>
+        );
+    }
+
+    if (error) return <div>Failed to load applications.</div>;
+
+    return (
+        <div>
+            Appliction
+            {/* <div className="space-y-6">
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
                 <div className="flex justify-between items-center">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">
@@ -125,7 +180,11 @@ export default function ApplicationsManagement() {
 
                 <div className="bg-white shadow overflow-hidden sm:rounded-md">
                     <ul className="divide-y divide-gray-200">
+<<<<<<< HEAD
                         {applications.map((application) => (
+=======
+                        {applications?.map((application) => (
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
                             <li key={application._id}>
                                 <div className="px-4 py-4 sm:px-6">
                                     <div className="flex items-center justify-between">
@@ -212,7 +271,12 @@ export default function ApplicationsManagement() {
                         onCancel={() => setIsModalOpen(false)}
                     />
                 </Modal>
+<<<<<<< HEAD
             </div>
         </AdminLayout>
+=======
+            </div> */}
+        </div>
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
     );
 }

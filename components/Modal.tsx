@@ -1,7 +1,17 @@
 "use client";
+<<<<<<< HEAD
 import { Fragment, ReactNode } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+=======
+import { ReactNode } from "react";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
 
 interface Props {
     isOpen: boolean;
@@ -12,6 +22,7 @@ interface Props {
 
 export default function Modal({ isOpen, onClose, title, children }: Props) {
     return (
+<<<<<<< HEAD
         <Transition.Root show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-50" onClose={onClose}>
                 <Transition.Child
@@ -66,5 +77,17 @@ export default function Modal({ isOpen, onClose, title, children }: Props) {
                 </div>
             </Dialog>
         </Transition.Root>
+=======
+        <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+            <DialogContent className="sm:max-w-lg">
+                {title && (
+                    <DialogHeader>
+                        <DialogTitle>{title}</DialogTitle>
+                    </DialogHeader>
+                )}
+                {children}
+            </DialogContent>
+        </Dialog>
+>>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
     );
 }

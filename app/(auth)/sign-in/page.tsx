@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
 
 const SigninPage = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -46,7 +45,7 @@ const SigninPage = () => {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
-            <Card className="w-full max-w-md">
+            <Card className="w-full max-w-sm">
                 <CardHeader className="text-center">
                     <CardTitle className="text-2xl">Sign In</CardTitle>
                     <CardDescription>

@@ -14,7 +14,6 @@ import { Label } from "@/components/ui/label";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
-import { se } from "date-fns/locale";
 
 const SignupPage = () => {
     const [showPassword, setShowPassword] = useState(false);
