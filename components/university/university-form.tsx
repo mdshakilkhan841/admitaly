@@ -2,6 +2,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Loader2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 
 interface University {
@@ -13,7 +14,7 @@ interface University {
 
 interface UniversityFormProps {
     university: University | null;
-    onSubmit: (formData: Omit<University, "_id">) => void;
+    onSubmit: (formData: Omit<University, "_id">) => Promise<any>;
     onCancel: () => void;
 }
 
@@ -22,6 +23,7 @@ export default function UniversityForm({
     onSubmit,
     onCancel,
 }: UniversityFormProps) {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState<Omit<University, "_id">>({
         name: university?.name || "",
         address: university?.address || "",
@@ -35,9 +37,16 @@ export default function UniversityForm({
         });
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmit(formData);
+        setIsSubmitting(true);
+        try {
+            await onSubmit(formData);
+        } catch (error) {
+            console.error("Submission failed", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -76,10 +85,21 @@ export default function UniversityForm({
             </div>
 
             <div className="flex justify-end space-x-3 pt-4">
-                <Button type="button" variant="outline" onClick={onCancel}>
+                <Button
+                    type="button"
+                    variant="outline"
+                    onClick={onCancel}
+                    disabled={isSubmitting}
+                >
                     Cancel
                 </Button>
-                <Button type="submit">
+                <Button type="submit" disabled={isSubmitting} className="w-24">
+                    {isSubmitting && (
+                        <Loader2
+                            className="mr-2 h-4 w-4 animate-spin"
+                            aria-hidden="true"
+                        />
+                    )}
                     {university ? "Update" : "Create"}
                 </Button>
             </div>

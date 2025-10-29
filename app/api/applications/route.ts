@@ -1,20 +1,24 @@
 import { NextResponse } from "next/server";
 import Application from "@/models/application";
 import dbConnect from "@/lib/database";
-import { IApplication } from "@/types";
-import { auth } from "@/lib/auth";
 import { authenticateUser } from "@/lib/authenticate-user";
 
-export async function GET(request: Request): Promise<NextResponse> {
+export async function GET(): Promise<NextResponse> {
     try {
-        // const authResponse = await authenticateUser(request);
-        // if (authResponse) return authResponse;
-
         await dbConnect();
-        const applications: IApplication[] = await Application.find(
-            {}
-        ).populate("uniId");
-        return NextResponse.json(applications);
+        const applications = await Application.find({})
+            .populate("uniId", "name image address _id")
+            .lean();
+
+        const transformedApplications = applications.map((app) => {
+            const { uniId, ...rest } = app;
+            return {
+                ...rest,
+                university: uniId,
+            };
+        });
+
+        return NextResponse.json(transformedApplications);
     } catch (error) {
         return NextResponse.json(
             { error: (error as Error).message },
@@ -32,6 +36,36 @@ export async function POST(request: Request): Promise<NextResponse> {
         const body = await request.json();
         const application = await Application.create(body);
         return NextResponse.json(application, { status: 201 });
+    } catch (error) {
+        return NextResponse.json(
+            { error: (error as Error).message },
+            { status: 500 }
+        );
+    }
+}
+
+export async function DELETE(request: Request): Promise<NextResponse> {
+    try {
+        const authResponse = await authenticateUser(request);
+        if (authResponse) return authResponse;
+
+        const { ids } = await request.json();
+
+        if (!Array.isArray(ids) || ids.length === 0) {
+            return NextResponse.json(
+                { error: "Invalid input: 'ids' must be a non-empty array." },
+                { status: 400 }
+            );
+        }
+
+        await dbConnect();
+        const result = await Application.deleteMany({
+            _id: { $in: ids },
+        });
+
+        return NextResponse.json({
+            message: `${result.deletedCount} applications deleted successfully.`,
+        });
     } catch (error) {
         return NextResponse.json(
             { error: (error as Error).message },

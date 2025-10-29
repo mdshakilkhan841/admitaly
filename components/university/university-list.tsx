@@ -6,6 +6,7 @@ import UniversityForm from "./university-form";
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import axios from "axios";
 import fetcher from "@/lib/fetcher";
+import { toast } from "sonner";
 import {
     Table,
     TableBody,
@@ -46,7 +47,7 @@ const UniversityList = ({
     if (searchQuery) params.set("search", searchQuery);
     if (sortBy) params.set("sortBy", sortBy);
 
-    const url = `/api/universities?${params.toString()}`;
+    const url = `/api/universities`;
 
     const {
         data: universities,
@@ -68,8 +69,10 @@ const UniversityList = ({
             try {
                 await axios.delete(`/api/universities/${id}`);
                 mutate(); // Re-fetch the data
+                toast.success("University deleted successfully");
             } catch (error) {
                 console.error("Error deleting university:", error);
+                toast.error("Failed to delete university");
             }
         }
     };
@@ -86,13 +89,17 @@ const UniversityList = ({
                 });
                 mutate();
                 setSelectedRows([]);
+                toast.success("Selected universities deleted successfully");
             } catch (error) {
                 console.error("Error deleting universities:", error);
+                toast.error("Failed to delete selected universities");
             }
         }
     };
 
-    const handleSubmit = async (formData: Omit<University, "_id">) => {
+    const handleSubmit = async (
+        formData: Omit<University, "_id">
+    ): Promise<any> => {
         try {
             const url = selectedUniversity
                 ? `/api/universities/${selectedUniversity._id}`
@@ -107,8 +114,15 @@ const UniversityList = ({
             }
             setIsModalOpen(false);
             mutate();
+            toast.success(
+                selectedUniversity
+                    ? "University updated successfully"
+                    : "University created successfully"
+            );
         } catch (error) {
             console.error("Error saving university:", error);
+            toast.error("Failed to save university");
+            throw error; // Re-throw error to be caught in the form
         }
     };
 

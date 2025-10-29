@@ -16,6 +16,7 @@ const ApplicationSchema = new mongoose.Schema(
         },
         admissionFee: {
             type: String,
+            default: "No Fee",
         },
         startDate: {
             type: String,
