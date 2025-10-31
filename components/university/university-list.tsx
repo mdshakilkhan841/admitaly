@@ -37,10 +37,6 @@ const UniversityList = ({
     searchQuery: string;
     sortBy: string;
 }) => {
-    const params = new URLSearchParams();
-    if (searchQuery) params.set("search", searchQuery);
-    if (sortBy) params.set("sortBy", sortBy);
-
     const url = `/api/universities`;
     const {
         data: universities,
