@@ -7,6 +7,7 @@ export async function GET(): Promise<NextResponse> {
     try {
         await dbConnect();
         const applications = await Application.find({})
+            .sort({ createdAt: -1 })
             .populate("university", "name image altImage address uniId _id")
             .lean();
 
