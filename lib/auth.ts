@@ -7,6 +7,17 @@ const db = client.db();
 
 export const auth = betterAuth({
     appName: "Admitaly",
+    user: {
+        additionalFields: {
+            role: {
+                type: "string",
+                default: "user",
+                required: true,
+                enum: ["user", "admin", "super-admin"],
+                // input: false,
+            },
+        },
+    },
     database: mongodbAdapter(db, {
         client,
     }),
