@@ -516,263 +516,263 @@
     "uniId": "sant-anna-pisa",
     "name": "Sant'Anna School of Advanced Studies",
     "address": "Pisa, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Palazzo_Carovana_Pisa.jpg",
+    "altImage": "https://www.tuscanypeople.com/wp-content/uploads/2019/10/scuola_superiore_normale_pisa.jpg"
   },
   {
     "count": 67,
     "uniId": "iuss-pavia",
-    "name": "IUSS Pavia",
+    "name": "IUSS - Istituto Universitario di Studi Superiori Pavia",
     "address": "Pavia, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://lastatalenews.unimi.it/sites/default/files/styles/paragraph_image/public/image/paragraph/Broletto_-_Pavia.jpg",
+    "altImage": "https://news.unipv.it/wp-content/uploads/2015/03/Schermata-2015-03-02-alle-13.58.53.png"
   },
   {
     "count": 68,
     "uniId": "sissa-trieste",
     "name": "SISSA - International School for Advanced Studies",
     "address": "Trieste, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.intersection.rs/wp-content/uploads/2018/01/sissa-building.jpg",
+    "altImage": "https://en.wikipedia.org/wiki/International_School_for_Advanced_Studies#/media/File:International_School_for_Advanced_Studies_2.jpg"
   },
   {
     "count": 69,
     "uniId": "imt-lucca",
     "name": "IMT School for Advanced Studies Lucca",
     "address": "Lucca, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.imtlucca.it/sites/default/files/styles/teaser/public/2025-06/Progetto%20senza%20titolo%20%2838%29.png.jpg",
+    "altImage": "https://www.scholarshipsads.com/files/2018/06/IMT-School-for-Advanced-Studies-Lucca.jpg"
   },
   {
     "count": 70,
     "uniId": "gssi-laquila",
     "name": "Gran Sasso Science Institute (GSSI)",
     "address": "L'Aquila, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://news-town.it/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-16-at-10.32.55-scaled.jpeg",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Palazzo_ex_GIL.jpg/1200px-Palazzo_ex_GIL.jpg"
   },
   {
     "count": 71,
     "uniId": "bocconi",
     "name": "Bocconi University",
     "address": "Milan, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.waitaly.net/wp-content/uploads/2024/11/SDA_Bocconi_campus_dusk-min.jpg",
+    "altImage": "https://poetsandquants.com/wp-content/uploads/sites/5/2022/05/1-5.jpg"
   },
   {
     "count": 72,
     "uniId": "cattolica",
     "name": "Università Cattolica del Sacro Cuore",
     "address": "Milan/Rome/Brescia/Piacenza, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://images.mnstatic.com/7c/ba/7cbaf6f14b172af240ae1be6759595d7.jpg",
+    "altImage": "https://www.medlinkstudents.com/wp-content/uploads/2021/04/Universita-Cattolica-Del-Sacro-Cuore-Campus-Greenery.jpg"
   },
   {
     "count": 73,
     "uniId": "luiss",
     "name": "LUISS Guido Carli",
     "address": "Rome, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.luiss.edu/sites/default/files/2025-04/Il%20tuo%20futuro%20inizia%20qui.webp",
+    "altImage": "https://keystoneacademic-res.cloudinary.com/image/upload/c_fill,w_1920,h_583,g_auto/dpr_auto/f_auto/q_auto/v1/element/17/175495_VillaAlberoni.JPG"
   },
   {
     "count": 74,
     "uniId": "iulm",
     "name": "IULM University",
     "address": "Milan, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.iulm.it/wps/wcm/connect/iulm/6a801f2b-3f4c-4aec-a0a5-cdd8b8e6a74d/DJI_0019.jpg?MOD=AJPERES&CACHEID=ROOTWORKSPACE.Z18_N19GHC41OO5PD0QACD0HKQ38C6-6a801f2b-3f4c-4aec-a0a5-cdd8b8e6a74d-m.8PZFf",
+    "altImage": "https://images.shiksha.com/mediadata/images/1553751582phpx9ObW6.jpeg"
   },
   {
     "count": 75,
     "uniId": "vita-salute-san-raffaele",
     "name": "Vita-Salute San Raffaele University",
     "address": "Milan, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://keystoneacademic-res.cloudinary.com/image/upload/element/16/166054__DSC7443_1.JPG",
+    "altImage": "https://keystoneacademic-res.cloudinary.com/image/upload/c_fill,w_1920,h_636,g_auto/dpr_auto/f_auto/q_auto/v1/element/23/233856_fotoprofilouni.jpg"
   },
   {
     "count": 76,
     "uniId": "campus-biomedico",
     "name": "Università Campus Bio-Medico di Roma",
     "address": "Rome, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://static.tecnichenuove.it/edilizianews/2016/04/IlTrapezio-1-e1460017907532.jpg",
+    "altImage": "https://www.italianacostruzionispa.it/upl/normal/prabb-copertina.jpg"
   },
   {
     "count": 77,
     "uniId": "humanitas",
     "name": "Humanitas University",
     "address": "Pieve Emanuele (Milan), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://keystoneacademic-res.cloudinary.com/image/upload/c_fill,w_1920,h_583,g_auto/dpr_auto/f_auto/q_auto/v1/element/24/244584_Progettosenzatitolo1.png",
+    "altImage": "https://www.hunimed.eu/wp-content/uploads/2025/10/campus-hunimed-2023-1.jpg"
   },
   {
     "count": 78,
     "uniId": "liuc",
     "name": "LIUC - Università Cattaneo",
     "address": "Castellanza, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.aerospacelombardia.it/wp-content/uploads/LIUC-scaled.jpg",
+    "altImage": "https://www.varesenews.it/photogallery_new/images/2015/04/liuc-generico-448345.610x431.jpg"
   },
   {
     "count": 79,
     "uniId": "uer",
     "name": "Università Europea di Roma",
     "address": "Rome, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.uer.it/economia/wp-content/uploads/sites/2/2022/01/slider-st.marys-UER.jpg",
+    "altImage": "https://www.uer.it/wp-content/uploads/slider/cache/f151b6de0cbf46a76d2a72be693c40eb/struttura-uer.jpg"
   },
   {
     "count": 80,
     "uniId": "lumsa",
     "name": "LUMSA University",
     "address": "Rome, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://backoffice.lumsa.it/sites/default/files/images/3564/2024-03/LUMSA-palermo.jpg",
+    "altImage": "https://backoffice.lumsa.it/sites/default/files/images/3564/2024-04/lumsa-sa-pietro.webp"
   },
   {
     "count": 81,
     "uniId": "lum",
     "name": "LUM Giuseppe Degennaro (ex LUM Jean Monnet)",
     "address": "Casamassima (Bari), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://management.lum.it/wp-content/uploads/2020/04/prospetto-nuova-sede-scaled.jpg",
+    "altImage": "https://keystoneacademic-res.cloudinary.com/image/upload/c_limit,w_1920/dpr_auto/f_auto/q_auto/v1/element/23/237239_237197_LUM_05.png"
   },
   {
     "count": 82,
     "uniId": "suor-orsola",
     "name": "University of Suor Orsola Benincasa",
     "address": "Naples, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://archello.s3.eu-central-1.amazonaws.com/images/2014/11/17/13USM59018-0.1506075042.782.jpg",
+    "altImage": "https://www.istituzioni24.it/wp-content/uploads/2020/07/benincasa.jpg"
   },
   {
     "count": 83,
     "uniId": "unint",
     "name": "UNINT - Università degli Studi Internazionali di Roma",
     "address": "Rome, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://romaase.esn.it/sites/esnromaase.it/files/3-0.jpg",
+    "altImage": "https://www.universita.it/wp-content/uploads/2022/07/SEDE-UNINT-48.jpg"
   },
   {
     "count": 84,
     "uniId": "kore-enna",
     "name": "Kore University of Enna",
     "address": "Enna, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.marsalanews.it/wp-content/uploads/2024/07/post-81.jpg",
+    "altImage": "https://static.where-e.com/Italy/Kore-University-Of-Enna_e2a88fc6bf2e74cad980d52da297845f.jpg"
   },
   {
     "count": 85,
     "uniId": "gastronomic-sciences",
     "name": "University of Gastronomic Sciences",
     "address": "Pollenzo (Bra), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.proplast.it/wp-content/uploads/2021/12/pollenzo.jpg",
+    "altImage": "https://www.licpackaging.com/wp-content/uploads/2022/03/universita-scienze-gastronomiche.jpg"
   },
   {
     "count": 86,
     "uniId": "link-campus",
     "name": "Link Campus University",
     "address": "Rome, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://keystoneacademic-res.cloudinary.com/image/upload/c_fill,w_1920,h_636,g_auto/dpr_auto/f_auto/q_auto/v1/element/14/148795_4000x1400-casale-1.jpg",
+    "altImage": "https://en.wikipedia.org/wiki/Link_Campus_University#/media/File:Link_Campus_University.png"
   },
   {
     "count": 87,
     "uniId": "unicamillus",
     "name": "Saint Camillus International University of Health Sciences (UniCamillus)",
     "address": "Rome, Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://unicamillus.org/wp-content/uploads/unicamillus-qualita-sede.png",
+    "altImage": "https://keystoneacademic-res.cloudinary.com/image/upload/element/16/169512_Unicamillus_backstagevideo_22.09_84.jpg"
   },
   {
     "count": 88,
     "uniId": "pegaso",
     "name": "Pegaso Telematic University",
     "address": "Naples (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.ansa.it/webimages/news_base/2021/5/20/6ee52c8960deb589a7f8e2c49bd9675c.jpg",
+    "altImage": "https://www.juorno.it/wp-content/uploads/2019/02/universit%C3%A0-pegaso.jpg"
   },
   {
     "count": 89,
     "uniId": "ecampus",
     "name": "eCampus University",
     "address": "Novedrate (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.uniecampus.it/fileadmin/template_NEW/official/assets/images/virtual_tour/Ecampus-2.jpg",
+    "altImage": "https://www.uniecampus.it/fileadmin/template_NEW/official/assets/images/ateneo_update2025/Copia_di_IMG_5571.jpg"
   },
   {
     "count": 90,
     "uniId": "guglielmo-marconi",
     "name": "Guglielmo Marconi University",
     "address": "Rome (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Sediunimarconi.jpg",
+    "altImage": "https://www.ateneionline.it/app/uploads/2021/01/universita-telematica-guglielmo-marconi.jpg"
   },
   {
     "count": 91,
     "uniId": "niccolo-cusano",
     "name": "Niccolò Cusano University",
     "address": "Rome (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.unicusano.it/wp-content/uploads/2024/09/master-mobile.jpg",
+    "altImage": "https://hypergears.it/wp-content/uploads/2022/12/UNICUSANO-38-copia-e1670605373469.jpg"
   },
   {
     "count": 92,
     "uniId": "unitelma-sapienza",
     "name": "UnitelmaSapienza University",
     "address": "Rome (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.punto-informatico.it/app/uploads/2023/04/unitelma-sapienza-560x350.jpg",
+    "altImage": "https://www.unitelmasapienza.it/wp-content/uploads/2023/04/sede-centrale-di-unitelmasapienza-a-roma-scaled.jpg"
   },
   {
     "count": 93,
     "uniId": "uninettuno",
     "name": "International Telematic University UNINETTUNO",
     "address": "Rome (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://media.vmengine.net/wp-content/uploads/2020/05/19104612/2.jpg",
+    "altImage": "https://sponsored.foreignpolicy.com/wp-content/uploads/sites/3/2022/01/page7_photo1.jpg"
   },
   {
     "count": 94,
     "uniId": "mercatorum",
     "name": "Universitas Mercatorum",
     "address": "Rome (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f7/010101_11_piazza_mattei_le_tartarughe.JPG",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Roma%2C_Fontana_delle_Tartarughe_%284%29.jpg/800px-Roma%2C_Fontana_delle_Tartarughe_%284%29.jpg"
   },
   {
     "count": 95,
     "uniId": "giustino-fortunato",
     "name": "Giustino Fortunato University",
     "address": "Benevento (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.universita.it/wp-content/uploads/2022/07/20170407_094233-scaled.jpg",
+    "altImage": "https://www.realtasannita.it/bt_files/newspaperFiles/unifortunatosede_bn.jpg"
   },
   {
     "count": 96,
     "uniId": "san-raffaele-telematica",
     "name": "San Raffaele Telematic University Rome",
     "address": "Rome (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.studentville.it/app/uploads/2022/01/universita-san-raffaele.jpg",
+    "altImage": "https://sanraffaele.it/wp-content/uploads/2023/03/VAL-CANNUTA-e1688469227974-1024x788.png"
   },
   {
     "count": 97,
     "uniId": "unidav",
     "name": "Università Telematica Leonardo da Vinci (UNIDAV)",
     "address": "Chieti (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.chietitoday.it/~media/horizontal-hi/12474724805030/unidav-3-2.jpg",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Campus_Unidav.jpg/1200px-Campus_Unidav.jpg"
   },
   {
     "count": 98,
     "uniId": "iul-telematica",
     "name": "IUL - Italian University Line",
     "address": "Florence (online), Italy",
-    "image": "",
-    "altImage": ""
+    "image": "https://www.iuline.it/wp-content/uploads/2025/04/iuline-sede-firenze-buonarroti-10-scaled-1.jpg",
+    "altImage": "https://www.startmag.it/wp-content/uploads/iul-1170x550.jpg"
   }
 ]
