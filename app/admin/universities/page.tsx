@@ -26,7 +26,7 @@ export default function UniversitiesManagement() {
     return (
         <>
             <Header fixed>
-                {/* Filetr component */}
+                {/* Filter component */}
                 <div
                     className={cn(
                         "flex w-full items-center justify-between gap-4"

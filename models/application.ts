@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const ApplicationSchema = new mongoose.Schema(
     {
-        uniId: {
+        university: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "University",
             required: true,

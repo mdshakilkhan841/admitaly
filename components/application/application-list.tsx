@@ -43,23 +43,11 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import ApplicationForm from "@/components/application/application-form";
 import { Badge } from "@/components/ui/badge";
-import { IUniversity } from "@/types";
+import { IUniversity, IApplication } from "@/types";
 
-interface IApplication {
-    _id: string;
-    university?: IUniversity;
-    call: string;
-    applicationLink: string;
-    admissionFee: string;
-    startDate: string;
-    endDate: string;
-    cgpa: string;
-    languageProficiency: string[];
-    others: string[];
-}
-
-interface IApplicationFormData extends Omit<IApplication, "_id" | "uniId"> {
-    uniId: string;
+interface IApplicationFormData
+    extends Omit<IApplication, "_id" | "university"> {
+    university: string;
 }
 
 const ApplicationList = ({

@@ -21,37 +21,16 @@ import {
 } from "@/components/ui/command";
 import fetcher from "@/lib/fetcher";
 import { cn } from "@/lib/utils";
-
-interface IApplication {
-    _id: string;
-    university?: {
-        _id: string;
-        name?: string;
-        image?: string;
-    };
-    call: string;
-    applicationLink: string;
-    admissionFee: string;
-    startDate: string;
-    endDate: string;
-    cgpa: string;
-    languageProficiency: string[];
-    others: string[];
-}
+import { IUniversity, IApplication } from "@/types";
 
 interface IApplicationFormData
     extends Omit<
         IApplication,
         "_id" | "university" | "languageProficiency" | "others"
     > {
-    uniId: string;
+    university: string;
     languageProficiency: string;
     others: string;
-}
-
-interface University {
-    _id: string;
-    name: string;
 }
 
 interface ApplicationFormProps {
@@ -69,7 +48,7 @@ export default function ApplicationForm({
         data: universities,
         isLoading,
         error,
-    } = useSWR<University[]>("/api/universities", fetcher, {
+    } = useSWR<IUniversity[]>("/api/universities", fetcher, {
         keepPreviousData: true,
         revalidateOnFocus: false,
         revalidateIfStale: false,
@@ -81,7 +60,7 @@ export default function ApplicationForm({
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [formData, setFormData] = useState<IApplicationFormData>({
-        uniId: application?.university?._id || "",
+        university: application?.university?._id || "",
         call: application?.call || "",
         applicationLink: application?.applicationLink || "",
         admissionFee: application?.admissionFee || "No Fee",
@@ -104,7 +83,7 @@ export default function ApplicationForm({
     };
 
     const handleSelectChange = (value: string) => {
-        setFormData({ ...formData, uniId: value });
+        setFormData({ ...formData, university: value });
     };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -133,7 +112,7 @@ export default function ApplicationForm({
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-2">
-                <Label htmlFor="uniId">University</Label>
+                <Label htmlFor="university">University</Label>
                 <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                         <Button
@@ -142,9 +121,9 @@ export default function ApplicationForm({
                             aria-expanded={open}
                             className="w-full justify-between"
                         >
-                            {formData.uniId
+                            {formData.university
                                 ? universities?.find(
-                                      (uni) => uni._id === formData.uniId
+                                      (uni) => uni._id === formData.university
                                   )?.name
                                 : "Select a university..."}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -175,7 +154,8 @@ export default function ApplicationForm({
                                             <Check
                                                 className={cn(
                                                     "mr-2 h-4 w-4",
-                                                    formData.uniId === uni._id
+                                                    formData.university ===
+                                                        uni._id
                                                         ? "opacity-100"
                                                         : "opacity-0"
                                                 )}
