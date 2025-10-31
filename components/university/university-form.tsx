@@ -4,17 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
-
-interface University {
-    _id?: string;
-    name: string;
-    address: string;
-    image: string;
-}
+import { IUniversity } from "@/types";
 
 interface UniversityFormProps {
-    university: University | null;
-    onSubmit: (formData: Omit<University, "_id">) => Promise<any>;
+    university: IUniversity | null;
+    onSubmit: (formData: Omit<IUniversity, "_id">) => Promise<any>;
     onCancel: () => void;
 }
 
@@ -24,10 +18,12 @@ export default function UniversityForm({
     onCancel,
 }: UniversityFormProps) {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [formData, setFormData] = useState<Omit<University, "_id">>({
+    const [formData, setFormData] = useState<Omit<IUniversity, "_id">>({
         name: university?.name || "",
         address: university?.address || "",
         image: university?.image || "",
+        altImage: university?.altImage || "",
+        uniId: university?.uniId || "",
     });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

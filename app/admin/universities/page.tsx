@@ -62,16 +62,6 @@ export default function UniversitiesManagement() {
                             >
                                 Name (Z-A)
                             </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("createdAt:desc")}
-                            >
-                                Newest
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("createdAt:asc")}
-                            >
-                                Oldest
-                            </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
