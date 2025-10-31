@@ -1,5 +1,6 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from "react";
+import dayjs from "dayjs";
 import useSWR from "swr";
 import { Check, ChevronsUpDown } from "lucide-react";
 
@@ -19,6 +20,13 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import fetcher from "@/lib/fetcher";
 import { cn } from "@/lib/utils";
 import { IUniversity, IApplication } from "@/types";
@@ -39,6 +47,26 @@ interface ApplicationFormProps {
     onCancel: () => void;
 }
 
+const getAcademicSessions = () => {
+    const now = dayjs();
+    // Academic year starts in October (month index 9).
+    // If current month is Oct, Nov, Dec, the session has already rolled over for the next year.
+    const startYearOfCurrentSession =
+        now.month() >= 9 ? now.year() + 1 : now.year();
+
+    return {
+        previous: `${
+            startYearOfCurrentSession - 1
+        }-${startYearOfCurrentSession}`,
+        current: `${startYearOfCurrentSession}-${
+            startYearOfCurrentSession + 1
+        }`,
+        next: `${startYearOfCurrentSession + 1}-${
+            startYearOfCurrentSession + 2
+        }`,
+    };
+};
+
 export default function ApplicationForm({
     application,
     onSubmit,
@@ -56,12 +84,15 @@ export default function ApplicationForm({
         shouldRetryOnError: true,
     });
 
+    const academicSessions = getAcademicSessions();
+
     const [open, setOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [formData, setFormData] = useState<IApplicationFormData>({
         university: application?.university?._id || "",
         call: application?.call || "",
+        session: application?.session || academicSessions.current,
         applicationLink: application?.applicationLink || "",
         admissionFee: application?.admissionFee || "No Fee",
         startDate: application?.startDate
@@ -84,6 +115,14 @@ export default function ApplicationForm({
 
     const handleSelectChange = (value: string) => {
         setFormData({ ...formData, university: value });
+    };
+
+    const handleSessionChange = (value: string) => {
+        setFormData({ ...formData, session: value });
+    };
+
+    const handleCallChange = (value: string) => {
+        setFormData({ ...formData, call: value });
     };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -170,14 +209,49 @@ export default function ApplicationForm({
                 </Popover>
             </div>
 
-            <div className="grid gap-2">
-                <Label htmlFor="call">Call</Label>
-                <Input
-                    id="call"
-                    name="call"
-                    value={formData.call}
-                    onChange={handleChange}
-                />
+            <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                    <Label htmlFor="call">Call</Label>
+                    <Select
+                        onValueChange={handleCallChange}
+                        value={formData.call}
+                    >
+                        <SelectTrigger id="call" className="w-full">
+                            <SelectValue placeholder="Select a Call" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="none">None</SelectItem>
+                            <SelectItem value="1st">1st</SelectItem>
+                            <SelectItem value="2nd">2nd</SelectItem>
+                            <SelectItem value="3rd">3rd</SelectItem>
+                            <SelectItem value="4th">4th</SelectItem>
+                            <SelectItem value="5th">5th</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="grid gap-2">
+                    <Label htmlFor="call">Session</Label>
+                    <Select
+                        onValueChange={handleSessionChange}
+                        value={formData.session}
+                    >
+                        <SelectTrigger id="session" className="w-full">
+                            <SelectValue placeholder="Select a session" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value={academicSessions.previous}>
+                                {academicSessions.previous}
+                            </SelectItem>
+                            <SelectItem value={academicSessions.current}>
+                                {academicSessions.current}
+                            </SelectItem>
+                            <SelectItem value={academicSessions.next}>
+                                {academicSessions.next}
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">

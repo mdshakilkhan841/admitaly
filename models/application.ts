@@ -10,6 +10,9 @@ const ApplicationSchema = new mongoose.Schema(
         call: {
             type: String,
         },
+        session: {
+            type: String,
+        },
         applicationLink: {
             type: String,
             default: "#",

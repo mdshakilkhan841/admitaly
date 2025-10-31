@@ -13,6 +13,7 @@ export interface IApplication {
     _id: string;
     university: IUniversity;
     call: string;
+    session: string;
     applicationLink: string;
     admissionFee: string;
     startDate: string;
