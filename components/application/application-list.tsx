@@ -9,7 +9,7 @@ import {
 } from "@/lib/deadline-utils";
 import { toast } from "sonner";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import useSWR from "swr";
 import Modal from "../Modal";
 import {
@@ -61,10 +61,6 @@ const ApplicationList = ({
     searchQuery: string;
     sortBy: string;
 }) => {
-    const params = new URLSearchParams();
-    if (searchQuery) params.set("search", searchQuery);
-    if (sortBy) params.set("sortBy", sortBy);
-
     const url = `/api/applications`;
 
     const {
@@ -82,7 +78,40 @@ const ApplicationList = ({
 
     const [selectedApplication, setSelectedApplication] =
         useState<IApplication | null>(null);
-    const [selectedRows, setSelectedRows] = useState<string[]>([]);
+    const [selectedRows, setSelectedRows] = useState(new Set<string>());
+
+    const filteredApplications = useMemo(() => {
+        if (!applications) return [];
+
+        // 1. Filter based on searchQuery
+        const filtered = applications.filter(
+            (app) =>
+                app.university?.name
+                    ?.toLowerCase()
+                    .includes(searchQuery.toLowerCase()) ||
+                app.call?.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        // 2. Sort based on sortBy
+        const [sortField, sortDirection] = sortBy.split(":");
+        const sorted = [...filtered].sort((a, b) => {
+            let fieldA: any;
+            let fieldB: any;
+
+            if (sortField === "name") {
+                fieldA = a.university?.uniId?.toLowerCase() || "";
+                fieldB = b.university?.uniId?.toLowerCase() || "";
+            } else if (sortField === "createdAt") {
+                fieldA = new Date(a.createdAt || 0).getTime();
+                fieldB = new Date(b.createdAt || 0).getTime();
+            }
+
+            if (fieldA < fieldB) return sortDirection === "asc" ? -1 : 1;
+            if (fieldA > fieldB) return sortDirection === "asc" ? 1 : -1;
+            return 0;
+        });
+        return sorted;
+    }, [applications, searchQuery, sortBy]);
 
     const handleEdit = (application: IApplication) => {
         setSelectedApplication(application);
@@ -104,15 +133,15 @@ const ApplicationList = ({
     const handleBulkDelete = async () => {
         if (
             confirm(
-                `Are you sure you want to delete ${selectedRows.length} applications?`
+                `Are you sure you want to delete ${selectedRows.size} applications?`
             )
         ) {
             try {
                 await axios.delete(`/api/applications`, {
-                    data: { ids: selectedRows },
+                    data: { ids: Array.from(selectedRows) },
                 });
                 mutate();
-                setSelectedRows([]);
+                setSelectedRows(new Set());
                 toast.success("Applications deleted successfully");
             } catch (error) {
                 console.error("Error deleting applications:", error);
@@ -157,7 +186,7 @@ const ApplicationList = ({
 
     return (
         <div>
-            {selectedRows.length > 0 && (
+            {selectedRows.size > 0 && (
                 <div className="flex items-center gap-2 mb-4">
                     <Button
                         variant="destructive"
@@ -165,7 +194,7 @@ const ApplicationList = ({
                         onClick={handleBulkDelete}
                     >
                         <Trash className="mr-2 h-4 w-4" />
-                        Delete Selected ({selectedRows.length})
+                        Delete Selected ({selectedRows.size})
                     </Button>
                 </div>
             )}
@@ -176,19 +205,21 @@ const ApplicationList = ({
                             <TableHead className="w-12">
                                 <Checkbox
                                     checked={
-                                        selectedRows.length ===
-                                            applications?.length &&
-                                        (applications?.length ?? 0) > 0
+                                        selectedRows.size ===
+                                            filteredApplications.length &&
+                                        filteredApplications.length > 0
                                     }
                                     onCheckedChange={(checked) => {
                                         if (checked) {
                                             setSelectedRows(
-                                                applications?.map(
-                                                    (u) => u._id
-                                                ) || []
+                                                new Set(
+                                                    filteredApplications.map(
+                                                        (u) => u._id
+                                                    )
+                                                )
                                             );
                                         } else {
-                                            setSelectedRows([]);
+                                            setSelectedRows(new Set());
                                         }
                                     }}
                                 />
@@ -222,26 +253,25 @@ const ApplicationList = ({
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {applications?.map((application) => (
+                        {filteredApplications.map((application) => (
                             <TableRow key={application._id}>
                                 <TableCell>
                                     <Checkbox
-                                        checked={selectedRows.includes(
+                                        checked={selectedRows.has(
                                             application._id
                                         )}
                                         onCheckedChange={(checked) => {
-                                            setSelectedRows(
-                                                checked
-                                                    ? [
-                                                          ...selectedRows,
-                                                          application._id,
-                                                      ]
-                                                    : selectedRows.filter(
-                                                          (id) =>
-                                                              id !==
-                                                              application._id
-                                                      )
-                                            );
+                                            setSelectedRows((prev) => {
+                                                const newSet = new Set(prev);
+                                                if (checked) {
+                                                    newSet.add(application._id);
+                                                } else {
+                                                    newSet.delete(
+                                                        application._id
+                                                    );
+                                                }
+                                                return newSet;
+                                            });
                                         }}
                                     />
                                 </TableCell>
@@ -379,7 +409,7 @@ const ApplicationList = ({
             </div>
             {/* Mobile Card View */}
             <div className="grid gap-4 md:hidden">
-                {applications?.map((application) => {
+                {filteredApplications.map((application) => {
                     const hasDetails =
                         application.languageProficiency.length > 0 ||
                         application.others.length > 0;
@@ -396,22 +426,21 @@ const ApplicationList = ({
                             <div className="flex items-start justify-between gap-4 p-3">
                                 <div className="flex items-start gap-4">
                                     <Checkbox
-                                        checked={selectedRows.includes(
+                                        checked={selectedRows.has(
                                             application._id
                                         )}
                                         onCheckedChange={(checked) => {
-                                            setSelectedRows(
-                                                checked
-                                                    ? [
-                                                          ...selectedRows,
-                                                          application._id,
-                                                      ]
-                                                    : selectedRows.filter(
-                                                          (id) =>
-                                                              id !==
-                                                              application._id
-                                                      )
-                                            );
+                                            setSelectedRows((prev) => {
+                                                const newSet = new Set(prev);
+                                                if (checked) {
+                                                    newSet.add(application._id);
+                                                } else {
+                                                    newSet.delete(
+                                                        application._id
+                                                    );
+                                                }
+                                                return newSet;
+                                            });
                                         }}
                                         className="mt-1"
                                     />
