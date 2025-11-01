@@ -11,6 +11,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
@@ -21,6 +28,7 @@ const SignupPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("user");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -32,6 +40,7 @@ const SignupPage = () => {
                 name,
                 email, // required
                 password, // required
+                role,
                 callbackURL: "/sign-in",
             },
             {
@@ -76,6 +85,21 @@ const SignupPage = () => {
                                 onChange={(e) => setName(e.target.value)}
                                 required
                             />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="role">Role</Label>
+                            <Select onValueChange={setRole} defaultValue={role}>
+                                <SelectTrigger id="role" className="w-full">
+                                    <SelectValue placeholder="Select a Role" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="user">User</SelectItem>
+                                    <SelectItem value="admin">Admin</SelectItem>
+                                    <SelectItem value="super-admin">
+                                        Super Admin
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>

@@ -29,9 +29,8 @@ import {
     SidebarRail,
 } from "@/components/ui/sidebar";
 import { UserAvatarProfile } from "@/components/user-avatar-profile";
-import { IconUserCircle } from "@tabler/icons-react";
 import Link from "next/link";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { sidebarData, SidebarData } from "@/data/sidebar-data";
 import { ChevronsUpDown, ChevronRight, LogOut, CircleUser } from "lucide-react";
 import { OrgSwitcher } from "@/components/org-switcher";
@@ -40,18 +39,9 @@ import { authClient } from "@/lib/auth-client";
 const tenants = [{ id: "1", name: "Admitaly" }];
 
 export default function AppSidebar() {
-    const router = useRouter();
+    const { data } = authClient.useSession();
+    const { user } = data || {};
     const activeTenant = tenants[0];
-
-    const user = {
-        imageUrl: "https://api.slingacademy.com/public/sample-users/1.png",
-        fullName: "Olivia Martin",
-        emailAddresses: [
-            {
-                emailAddress: "olivia.martin@email.com",
-            },
-        ],
-    };
 
     const handleSignOut = async () => {
         await authClient.signOut({

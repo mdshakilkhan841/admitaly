@@ -15,7 +15,7 @@ export async function GET(
 
         await dbConnect();
         const application = await Application.findById(id)
-            .populate("uniId", "name image address _id")
+            .populate("university", "name image altImage address uniId _id")
             .lean();
 
         if (!application) {
@@ -25,8 +25,7 @@ export async function GET(
             );
         }
 
-        const { uniId, ...rest } = application;
-        return NextResponse.json({ ...rest, university: uniId });
+        return NextResponse.json(application);
     } catch (error) {
         return NextResponse.json(
             { error: (error as Error).message },
@@ -50,7 +49,7 @@ export async function PUT(
         const application = await Application.findByIdAndUpdate(id, body, {
             new: true,
         })
-            .populate("uniId", "name image address _id")
+            .populate("university", "name image altImage address uniId _id")
             .lean();
         if (!application) {
             return NextResponse.json(
@@ -58,8 +57,8 @@ export async function PUT(
                 { status: 404 }
             );
         }
-        const { uniId, ...rest } = application;
-        return NextResponse.json({ ...rest, university: uniId });
+
+        return NextResponse.json(application);
     } catch (error) {
         return NextResponse.json(
             { error: (error as Error).message },

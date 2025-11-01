@@ -6,8 +6,9 @@ import { Input } from "@/components/ui/input";
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem,
     DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -22,6 +23,13 @@ export default function ApplicationsManagement() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [sortBy, setSortBy] = useState("name:asc");
+
+    const sortOptions: { [key: string]: string } = {
+        "name:asc": "Name (A-Z)",
+        "name:desc": "Name (Z-A)",
+        "createdAt:desc": "Newest",
+        "createdAt:asc": "Oldest",
+    };
 
     return (
         <>
@@ -42,36 +50,32 @@ export default function ApplicationsManagement() {
                         <DropdownMenuTrigger asChild>
                             <Button
                                 variant="outline"
-                                size="sm"
-                                className="ml-auto"
+                                className="ml-auto w-40 justify-start"
                             >
                                 <ListFilter className="mr-2 h-4 w-4" />
-                                Sort by
+                                {sortOptions[sortBy]}
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
+                        <DropdownMenuContent align="end" className="w-40">
                             <DropdownMenuLabel>Sort by</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("name:asc")}
+                            <DropdownMenuRadioGroup
+                                value={sortBy}
+                                onValueChange={setSortBy}
                             >
-                                Name (A-Z)
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("name:desc")}
-                            >
-                                Name (Z-A)
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("createdAt:desc")}
-                            >
-                                Newest
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("createdAt:asc")}
-                            >
-                                Oldest
-                            </DropdownMenuItem>
+                                <DropdownMenuRadioItem value="name:asc">
+                                    Name (A-Z)
+                                </DropdownMenuRadioItem>
+                                <DropdownMenuRadioItem value="name:desc">
+                                    Name (Z-A)
+                                </DropdownMenuRadioItem>
+                                <DropdownMenuRadioItem value="createdAt:desc">
+                                    Newest
+                                </DropdownMenuRadioItem>
+                                <DropdownMenuRadioItem value="createdAt:asc">
+                                    Oldest
+                                </DropdownMenuRadioItem>
+                            </DropdownMenuRadioGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

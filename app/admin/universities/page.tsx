@@ -7,13 +7,15 @@ import { Input } from "@/components/ui/input";
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem,
+    DropdownMenuGroup,
     DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ListFilter } from "lucide-react";
+import { ListFilter, Check } from "lucide-react";
 import UniversityList from "@/components/university/university-list";
 import { cn } from "@/lib/utils";
 import Header from "@/components/layout/header";
@@ -21,12 +23,17 @@ import Header from "@/components/layout/header";
 export default function UniversitiesManagement() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    const [sortBy, setSortBy] = useState("name:asc");
+    const [sortBy, setSortBy] = useState("");
+
+    const sortOptions: { [key: string]: string } = {
+        "name:asc": "Name (A-Z)",
+        "name:desc": "Name (Z-A)",
+    };
 
     return (
         <>
             <Header fixed>
-                {/* Filetr component */}
+                {/* Filter component */}
                 <div
                     className={cn(
                         "flex w-full items-center justify-between gap-4"
@@ -39,39 +46,26 @@ export default function UniversitiesManagement() {
                         className="max-w-sm"
                     />
                     <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="ml-auto"
-                            >
+                        <DropdownMenuTrigger asChild className="w-36">
+                            <Button variant="outline" className="ml-auto">
                                 <ListFilter className="mr-2 h-4 w-4" />
-                                Sort by
+                                {sortBy ? sortOptions[sortBy] : "Sort by"}
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
+                        <DropdownMenuContent align="end" className="w-36">
                             <DropdownMenuLabel>Sort by</DropdownMenuLabel>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("name:asc")}
+                            <DropdownMenuRadioGroup
+                                value={sortBy}
+                                onValueChange={setSortBy}
                             >
-                                Name (A-Z)
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("name:desc")}
-                            >
-                                Name (Z-A)
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("createdAt:desc")}
-                            >
-                                Newest
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => setSortBy("createdAt:asc")}
-                            >
-                                Oldest
-                            </DropdownMenuItem>
+                                <DropdownMenuRadioItem value="name:asc">
+                                    Name (A-Z)
+                                </DropdownMenuRadioItem>
+                                <DropdownMenuRadioItem value="name:desc">
+                                    Name (Z-A)
+                                </DropdownMenuRadioItem>
+                            </DropdownMenuRadioGroup>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>

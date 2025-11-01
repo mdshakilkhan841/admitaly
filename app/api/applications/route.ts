@@ -7,18 +7,11 @@ export async function GET(): Promise<NextResponse> {
     try {
         await dbConnect();
         const applications = await Application.find({})
-            .populate("uniId", "name image address _id")
+            .sort({ createdAt: -1 })
+            .populate("university", "name image altImage address uniId _id")
             .lean();
 
-        const transformedApplications = applications.map((app) => {
-            const { uniId, ...rest } = app;
-            return {
-                ...rest,
-                university: uniId,
-            };
-        });
-
-        return NextResponse.json(transformedApplications);
+        return NextResponse.json(applications);
     } catch (error) {
         return NextResponse.json(
             { error: (error as Error).message },
