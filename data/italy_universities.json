@@ -1,590 +1,590 @@
 [
   {
-    "uniId": "sapienza-roma",
     "name": "Sapienza University of Rome",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Sapienza_entrance_%2820040201351%29.jpg",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/4/44/Sant%27Ivo_alla_Sapienza_-Rome.jpg",
   },
   {
-    "uniId": "roma-tor-vergata",
     "name": "University of Rome Tor Vergata",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/97/Rettorato_Universit%C3%A0_di_Roma_Tor_Vergata.png",
+    "altImage": "https://d3w13n53foase7.cloudfront.net/medium_bf11fa86_9363_4025_bb00_4d71e7760bb7_cov_0f5b32b7ae.jpg",
   },
   {
-    "uniId": "roma-tre",
     "name": "Roma Tre University",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "https://www.nanoinnovation2024.eu/home/images/CO-ORGANIZERS-articoli/Roma-tre_foto.jpeg",
+    "altImage": "https://imgcdn.cna.com.tw/Eng/WebEngPhotos/800/2025/20251007/1378x768_626631744794.jpg",
   },
   {
-    "uniId": "bologna",
     "name": "University of Bologna",
     "address": "Bologna, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Archiginnasio_ora_blu_Bologna.jpg",
+    "altImage": "https://uceap.universityofcalifornia.edu/sites/default/files/marketing-images/program-page-images/university-of-bologna-glance.jpg",
   },
   {
-    "uniId": "milan-statale",
     "name": "University of Milan",
     "address": "Milan, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/cc/2420_-_Milano_-_Universit%C3%A0_Statale_-_Cortile_principale_-_Foto_Giovanni_Dall%27Orto_22-Feb-2008.jpg",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Milano%2C_ca%27_granda%2C_01.jpg",
   },
   {
-    "uniId": "milan-bicocca",
     "name": "University of Milano-Bicocca",
     "address": "Milan, Italy",
-    "image": ""
+    "image": "https://static.where-e.com/Italy/Universit-Degli-Studi-Di-Milano-Bicocca_c885ec17e7c3909b319fb01a661ffb36.jpg",
+    "altImage": "https://www.medlinkstudents.com/wp-content/uploads/2021/05/University-Of-Milano-Bicocca-School-Of-Medicine-And-Surgery-building-front-view.jpg",
   },
   {
-    "uniId": "polimi",
     "name": "Politecnico di Milano",
     "address": "Milan, Italy",
-    "image": ""
+    "image": "https://www.veneziepost.it/wp-content/uploads/2024/04/politecnico-milano-universita-e1695217009174.jpg",
+    "altImage": "https://api.iapply.org/uni_gallery/994fa4a4-37b7-4d24-81ea-3d4831e8100c.jpg",
   },
   {
-    "uniId": "polito",
     "name": "Politecnico di Torino",
     "address": "Turin, Italy",
-    "image": ""
+    "image": "https://www.polito.it/sites/default/files/2023-03/QS%20ranking%202023.jpg",
+    "altImage": "https://www.polito.it/sites/default/files/styles/card_desktop/public/2024-04/Facciata%20Politecnico.jpg",
   },
   {
-    "uniId": "turin",
     "name": "University of Turin",
     "address": "Turin, Italy",
-    "image": ""
+    "image": "https://content.fosterandpartners.com/api/media/getCroppedImage?imagePath=/media/5d2jxhip/1212_fp479849.jpg&width=2000&height=2000&crop=false",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/d/df/Palazzo_dell%27Universit%C3%A0_%28Turin%29.jpg",
   },
   {
-    "uniId": "padua",
     "name": "University of Padua",
     "address": "Padua, Italy",
-    "image": ""
+    "image": "https://www.gbhotelsabano.it/assets/uploads/Blog-Turismo/02_CORTILE-UNIVERSITA-E--PALAZZO-BO-WEB/WEBDSC_4353.jpg",
+    "altImage": "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/258000/258302-Historic-Centre-Padova.jpg",
   },
   {
-    "uniId": "pisa",
     "name": "University of Pisa",
     "address": "Pisa, Italy",
-    "image": ""
+    "image": "https://cinet.org/events/seminars/2025/pics/3-pisa-piazza.jpg",
+    "altImage": "https://mbe.ec.unipi.it/wp-content/uploads/2020/05/pisa-4264096_960_720.jpg",
   },
   {
-    "uniId": "florence",
     "name": "University of Florence",
     "address": "Florence, Italy",
-    "image": ""
+    "image": "https://www.stonybrook.edu/commcms/studyabroad/_images/outgoing-banner-images/all-year-website-photos/italy/AY-florence.png",
+    "altImage": "https://s3.ap-south-1.amazonaws.com/gotouniv/cover_photo/1527/cover_photo_1500X500.jpg",
   },
   {
-    "uniId": "siena",
     "name": "University of Siena",
     "address": "Siena, Italy",
-    "image": ""
+    "image": "https://www.spotteron.net/media/k2/items/cache/755a09762452d6eb5c314d532540d319_L.jpg",
+    "altImage": "https://www.parexstudy.it/wp-content/uploads/2024/01/shutterstock_1027666891-scaled.jpg",
   },
   {
-    "uniId": "naples-federico-ii",
     "name": "University of Naples Federico II",
     "address": "Naples, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/40/Universit%C3%A0_degli_Studi_di_Napoli_Federico_II_-_panoramio_%281%29.jpg",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Reggia_di_Portici1.jpg/1280px-Reggia_di_Portici1.jpg",
   },
   {
-    "uniId": "naples-orientale",
     "name": "University of Naples L'Orientale",
     "address": "Naples, Italy",
-    "image": ""
+    "image": "https://www.itserr.it/wp-content/uploads/2024/12/Palazzo-Corigliano-building-1024x928.jpg",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Universit%C3%A0_Orientale_Orientale.jpg",
   },
   {
-    "uniId": "naples-parthenope",
     "name": "Parthenope University of Naples",
     "address": "Naples, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Universit%C3%A0_degli_Studi_di_Napoli_-_Parthenope_-_sede_Acton.png.jpg",
+    "altImage": "https://s3.ap-south-1.amazonaws.com/gotouniv/cover_photo/1402/cover_photo_1500X500.jpg",
   },
   {
-    "uniId": "bari",
     "name": "University of Bari Aldo Moro",
     "address": "Bari, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Facciata_dell%27ateneo_principale_dell%27Universit%C3%A0_degli_Studi_di_Bari_Aldo_Moro.jpg",
+    "altImage": "https://www.medlinkstudents.com/wp-content/uploads/2021/05/University-Of-Bari-Aldo-Moro-Building-1.jpg",
   },
   {
-    "uniId": "salerno",
     "name": "University of Salerno",
     "address": "Salerno, Italy",
-    "image": ""
+    "image": "https://icities2021.unisa.it/assets/img/unisa/unisa_venue.jpg",
+    "altImage": "https://openscience.neolaiacampus.eu/wp-content/uploads/2024/06/UNISA.jpg",
   },
   {
-    "uniId": "calabria",
     "name": "University of Calabria",
     "address": "Rende, Italy",
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/81/Unical_Rende_%28CS%29.jpg",
+    "altImage": "https://www.siiv.net/new/wp-content/uploads/2021/06/Campus-Unical-1024x553.jpg",
   },
   {
-    "uniId": "catania",
     "name": "University of Catania",
     "address": "Catania, Italy",
-    "image": ""
+    "image": "https://medschool.it/wp-content/uploads/2024/04/university-of-catania-medicine-and-surgery-1024x576.jpg",
+    "altImage": "https://upload.wikimedia.org/wikipedia/commons/9/98/Catania_BW_2012-10-06_11-26-20.JPG",
   },
   {
-    "uniId": "messina",
     "name": "University of Messina",
     "address": "Messina, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "palermo",
     "name": "University of Palermo",
     "address": "Palermo, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "cagliari",
     "name": "University of Cagliari",
     "address": "Cagliari, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "sassari",
     "name": "University of Sassari",
     "address": "Sassari, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "genoa",
     "name": "University of Genoa",
     "address": "Genoa, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "parma",
     "name": "University of Parma",
     "address": "Parma, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "pavia",
     "name": "University of Pavia",
     "address": "Pavia, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "modena-reggio",
     "name": "University of Modena and Reggio Emilia",
     "address": "Modena/Reggio Emilia, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "ferrara",
     "name": "University of Ferrara",
     "address": "Ferrara, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "trento",
     "name": "University of Trento",
     "address": "Trento, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "bolzano-bozen",
     "name": "Free University of Bozen-Bolzano",
     "address": "Bolzano/Bozen, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "verona",
     "name": "University of Verona",
     "address": "Verona, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "udine",
     "name": "University of Udine",
     "address": "Udine, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "trieste",
     "name": "University of Trieste",
     "address": "Trieste, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "camerino",
     "name": "University of Camerino",
     "address": "Camerino, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "macerata",
     "name": "University of Macerata",
     "address": "Macerata, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "urbino",
     "name": "University of Urbino Carlo Bo",
     "address": "Urbino, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "perugia",
     "name": "University of Perugia",
     "address": "Perugia, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "laquila",
     "name": "University of L'Aquila",
     "address": "L'Aquila, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "teramo",
     "name": "University of Teramo",
     "address": "Teramo, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "chieti-pescara",
     "name": "G. d'Annunzio University of Chieti–Pescara",
     "address": "Chieti/Pescara, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "cassino",
     "name": "University of Cassino and Southern Lazio",
     "address": "Cassino, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "tuscia",
     "name": "University of Tuscia",
     "address": "Viterbo, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "basilicata",
     "name": "University of Basilicata",
     "address": "Potenza/Matera, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "molise",
     "name": "University of Molise",
     "address": "Campobasso, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "foggia",
     "name": "University of Foggia",
     "address": "Foggia, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "reggio-calabria",
     "name": "Mediterranea University of Reggio Calabria",
     "address": "Reggio Calabria, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "catanzaro",
     "name": "Magna Græcia University of Catanzaro",
     "address": "Catanzaro, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "insubria",
     "name": "University of Insubria",
     "address": "Como/Varese, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "sannio",
     "name": "University of Sannio",
     "address": "Benevento, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "campania-vanvitelli",
     "name": "University of Campania Luigi Vanvitelli",
     "address": "Caserta/Aversa/Capua, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "eastern-piedmont",
     "name": "University of Eastern Piedmont",
     "address": "Vercelli/Novara/Alessandria, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "bergamo",
     "name": "University of Bergamo",
     "address": "Bergamo, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "brescia",
     "name": "University of Brescia",
     "address": "Brescia, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "salento",
     "name": "University of Salento",
     "address": "Lecce, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "ca-foscari",
     "name": "Ca' Foscari University of Venice",
     "address": "Venice, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "iuav-venice",
     "name": "Iuav University of Venice",
     "address": "Venice, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "forli-sport",
     "name": "University of Rome Foro Italico",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "politecnica-marche",
     "name": "Marche Polytechnic University",
     "address": "Ancona, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "piemonte-orientale",
     "name": "Università del Piemonte Orientale",
     "address": "Vercelli/Novara/Alessandria, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "per-stranieri-perugia",
     "name": "University for Foreigners of Perugia",
     "address": "Perugia, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "per-stranieri-siena",
     "name": "University for Foreigners of Siena",
     "address": "Siena, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "valle-d-aosta",
     "name": "University of Aosta Valley",
     "address": "Aosta, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "politecnico-bari",
     "name": "Polytechnic University of Bari",
     "address": "Bari, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "sns-pisa",
     "name": "Scuola Normale Superiore di Pisa",
     "address": "Pisa, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "sant-anna-pisa",
     "name": "Sant'Anna School of Advanced Studies",
     "address": "Pisa, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "iuss-pavia",
     "name": "IUSS Pavia",
     "address": "Pavia, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "sissa-trieste",
     "name": "SISSA - International School for Advanced Studies",
     "address": "Trieste, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "imt-lucca",
     "name": "IMT School for Advanced Studies Lucca",
     "address": "Lucca, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "gssi-laquila",
     "name": "Gran Sasso Science Institute (GSSI)",
     "address": "L'Aquila, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "bocconi",
     "name": "Bocconi University",
     "address": "Milan, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "cattolica",
     "name": "Università Cattolica del Sacro Cuore",
     "address": "Milan/Rome/Brescia/Piacenza, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "luiss",
     "name": "LUISS Guido Carli",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "iulm",
     "name": "IULM University",
     "address": "Milan, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "vita-salute-san-raffaele",
     "name": "Vita-Salute San Raffaele University",
     "address": "Milan, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "campus-biomedico",
     "name": "Università Campus Bio-Medico di Roma",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "humanitas",
     "name": "Humanitas University",
     "address": "Pieve Emanuele (Milan), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "liuc",
     "name": "LIUC - Università Cattaneo",
     "address": "Castellanza, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "uer",
     "name": "Università Europea di Roma",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "lumsa",
     "name": "LUMSA University",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "lum",
     "name": "LUM Giuseppe Degennaro (ex LUM Jean Monnet)",
     "address": "Casamassima (Bari), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "suor-orsola",
     "name": "University of Suor Orsola Benincasa",
     "address": "Naples, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "unint",
     "name": "UNINT - Università degli Studi Internazionali di Roma",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "kore-enna",
     "name": "Kore University of Enna",
     "address": "Enna, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "gastronomic-sciences",
     "name": "University of Gastronomic Sciences",
     "address": "Pollenzo (Bra), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "link-campus",
     "name": "Link Campus University",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "unicamillus",
     "name": "Saint Camillus International University of Health Sciences (UniCamillus)",
     "address": "Rome, Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "pegaso",
     "name": "Pegaso Telematic University",
     "address": "Naples (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "ecampus",
     "name": "eCampus University",
     "address": "Novedrate (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "guglielmo-marconi",
     "name": "Guglielmo Marconi University",
     "address": "Rome (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "niccolo-cusano",
     "name": "Niccolò Cusano University",
     "address": "Rome (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "unitelma-sapienza",
     "name": "UnitelmaSapienza University",
     "address": "Rome (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "uninettuno",
     "name": "International Telematic University UNINETTUNO",
     "address": "Rome (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "mercatorum",
     "name": "Universitas Mercatorum",
     "address": "Rome (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "giustino-fortunato",
     "name": "Giustino Fortunato University",
     "address": "Benevento (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "san-raffaele-telematica",
     "name": "San Raffaele Telematic University Rome",
     "address": "Rome (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "unidav",
     "name": "Università Telematica Leonardo da Vinci (UNIDAV)",
     "address": "Chieti (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   },
   {
-    "uniId": "iul-telematica",
     "name": "IUL - Italian University Line",
     "address": "Florence (online), Italy",
-    "image": ""
+    "image": "",
+    "altImage": "",
   }
 ]
