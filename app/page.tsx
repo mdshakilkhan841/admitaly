@@ -6,7 +6,8 @@ import { getApplicationStatus } from "@/lib/deadline-utils";
 import FilterBar from "@/components/filter-bar";
 import Header from "@/components/header";
 import useSWR from "swr";
-import { IApplication, IUniversity } from "@/types";
+import { IApplication } from "@/types";
+import SkeletonApplicationCard from "@/components/skeleton/skeleton-application-card";
 import fetcher from "@/lib/fetcher";
 
 export default function Home() {
@@ -20,12 +21,9 @@ export default function Home() {
         mutate,
     } = useSWR<IApplication[]>("/api/applications", fetcher, {
         keepPreviousData: true,
-        revalidateOnFocus: false,
-        revalidateIfStale: false,
         dedupingInterval: 10000,
         shouldRetryOnError: true,
     });
-    console.log("🚀 ~ Home ~ applications:", applications);
 
     const filteredApplications = useMemo(() => {
         if (!applications) {
@@ -74,14 +72,6 @@ export default function Home() {
         });
     }, [applications, searchQuery, statusFilter]);
 
-    if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                Loading applications...
-            </div>
-        );
-    }
-
     if (error) {
         return (
             <div className="flex justify-center items-center h-screen text-red-500">
@@ -121,7 +111,13 @@ export default function Home() {
                     </p>
                 </div>
 
-                {filteredApplications.length > 0 ? (
+                {isLoading ? (
+                    <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mx-3">
+                        {Array.from({ length: 6 }).map((_, index) => (
+                            <SkeletonApplicationCard key={index} />
+                        ))}
+                    </div>
+                ) : filteredApplications.length > 0 ? (
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mx-3">
                         {filteredApplications.map((application) => (
                             <ApplicationCard

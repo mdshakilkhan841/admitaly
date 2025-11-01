@@ -3,6 +3,10 @@ import Application from "@/models/application";
 import dbConnect from "@/lib/database";
 import { authenticateUser } from "@/lib/authenticate-user";
 
+// Increase the timeout for this serverless function
+export const maxDuration = 60; // 60 seconds
+export const dynamic = "force-dynamic";
+
 export async function GET(): Promise<NextResponse> {
     try {
         await dbConnect();
