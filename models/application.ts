@@ -17,7 +17,7 @@ const ApplicationSchema = new mongoose.Schema(
             type: String,
             default: "#",
         },
-        admissionFee: {
+        applicationFee: {
             type: String,
             default: "No Fee",
         },

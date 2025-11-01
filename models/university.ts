@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const UniversitySchema = new mongoose.Schema(
     {
+        unId: {
+            type: String,
+            unique: true,
+        },
         name: {
             type: String,
             required: true,
@@ -10,6 +14,9 @@ const UniversitySchema = new mongoose.Schema(
             type: String,
         },
         image: {
+            type: String,
+        },
+        altImage: {
             type: String,
         },
     },

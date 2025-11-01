@@ -1,84 +1,72 @@
 import {
     formatDeadlineStatus,
-    getUniversityStatus,
     getDaysUntilDeadline,
 } from "@/lib/deadline-utils";
-import bgImage from "@/public/Politecnico-di-Milano.jpg";
+import { IApplication } from "@/types";
+import Image from "next/image";
 
-export interface University {
-    id: number;
-    name: string;
-    call: string | null;
-    applicationLink: string;
-    applicationFee: string;
-    languageProficiency: string[];
-    startDate: string;
-    endDate: string;
-    cgpa: string;
-    others: string[];
-}
+type ApplicationStatus = "open" | "closing-soon" | "closed" | "opening-soon";
 
-export default function UniversityCard({
-    university,
+const statusColors: Record<
+    ApplicationStatus,
+    {
+        bg: string;
+        bgButton: string;
+        bgButtonHover: string;
+        border: string;
+        text: string;
+    }
+> = {
+    open: {
+        bg: "bg-green-50",
+        bgButton: "bg-green-600",
+        bgButtonHover: "hover:bg-green-700",
+        border: "border-green-200",
+        text: "text-green-700",
+    },
+    "closing-soon": {
+        bg: "bg-amber-50",
+        bgButton: "bg-amber-600",
+        bgButtonHover: "hover:bg-amber-700",
+        border: "border-amber-200",
+        text: "text-amber-700",
+    },
+    closed: {
+        bg: "bg-red-50",
+        bgButton: "bg-red-600",
+        bgButtonHover: "hover:bg-red-700",
+        border: "border-red-200",
+        text: "text-red-700",
+    },
+    "opening-soon": {
+        bg: "bg-sky-50",
+        bgButton: "bg-sky-500",
+        bgButtonHover: "hover:bg-sky-600",
+        border: "border-sky-200",
+        text: "text-sky-700",
+    },
+};
+
+const defaultStatusColor = {
+    bg: "bg-gray-50",
+    bgButton: "bg-gray-500",
+    bgButtonHover: "hover:bg-gray-500",
+    border: "border-gray-200",
+    text: "text-gray-700",
+};
+
+export default function ApplicationCard({
+    application,
 }: {
-    university: University & {
-        status: "open" | "closing-soon" | "closed" | "opening-soon";
-    };
+    application: IApplication & { status: ApplicationStatus };
 }) {
-    const daysLeft = getDaysUntilDeadline(university.endDate);
-
-    const getStatusColor = () => {
-        // The 'opening-soon' case was missing here, I've added it.
-        switch (university.status) {
-            case "open":
-                return {
-                    bg: "bg-green-50",
-                    bgButton: "bg-green-600",
-                    bgButtonHover: "hover:bg-green-700",
-                    border: "border-green-200",
-                    text: "text-green-700",
-                };
-            case "closing-soon":
-                return {
-                    bg: "bg-amber-50",
-                    bgButton: "bg-amber-600",
-                    bgButtonHover: "hover:bg-amber-700",
-                    border: "border-amber-200",
-                    text: "text-amber-700",
-                };
-            case "closed":
-                return {
-                    bg: "bg-red-50",
-                    bgButton: "bg-red-600",
-                    bgButtonHover: "hover:bg-red-700",
-                    border: "border-red-200",
-                    text: "text-red-700",
-                };
-            case "opening-soon":
-                return {
-                    bg: "bg-sky-50",
-                    bgButton: "bg-sky-500",
-                    bgButtonHover: "hover:bg-sky-600",
-                    border: "border-sky-200",
-                    text: "text-sky-700",
-                };
-            default:
-                return {
-                    bg: "bg-gray-50",
-                    bgButton: "bg-gray-500",
-                    bgButtonHover: "hover:bg-gray-500",
-                    border: "border-gray-200",
-                    text: "text-gray-700",
-                };
-        }
-    };
-
-    const statusColor = getStatusColor();
-    const statusLabel = formatDeadlineStatus(university.status);
+    const daysLeft = getDaysUntilDeadline(application.endDate);
+    const statusColor = statusColors[application.status] || defaultStatusColor;
+    const statusLabel = formatDeadlineStatus(application.status);
 
     return (
         <div className="relative overflow-hidden">
-            {university.applicationFee === "No Fee" && (
+            {application.applicationFee === "No Fee" && (
                 <div className="absolute top-4 -left-6 transform -rotate-45 bg-red-600 text-white px-6 py-0 text-xs font-bold shadow-2xl">
                     <div className="items-center">
                         <span>No Fees</span>
@@ -88,19 +76,32 @@ export default function UniversityCard({
             <div
                 className={`border border-gray-200 rounded bg-white hover:shadow-sm transition-shadow overflow-hidden`}
             >
-                <div className="border-b border-gray-100 flex items-start justify-between gap-2">
-                    <img
-                        src={bgImage.src}
-                        alt="Background"
-                        className="w-full h-24 object-cover"
+                <div className="border-b border-gray-100">
+                    <Image
+                        src={
+                            application.university.image ||
+                            application.university.altImage ||
+                            ""
+                        }
+                        alt={`${application.university.name}`}
+                        width={600}
+                        height={200}
+                        style={{
+                            objectFit: "cover",
+                            width: "100%",
+                            height: 120,
+                        }}
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        unoptimized
                     />
                 </div>
 
                 <div className="px-3 py-2 border-b border-gray-100 flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-sm text-gray-900">
-                            {university.name}{" "}
-                            {university.call && `(${university.call})`}
+                            {application.university.name}{" "}
+                            {application.call && `(${application.call})`}
                         </h3>
                     </div>
                     <div
@@ -125,13 +126,13 @@ export default function UniversityCard({
                                 <p
                                     className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
                                 >
-                                    {university.startDate}
+                                    {application.startDate}
                                 </p>
                                 <p className="text-xs text-gray-500 mt-0.5">
                                     {statusLabel}
                                 </p>
                             </div>
-                            {university.endDate && (
+                            {application.endDate && (
                                 <div className="w-1/2">
                                     <p className="text-xs text-gray-600 font-medium">
                                         Deadline
@@ -139,7 +140,7 @@ export default function UniversityCard({
                                     <p
                                         className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
                                     >
-                                        {university.endDate}
+                                        {application.endDate}
                                     </p>
                                     <p className="text-xs text-gray-500 mt-0.5">
                                         {daysLeft > 0
@@ -155,7 +156,7 @@ export default function UniversityCard({
                         <div className="bg-gray-50 rounded px-1.5 py-1">
                             <p className="text-gray-600 font-medium">Fee</p>
                             <p className="text-gray-900 font-medium mt-0.5">
-                                {university.applicationFee}
+                                {application.applicationFee}
                             </p>
                         </div>
                         <div className="bg-gray-50 rounded px-1.5 py-1">
@@ -163,7 +164,7 @@ export default function UniversityCard({
                                 Language Proficiency
                             </p>
                             <p className="text-gray-900 font-medium mt-0.5">
-                                {university.languageProficiency.join(" | ")}
+                                {application.languageProficiency.join(" | ")}
                             </p>
                         </div>
                     </div>
@@ -172,17 +173,17 @@ export default function UniversityCard({
                     <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
                         <p className="text-gray-600 font-medium">CGPA</p>
                         <p className="text-gray-900 font-medium mt-0.5">
-                            {university.cgpa}
+                            {application.cgpa}
                         </p>
                     </div>
 
                     {/* Others */}
 
-                    {university.others.length > 0 && (
+                    {application.others.length > 0 && (
                         <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
                             <p className="text-gray-600 font-medium">OTHERS</p>
                             <ul className="list-disc list-outside text-gray-900 font-medium mt-0.5 space-y-1 pl-4">
-                                {university.others.map((other, index) => (
+                                {application.others.map((other, index) => (
                                     <li key={index}>{other}</li>
                                 ))}
                             </ul>
@@ -190,7 +191,7 @@ export default function UniversityCard({
                     )}
 
                     <a
-                        href={university.applicationLink}
+                        href={application.applicationLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`block w-full text-center px-2 py-1.5 text-xs font-medium rounded ${statusColor.bgButton} text-white ${statusColor.bgButtonHover} transition-colors mt-1`}

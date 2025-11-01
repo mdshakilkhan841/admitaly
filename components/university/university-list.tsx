@@ -43,7 +43,13 @@ const UniversityList = ({
         error,
         isLoading,
         mutate,
-    } = useSWR<IUniversity[]>(url, fetcher);
+    } = useSWR<IUniversity[]>(url, fetcher, {
+        keepPreviousData: true,
+        revalidateOnFocus: false,
+        revalidateIfStale: false,
+        dedupingInterval: 10000,
+        shouldRetryOnError: true,
+    });
 
     const [selectedUniversity, setSelectedUniversity] =
         useState<IUniversity | null>(null);

@@ -3,7 +3,7 @@ import axios from "axios";
 import {
     formatDisplayDate,
     formatDeadlineStatus,
-    getUniversityStatus,
+    getApplicationStatus,
     getDaysUntilDeadline,
     getStatusColor,
 } from "@/lib/deadline-utils";
@@ -310,14 +310,14 @@ const ApplicationList = ({
                                 <TableCell>
                                     <Badge
                                         className={getStatusColor(
-                                            getUniversityStatus(
+                                            getApplicationStatus(
                                                 application.startDate,
                                                 application.endDate
                                             )
                                         )}
                                     >
                                         {formatDeadlineStatus(
-                                            getUniversityStatus(
+                                            getApplicationStatus(
                                                 application.startDate,
                                                 application.endDate
                                             )
@@ -336,7 +336,7 @@ const ApplicationList = ({
                                     </span>
                                 </TableCell>
                                 <TableCell className="hidden lg:table-cell">
-                                    {application.admissionFee}
+                                    {application.applicationFee}
                                 </TableCell>
                                 <TableCell className="hidden lg:table-cell">
                                     {application.cgpa}
@@ -413,7 +413,7 @@ const ApplicationList = ({
                     const hasDetails =
                         application.languageProficiency.length > 0 ||
                         application.others.length > 0;
-                    const status = getUniversityStatus(
+                    const status = getApplicationStatus(
                         application.startDate,
                         application.endDate
                     );
@@ -549,7 +549,9 @@ const ApplicationList = ({
                                         <span className="font-medium">
                                             Fee:
                                         </span>
-                                        <span>{application.admissionFee}</span>
+                                        <span>
+                                            {application.applicationFee}
+                                        </span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <GraduationCap className="h-4 w-4 text-muted-foreground" />

@@ -6,7 +6,7 @@ export function getDaysUntilDeadline(deadlineString: string): number {
     return deadline.diff(today, "day");
 }
 
-export function getUniversityStatus(
+export function getApplicationStatus(
     startDateString: string,
     deadlineString: string
 ): "open" | "opening-soon" | "closing-soon" | "closed" {

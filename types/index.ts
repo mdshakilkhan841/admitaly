@@ -15,7 +15,7 @@ export interface IApplication {
     call: string;
     session: string;
     applicationLink: string;
-    admissionFee: string;
+    applicationFee: string;
     startDate: string;
     endDate: string;
     cgpa: string;

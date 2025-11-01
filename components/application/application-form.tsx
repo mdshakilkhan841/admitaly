@@ -94,7 +94,7 @@ export default function ApplicationForm({
         call: application?.call || "",
         session: application?.session || academicSessions.current,
         applicationLink: application?.applicationLink || "",
-        admissionFee: application?.admissionFee || "No Fee",
+        applicationFee: application?.applicationFee || "No Fee",
         startDate: application?.startDate
             ? new Date(application.startDate).toISOString().split("T")[0]
             : "",
@@ -291,11 +291,11 @@ export default function ApplicationForm({
 
             <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                    <Label htmlFor="admissionFee">Admission Fee</Label>
+                    <Label htmlFor="applicationFee">Admission Fee</Label>
                     <Input
-                        id="admissionFee"
-                        name="admissionFee"
-                        value={formData.admissionFee}
+                        id="applicationFee"
+                        name="applicationFee"
+                        value={formData.applicationFee}
                         onChange={handleChange}
                     />
                 </div>
