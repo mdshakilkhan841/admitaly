@@ -2,13 +2,6 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/database";
 import University from "@/models/university";
 import { IUniversity } from "@/types";
-<<<<<<< HEAD
-
-export async function GET(): Promise<NextResponse> {
-    try {
-        await dbConnect();
-        const universities: IUniversity[] = await University.find({});
-=======
 import { auth } from "@/lib/auth";
 import { authenticateUser } from "@/lib/authenticate-user";
 
@@ -39,7 +32,6 @@ export async function GET(request: Request): Promise<NextResponse> {
         const universities: IUniversity[] = await University.find(filter).sort(
             sort
         );
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
         return NextResponse.json(universities);
     } catch (error) {
         return NextResponse.json(
@@ -51,12 +43,9 @@ export async function GET(request: Request): Promise<NextResponse> {
 
 export async function POST(request: Request): Promise<NextResponse> {
     try {
-<<<<<<< HEAD
-=======
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
 
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
         await dbConnect();
         const body = await request.json();
         const university: IUniversity = await University.create(body);
@@ -68,8 +57,6 @@ export async function POST(request: Request): Promise<NextResponse> {
         );
     }
 }
-<<<<<<< HEAD
-=======
 
 export async function DELETE(request: Request): Promise<NextResponse> {
     try {
@@ -100,4 +87,3 @@ export async function DELETE(request: Request): Promise<NextResponse> {
         );
     }
 }
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
