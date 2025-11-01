@@ -1,41 +1,29 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import ApplicationCard from "@/components/application/application-card";
 import { getApplicationStatus } from "@/lib/deadline-utils";
 import FilterBar from "@/components/filter-bar";
 import Header from "@/components/header";
+import useSWR from "swr";
 import { IApplication } from "@/types";
 import SkeletonApplicationCard from "@/components/skeleton/skeleton-application-card";
-import axios from "axios";
+import fetcher from "@/lib/fetcher";
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
-    const [applications, setApplications] = useState<IApplication[]>([]);
-    console.log("🚀 ~ Home ~ applications:", applications);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
 
-    useEffect(() => {
-        const fetchApplications = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                const response = await axios.get<IApplication[]>(
-                    "/api/applications"
-                );
-                setApplications(response.data);
-            } catch (err) {
-                setError(err as Error);
-                console.error("Failed to fetch applications:", err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchApplications();
-    }, []);
+    const {
+        data: applications = [],
+        error,
+        isLoading,
+        mutate,
+    } = useSWR<IApplication[]>("/api/applications", fetcher, {
+        keepPreviousData: true,
+        dedupingInterval: 10000,
+        shouldRetryOnError: true,
+    });
 
     const filteredApplications = useMemo(() => {
         if (!applications) {
@@ -84,6 +72,14 @@ export default function Home() {
         });
     }, [applications, searchQuery, statusFilter]);
 
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-screen text-red-500">
+                Failed to load applications.
+            </div>
+        );
+    }
+
     return (
         <main className="min-h-screen bg-background">
             <Header />
@@ -120,10 +116,6 @@ export default function Home() {
                         {Array.from({ length: 6 }).map((_, index) => (
                             <SkeletonApplicationCard key={index} />
                         ))}
-                    </div>
-                ) : error ? (
-                    <div className="flex justify-center items-center text-red-500">
-                        Failed to load applications.
                     </div>
                 ) : filteredApplications.length > 0 ? (
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mx-3">
