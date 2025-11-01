@@ -12,7 +12,6 @@ const AdminPage = async () => {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
-    console.log("🚀 ~ AdminPage ~ session:", session);
 
     if (!session) {
         redirect("/sign-in");

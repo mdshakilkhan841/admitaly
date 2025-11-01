@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-'use client'
-
-import * as React from 'react'
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
-
-import { cn } from '@/lib/utils'
-=======
 "use client"
 
 import * as React from "react"
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
 
 import { cn } from "@/lib/utils"
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
 
 function ScrollArea({
   className,
@@ -22,11 +13,7 @@ function ScrollArea({
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
-<<<<<<< HEAD
-      className={cn('relative', className)}
-=======
       className={cn("relative", className)}
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
@@ -43,11 +30,7 @@ function ScrollArea({
 
 function ScrollBar({
   className,
-<<<<<<< HEAD
-  orientation = 'vertical',
-=======
   orientation = "vertical",
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
   ...props
 }: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
   return (
@@ -55,21 +38,12 @@ function ScrollBar({
       data-slot="scroll-area-scrollbar"
       orientation={orientation}
       className={cn(
-<<<<<<< HEAD
-        'flex touch-none p-px transition-colors select-none',
-        orientation === 'vertical' &&
-          'h-full w-2.5 border-l border-l-transparent',
-        orientation === 'horizontal' &&
-          'h-2.5 flex-col border-t border-t-transparent',
-        className,
-=======
         "flex touch-none p-px transition-colors select-none",
         orientation === "vertical" &&
           "h-full w-2.5 border-l border-l-transparent",
         orientation === "horizontal" &&
           "h-2.5 flex-col border-t border-t-transparent",
         className
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
       )}
       {...props}
     >
