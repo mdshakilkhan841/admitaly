@@ -169,7 +169,6 @@ export default function ApplicationForm({
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent
-                        className="w-[--radix-popover-trigger-width] p-0"
                         style={{
                             minWidth: "var(--radix-popover-trigger-width)",
                         }}
@@ -263,7 +262,7 @@ export default function ApplicationForm({
                         type="date"
                         value={formData.startDate}
                         onChange={handleChange}
-                        required
+                        // required
                     />
                 </div>
                 <div className="grid gap-2">
@@ -274,7 +273,7 @@ export default function ApplicationForm({
                         type="date"
                         value={formData.endDate}
                         onChange={handleChange}
-                        required
+                        // required
                     />
                 </div>
             </div>
