@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import useSWR from "swr";
 import Modal from "../Modal";
 import UniversityForm from "./university-form";
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import axios from "axios";
 import fetcher from "@/lib/fetcher";
+import { toast } from "sonner";
 import {
     Table,
     TableBody,
@@ -23,13 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-
-interface University {
-    _id: string;
-    name: string;
-    address: string;
-    image: string;
-}
+import { IUniversity } from "@/types";
 
 const UniversityList = ({
     isModalOpen,
@@ -42,23 +37,46 @@ const UniversityList = ({
     searchQuery: string;
     sortBy: string;
 }) => {
-    const params = new URLSearchParams();
-    if (searchQuery) params.set("search", searchQuery);
-    if (sortBy) params.set("sortBy", sortBy);
-
-    const url = `/api/universities?${params.toString()}`;
-
+    const url = `/api/universities`;
     const {
         data: universities,
         error,
         isLoading,
         mutate,
-    } = useSWR<University[]>(url, fetcher);
-    const [selectedUniversity, setSelectedUniversity] =
-        useState<University | null>(null);
-    const [selectedRows, setSelectedRows] = useState<string[]>([]);
+    } = useSWR<IUniversity[]>(url, fetcher);
 
-    const handleEdit = (university: University) => {
+    const [selectedUniversity, setSelectedUniversity] =
+        useState<IUniversity | null>(null);
+
+    const [selectedRows, setSelectedRows] = useState(new Set<string>());
+
+    const filteredUniversities = useMemo(() => {
+        if (!universities) return [];
+
+        // 1. Filter based on searchQuery
+        const filtered = universities.filter((uni) =>
+            uni.name?.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        // 2. Sort based on sortBy
+        const [sortField, sortDirection] = sortBy.split(":");
+        const sorted = [...filtered].sort((a, b) => {
+            let fieldA: any;
+            let fieldB: any;
+
+            if (sortField === "name") {
+                fieldA = a.uniId?.toLowerCase();
+                fieldB = b.uniId?.toLowerCase();
+            }
+
+            if (fieldA < fieldB) return sortDirection === "asc" ? -1 : 1;
+            if (fieldA > fieldB) return sortDirection === "asc" ? 1 : -1;
+            return 0;
+        });
+        return sorted;
+    }, [universities, searchQuery, sortBy]);
+
+    const handleEdit = (university: IUniversity) => {
         setSelectedUniversity(university);
         setIsModalOpen(true);
     };
@@ -68,8 +86,10 @@ const UniversityList = ({
             try {
                 await axios.delete(`/api/universities/${id}`);
                 mutate(); // Re-fetch the data
+                toast.success("University deleted successfully");
             } catch (error) {
                 console.error("Error deleting university:", error);
+                toast.error("Failed to delete university");
             }
         }
     };
@@ -77,22 +97,26 @@ const UniversityList = ({
     const handleBulkDelete = async () => {
         if (
             confirm(
-                `Are you sure you want to delete ${selectedRows.length} universities?`
+                `Are you sure you want to delete ${selectedRows.size} universities?`
             )
         ) {
             try {
                 await axios.delete(`/api/universities`, {
-                    data: { ids: selectedRows },
+                    data: { ids: Array.from(selectedRows) },
                 });
                 mutate();
-                setSelectedRows([]);
+                setSelectedRows(new Set());
+                toast.success("Selected universities deleted successfully");
             } catch (error) {
                 console.error("Error deleting universities:", error);
+                toast.error("Failed to delete selected universities");
             }
         }
     };
 
-    const handleSubmit = async (formData: Omit<University, "_id">) => {
+    const handleSubmit = async (
+        formData: Omit<IUniversity, "_id">
+    ): Promise<any> => {
         try {
             const url = selectedUniversity
                 ? `/api/universities/${selectedUniversity._id}`
@@ -107,8 +131,15 @@ const UniversityList = ({
             }
             setIsModalOpen(false);
             mutate();
+            toast.success(
+                selectedUniversity
+                    ? "University updated successfully"
+                    : "University created successfully"
+            );
         } catch (error) {
             console.error("Error saving university:", error);
+            toast.error("Failed to save university");
+            throw error; // Re-throw error to be caught in the form
         }
     };
 
@@ -124,7 +155,7 @@ const UniversityList = ({
 
     return (
         <div>
-            {selectedRows.length > 0 && (
+            {selectedRows.size > 0 && (
                 <div className="flex items-center gap-2 mb-4">
                     <Button
                         variant="destructive"
@@ -132,30 +163,32 @@ const UniversityList = ({
                         onClick={handleBulkDelete}
                     >
                         <Trash className="mr-2 h-4 w-4" />
-                        Delete Selected ({selectedRows.length})
+                        Delete Selected ({selectedRows.size})
                     </Button>
                 </div>
             )}
-            <div className="rounded-md border">
+            <div className="rounded-md border overflow-auto">
                 <Table>
                     <TableHeader className="bg-muted/50">
                         <TableRow>
                             <TableHead className="w-12">
                                 <Checkbox
                                     checked={
-                                        selectedRows.length ===
-                                            universities?.length &&
-                                        universities.length > 0
+                                        selectedRows.size ===
+                                            filteredUniversities?.length &&
+                                        filteredUniversities.length > 0
                                     }
                                     onCheckedChange={(checked) => {
                                         if (checked) {
                                             setSelectedRows(
-                                                universities?.map(
-                                                    (u) => u._id
-                                                ) || []
+                                                new Set(
+                                                    filteredUniversities.map(
+                                                        (u) => u._id
+                                                    )
+                                                )
                                             );
                                         } else {
-                                            setSelectedRows([]);
+                                            setSelectedRows(new Set());
                                         }
                                     }}
                                 />
@@ -173,28 +206,25 @@ const UniversityList = ({
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {universities?.map((university, index) => (
+                        {filteredUniversities?.map((university, index) => (
                             <TableRow key={university._id}>
                                 <TableCell>
                                     <Checkbox
-                                        checked={selectedRows.includes(
+                                        checked={selectedRows.has(
                                             university._id
                                         )}
                                         onCheckedChange={(checked) => {
-                                            if (checked) {
-                                                setSelectedRows([
-                                                    ...selectedRows,
-                                                    university._id,
-                                                ]);
-                                            } else {
-                                                setSelectedRows(
-                                                    selectedRows.filter(
-                                                        (id) =>
-                                                            id !==
-                                                            university._id
-                                                    )
-                                                );
-                                            }
+                                            setSelectedRows((prev) => {
+                                                const newSet = new Set(prev);
+                                                if (checked) {
+                                                    newSet.add(university._id);
+                                                } else {
+                                                    newSet.delete(
+                                                        university._id
+                                                    );
+                                                }
+                                                return newSet;
+                                            });
                                         }}
                                     />
                                 </TableCell>
@@ -202,12 +232,22 @@ const UniversityList = ({
                                 <TableCell>
                                     <div className="flex items-center gap-4">
                                         <Avatar>
+                                            <AvatarImage />
+                                            <AvatarFallback>
+                                                {university.uniId
+                                                    ?.charAt(0)
+                                                    .toUpperCase()}
+                                            </AvatarFallback>
+                                        </Avatar>
+                                        <Avatar>
                                             <AvatarImage
                                                 src={university.image}
                                                 alt={university.name}
                                             />
                                             <AvatarFallback>
-                                                {university.name.charAt(0)}
+                                                {university.uniId
+                                                    ?.charAt(0)
+                                                    .toUpperCase()}
                                             </AvatarFallback>
                                         </Avatar>
                                         <span className="font-medium">

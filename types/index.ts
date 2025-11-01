@@ -2,15 +2,18 @@ import { Icons } from "@/components/icons";
 
 export interface IUniversity {
     _id: string;
-    name: string;
-    address: string;
-    image: string;
+    uniId?: string;
+    name?: string;
+    address?: string;
+    image?: string;
+    altImage?: string;
 }
 
 export interface IApplication {
     _id: string;
-    uniId: IUniversity;
+    university: IUniversity;
     call: string;
+    session: string;
     applicationLink: string;
     admissionFee: string;
     startDate: string;

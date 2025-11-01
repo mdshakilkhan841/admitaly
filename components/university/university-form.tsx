@@ -2,18 +2,13 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Loader2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
-
-interface University {
-    _id?: string;
-    name: string;
-    address: string;
-    image: string;
-}
+import { IUniversity } from "@/types";
 
 interface UniversityFormProps {
-    university: University | null;
-    onSubmit: (formData: Omit<University, "_id">) => void;
+    university: IUniversity | null;
+    onSubmit: (formData: Omit<IUniversity, "_id">) => Promise<any>;
     onCancel: () => void;
 }
 
@@ -22,10 +17,13 @@ export default function UniversityForm({
     onSubmit,
     onCancel,
 }: UniversityFormProps) {
-    const [formData, setFormData] = useState<Omit<University, "_id">>({
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formData, setFormData] = useState<Omit<IUniversity, "_id">>({
         name: university?.name || "",
         address: university?.address || "",
         image: university?.image || "",
+        altImage: university?.altImage || "",
+        uniId: university?.uniId || "",
     });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,9 +33,16 @@ export default function UniversityForm({
         });
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmit(formData);
+        setIsSubmitting(true);
+        try {
+            await onSubmit(formData);
+        } catch (error) {
+            console.error("Submission failed", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -76,10 +81,21 @@ export default function UniversityForm({
             </div>
 
             <div className="flex justify-end space-x-3 pt-4">
-                <Button type="button" variant="outline" onClick={onCancel}>
+                <Button
+                    type="button"
+                    variant="outline"
+                    onClick={onCancel}
+                    disabled={isSubmitting}
+                >
                     Cancel
                 </Button>
-                <Button type="submit">
+                <Button type="submit" disabled={isSubmitting} className="w-24">
+                    {isSubmitting && (
+                        <Loader2
+                            className="mr-2 h-4 w-4 animate-spin"
+                            aria-hidden="true"
+                        />
+                    )}
                     {university ? "Update" : "Create"}
                 </Button>
             </div>

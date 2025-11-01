@@ -2,12 +2,15 @@ import mongoose from "mongoose";
 
 const ApplicationSchema = new mongoose.Schema(
     {
-        uniId: {
+        university: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "University",
             required: true,
         },
         call: {
+            type: String,
+        },
+        session: {
             type: String,
         },
         applicationLink: {
@@ -16,6 +19,7 @@ const ApplicationSchema = new mongoose.Schema(
         },
         admissionFee: {
             type: String,
+            default: "No Fee",
         },
         startDate: {
             type: String,

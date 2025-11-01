@@ -1,282 +1,117 @@
 "use client";
-<<<<<<< HEAD
-import { useState, useEffect } from "react";
-import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/outline";
-import AdminLayout from "@/components/AdminLayout";
-import Modal from "@/components/Modal";
-import ApplicationForm from "@/components/ApplicationForm";
-=======
-import { useState } from "react";
-import useSWR from "swr";
-import AdminLayout from "@/components/AdminLayout";
-import Modal from "@/components/Modal";
-import ApplicationForm from "@/components/ApplicationForm";
-import axios from "axios";
-import fetcher from "@/lib/fetcher";
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
-
-interface IApplication {
-    _id: string;
-    uniId?: {
-        _id: string;
-        name?: string;
-    };
-    call: string;
-    applicationLink: string;
-    admissionFee: string;
-    startDate: string;
-    endDate: string;
-    cgpa: string;
-    languageProficiency: string[];
-    others: string[];
-}
-
-interface IApplicationFormData extends Omit<IApplication, "_id" | "uniId"> {
-    uniId: string;
-}
+import { Suspense, useState } from "react";
+import Header from "@/components/layout/header";
+import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ListFilter } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import PageContainer from "@/components/layout/page-container";
+import AddNewButton from "@/components/add-new-button";
+import { Separator } from "@/components/ui/separator";
+import ApplicationList from "@/components/application/application-list";
 
 export default function ApplicationsManagement() {
-<<<<<<< HEAD
-    const [applications, setApplications] = useState<IApplication[]>([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedApplication, setSelectedApplication] =
-        useState<IApplication | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
+    const [sortBy, setSortBy] = useState("name:asc");
 
-    useEffect(() => {
-        fetchApplications();
-    }, []);
-
-    const fetchApplications = async () => {
-        try {
-            const response = await fetch("/api/applications");
-            const data = await response.json();
-            setApplications(data);
-        } catch (error) {
-            console.error("Error fetching applications:", error);
-        } finally {
-            setLoading(false);
-        }
+    const sortOptions: { [key: string]: string } = {
+        "name:asc": "Name (A-Z)",
+        "name:desc": "Name (Z-A)",
+        "createdAt:desc": "Newest",
+        "createdAt:asc": "Oldest",
     };
-=======
-    const {
-        data: applications,
-        error,
-        isLoading,
-        mutate,
-    } = useSWR<IApplication[]>("/api/applications", fetcher);
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedApplication, setSelectedApplication] =
-        useState<IApplication | null>(null);
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
-
-    const handleCreate = () => {
-        setSelectedApplication(null);
-        setIsModalOpen(true);
-    };
-
-    const handleEdit = (application: IApplication) => {
-        setSelectedApplication(application);
-        setIsModalOpen(true);
-    };
-
-    const handleDelete = async (id: string) => {
-        if (confirm("Are you sure you want to delete this application?")) {
-            try {
-<<<<<<< HEAD
-                await fetch(`/api/applications/${id}`, { method: "DELETE" });
-                fetchApplications();
-=======
-                await axios.delete(`/api/applications/${id}`);
-                mutate();
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
-            } catch (error) {
-                console.error("Error deleting application:", error);
-            }
-        }
-    };
-
-    const handleSubmit = async (formData: IApplicationFormData) => {
-        try {
-            const url = selectedApplication
-                ? `/api/applications/${selectedApplication._id}`
-                : "/api/applications";
-
-            const method = selectedApplication ? "PUT" : "POST";
-
-<<<<<<< HEAD
-            const response = await fetch(url, {
-                method,
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                setIsModalOpen(false);
-                fetchApplications();
-            }
-=======
-            if (method === "POST") {
-                await axios.post(url, formData);
-            } else {
-                await axios.put(url, formData);
-            }
-            setIsModalOpen(false);
-            mutate();
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
-        } catch (error) {
-            console.error("Error saving application:", error);
-        }
-    };
-
-<<<<<<< HEAD
-    if (loading) {
-        return (
-            <AdminLayout>
-                <div className="flex justify-center items-center h-64">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-                </div>
-            </AdminLayout>
-        );
-    }
 
     return (
-        <AdminLayout>
-            <div className="space-y-6">
-=======
-    if (isLoading) {
-        return (
-            <div className="flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-            </div>
-        );
-    }
-
-    if (error) return <div>Failed to load applications.</div>;
-
-    return (
-        <div>
-            Appliction
-            {/* <div className="space-y-6">
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
-                <div className="flex justify-between items-center">
-                    <div>
-                        <h1 className="text-2xl font-bold text-gray-900">
-                            Applications
-                        </h1>
-                        <p className="mt-1 text-sm text-gray-600">
-                            Manage all university applications
-                        </p>
-                    </div>
-                    <button
-                        onClick={handleCreate}
-                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        <PlusIcon className="h-4 w-4 mr-2" />
-                        Add Application
-                    </button>
-                </div>
-
-                <div className="bg-white shadow overflow-hidden sm:rounded-md">
-                    <ul className="divide-y divide-gray-200">
-<<<<<<< HEAD
-                        {applications.map((application) => (
-=======
-                        {applications?.map((application) => (
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
-                            <li key={application._id}>
-                                <div className="px-4 py-4 sm:px-6">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center">
-                                            <div className="shrink-0">
-                                                <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                                                    <span className="text-indigo-800 font-medium text-sm">
-                                                        {application.uniId?.name?.charAt(
-                                                            0
-                                                        ) || "U"}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div className="ml-4">
-                                                <h3 className="text-lg font-medium text-gray-900">
-                                                    {application.uniId?.name}
-                                                </h3>
-                                                <p className="text-sm text-gray-500">
-                                                    {application.call} •{" "}
-                                                    {application.startDate} -{" "}
-                                                    {application.endDate}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="flex space-x-2">
-                                            <button
-                                                onClick={() =>
-                                                    handleEdit(application)
-                                                }
-                                                className="text-indigo-600 hover:text-indigo-900"
-                                            >
-                                                <PencilIcon className="h-5 w-5" />
-                                            </button>
-                                            <button
-                                                onClick={() =>
-                                                    handleDelete(
-                                                        application._id
-                                                    )
-                                                }
-                                                className="text-red-600 hover:text-red-900"
-                                            >
-                                                <TrashIcon className="h-5 w-5" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="mt-2">
-                                        <div className="flex flex-wrap gap-2">
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                Fee: {application.admissionFee}
-                                            </span>
-                                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                                CGPA: {application.cgpa}
-                                            </span>
-                                            {application.languageProficiency?.map(
-                                                (lang, index) => (
-                                                    <span
-                                                        key={index}
-                                                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800"
-                                                    >
-                                                        {lang}
-                                                    </span>
-                                                )
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-
-                <Modal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    title={
-                        selectedApplication
-                            ? "Edit Application"
-                            : "Create Application"
-                    }
+        <>
+            <Header fixed>
+                {/* Filetr component */}
+                <div
+                    className={cn(
+                        "flex w-full items-center justify-between gap-4"
+                    )}
                 >
-                    <ApplicationForm
-                        application={selectedApplication}
-                        onSubmit={handleSubmit}
-                        onCancel={() => setIsModalOpen(false)}
+                    <Input
+                        placeholder="Search Applications..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="max-w-sm"
                     />
-                </Modal>
-<<<<<<< HEAD
-            </div>
-        </AdminLayout>
-=======
-            </div> */}
-        </div>
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="ml-auto w-40 justify-start"
+                            >
+                                <ListFilter className="mr-2 h-4 w-4" />
+                                {sortOptions[sortBy]}
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-40">
+                            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuRadioGroup
+                                value={sortBy}
+                                onValueChange={setSortBy}
+                            >
+                                <DropdownMenuRadioItem value="name:asc">
+                                    Name (A-Z)
+                                </DropdownMenuRadioItem>
+                                <DropdownMenuRadioItem value="name:desc">
+                                    Name (Z-A)
+                                </DropdownMenuRadioItem>
+                                <DropdownMenuRadioItem value="createdAt:desc">
+                                    Newest
+                                </DropdownMenuRadioItem>
+                                <DropdownMenuRadioItem value="createdAt:asc">
+                                    Oldest
+                                </DropdownMenuRadioItem>
+                            </DropdownMenuRadioGroup>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+            </Header>
+
+            <PageContainer scrollable={false}>
+                <div className="flex flex-1 flex-col space-y-4">
+                    <div className="flex w-full items-center justify-between">
+                        <div>
+                            <h2 className="text-3xl font-bold tracking-tight">
+                                Applications
+                            </h2>
+                            <p className="text-muted-foreground text-sm">
+                                Manage all applications in the system.
+                            </p>
+                        </div>
+                        <AddNewButton setIsModalOpen={setIsModalOpen} />
+                    </div>
+                    <Separator />
+
+                    <Suspense
+                        fallback={
+                            <div className="flex justify-center items-center h-64">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+                            </div>
+                        }
+                    >
+                        <ApplicationList
+                            isModalOpen={isModalOpen}
+                            setIsModalOpen={setIsModalOpen}
+                            searchQuery={searchQuery}
+                            sortBy={sortBy}
+                        />
+                    </Suspense>
+                </div>
+            </PageContainer>
+        </>
     );
 }

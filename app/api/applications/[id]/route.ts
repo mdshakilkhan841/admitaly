@@ -1,33 +1,30 @@
 import { NextResponse } from "next/server";
 import dbConnect from "@/lib/database";
 import Application from "@/models/application";
-<<<<<<< HEAD
-=======
-import { auth } from "@/lib/auth";
 import { authenticateUser } from "@/lib/authenticate-user";
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
 
 export async function GET(
     request: Request,
     { params }: { params: { id: string } }
 ) {
     try {
-<<<<<<< HEAD
-=======
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
 
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
+        const { id } = await params;
+
         await dbConnect();
-        const application = await Application.findById(params.id).populate(
-            "uniId"
-        );
+        const application = await Application.findById(id)
+            .populate("university", "name image altImage address uniId _id")
+            .lean();
+
         if (!application) {
             return NextResponse.json(
                 { error: "Application not found" },
                 { status: 404 }
             );
         }
+
         return NextResponse.json(application);
     } catch (error) {
         return NextResponse.json(
@@ -42,25 +39,25 @@ export async function PUT(
     { params }: { params: { id: string } }
 ) {
     try {
-<<<<<<< HEAD
-=======
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
 
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
+        const { id } = await params;
+
         await dbConnect();
         const body = await request.json();
-        const application = await Application.findByIdAndUpdate(
-            params.id,
-            body,
-            { new: true }
-        ).populate("uniId");
+        const application = await Application.findByIdAndUpdate(id, body, {
+            new: true,
+        })
+            .populate("university", "name image altImage address uniId _id")
+            .lean();
         if (!application) {
             return NextResponse.json(
                 { error: "Application not found" },
                 { status: 404 }
             );
         }
+
         return NextResponse.json(application);
     } catch (error) {
         return NextResponse.json(
@@ -75,14 +72,13 @@ export async function DELETE(
     { params }: { params: { id: string } }
 ) {
     try {
-<<<<<<< HEAD
-=======
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
 
->>>>>>> 255b1f472790a30c9616d9927a376d0c1a415dd4
+        const { id } = await params;
+
         await dbConnect();
-        const application = await Application.findByIdAndDelete(params.id);
+        const application = await Application.findByIdAndDelete(id);
         if (!application) {
             return NextResponse.json(
                 { error: "Application not found" },
