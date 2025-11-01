@@ -304,8 +304,8 @@
         "uniId": "basilicata",
         "name": "University of Basilicata",
         "address": "Potenza/Matera, Italy",
-        "image": "",
-        "altImage": ""
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Universit%C3%A0_basilicata2.jpg",
+        "altImage": "https://smapse.com/storage/2019/04/universita-degli-studi-della-basilicata-25.jpg"
     },
     {
         "uniId": "molise",
@@ -444,15 +444,15 @@
         "uniId": "sns-pisa",
         "name": "Scuola Normale Superiore di Pisa",
         "address": "Pisa, Italy",
-        "image": "",
-        "altImage": ""
+        "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Palazzo_Carovana_Pisa.jpg",
+        "altImage": "https://www.tuscanypeople.com/wp-content/uploads/2019/10/scuola_superiore_normale_pisa.jpg"
     },
     {
         "uniId": "sant-anna-pisa",
         "name": "Sant'Anna School of Advanced Studies",
         "address": "Pisa, Italy",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Palazzo_Carovana_Pisa.jpg",
-        "altImage": "https://www.tuscanypeople.com/wp-content/uploads/2019/10/scuola_superiore_normale_pisa.jpg"
+        "image": "https://mladiinfo.eu/wp-content/uploads/2017/12/santanna.jpg",
+        "altImage": "https://image-static.collegedunia.com/public/college_data/images/studyabroad/appImage/college_3631_25-09:49_sa1.jpeg"
     },
     {
         "uniId": "iuss-pavia",
