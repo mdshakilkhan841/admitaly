@@ -101,7 +101,7 @@ export default function ApplicationCard({
                     <div className="flex-1 min-w-0">
                         <h3 className="font-medium text-sm text-gray-900">
                             {application.university.name}{" "}
-                            {application.call && `(${application.call})`}
+                            {application.call && `(${application.call} Call)`}
                         </h3>
                     </div>
                     <div
