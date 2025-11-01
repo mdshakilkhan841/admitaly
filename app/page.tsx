@@ -15,7 +15,7 @@ export default function Home() {
     const [statusFilter, setStatusFilter] = useState("all");
 
     const {
-        data: applications = [],
+        data: applications,
         error,
         isLoading,
         mutate,
@@ -72,14 +72,6 @@ export default function Home() {
         });
     }, [applications, searchQuery, statusFilter]);
 
-    if (error) {
-        return (
-            <div className="flex justify-center items-center h-screen text-red-500">
-                Failed to load applications.
-            </div>
-        );
-    }
-
     return (
         <main className="min-h-screen bg-background">
             <Header />
@@ -116,6 +108,10 @@ export default function Home() {
                         {Array.from({ length: 6 }).map((_, index) => (
                             <SkeletonApplicationCard key={index} />
                         ))}
+                    </div>
+                ) : error ? (
+                    <div className="flex justify-center items-center text-red-500">
+                        Failed to load applications.
                     </div>
                 ) : filteredApplications.length > 0 ? (
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mx-3">
