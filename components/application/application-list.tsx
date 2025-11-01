@@ -1,3 +1,4 @@
+"use client";
 import fetcher from "@/lib/fetcher";
 import axios from "axios";
 import {
@@ -70,8 +71,6 @@ const ApplicationList = ({
         mutate,
     } = useSWR<IApplication[]>(url, fetcher, {
         keepPreviousData: true,
-        revalidateOnFocus: false,
-        revalidateIfStale: false,
         dedupingInterval: 10000,
         shouldRetryOnError: true,
     });
@@ -224,6 +223,7 @@ const ApplicationList = ({
                                     }}
                                 />
                             </TableHead>
+                            <TableHead className="w-12">#</TableHead>
                             <TableHead>University</TableHead>
                             <TableHead className="hidden md:table-cell">
                                 Call
@@ -253,7 +253,7 @@ const ApplicationList = ({
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredApplications.map((application) => (
+                        {filteredApplications.map((application, index) => (
                             <TableRow key={application._id}>
                                 <TableCell>
                                     <Checkbox
@@ -275,6 +275,7 @@ const ApplicationList = ({
                                         }}
                                     />
                                 </TableCell>
+                                <TableCell>{index + 1}</TableCell>
                                 <TableCell>
                                     <div className="flex items-center gap-4">
                                         <Avatar>
@@ -409,7 +410,7 @@ const ApplicationList = ({
             </div>
             {/* Mobile Card View */}
             <div className="grid gap-4 md:hidden">
-                {filteredApplications.map((application) => {
+                {filteredApplications.map((application, index) => {
                     const hasDetails =
                         application.languageProficiency.length > 0 ||
                         application.others.length > 0;
@@ -444,6 +445,9 @@ const ApplicationList = ({
                                         }}
                                         className="mt-1"
                                     />
+                                    <div className="flex items-center">
+                                        #{index + 1}
+                                    </div>
                                     <div className="flex items-center gap-3">
                                         <Avatar>
                                             <AvatarImage
