@@ -48,6 +48,22 @@ export default function UniversityForm({
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-2">
+                <Label htmlFor="name">
+                    Uni-ID
+                    <span className="text-xs font-normal">
+                        (Make it unique e.g. sapienza-roma, milan-bicocca)
+                    </span>
+                </Label>
+                <Input
+                    type="text"
+                    name="uniId"
+                    id="uniId"
+                    required
+                    value={formData.uniId}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="grid gap-2">
                 <Label htmlFor="name">University Name</Label>
                 <Input
                     type="text"
@@ -76,6 +92,15 @@ export default function UniversityForm({
                     name="image"
                     id="image"
                     value={formData.image}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="image">Alternate Image URL</Label>
+                <Input
+                    name="altImage"
+                    id="altImage"
+                    value={formData.altImage}
                     onChange={handleChange}
                 />
             </div>
