@@ -61,6 +61,24 @@ export default function ApplicationCard({
     application: IApplication & { status: ApplicationStatus };
 }) {
     const daysLeft = getDaysUntilDeadline(application.endDate);
+
+    const formatFee = (fee: string) => {
+        if (!fee) return "N/A";
+        // Check if it's a number or a string that can be parsed to a number, and doesn't already have a currency symbol.
+        if (
+            !isNaN(parseFloat(fee)) &&
+            isFinite(Number(fee)) &&
+            !fee.includes("-")
+        ) {
+            return `€${fee}`;
+        }
+        // Check for a range like "30-60"
+        const rangeMatch = fee.match(/^(\d+)\s*-\s*(\d+)$/);
+        if (rangeMatch) {
+            return `€${rangeMatch[1]}-€${rangeMatch[2]}`;
+        }
+        return fee;
+    };
     const statusColor = statusColors[application.status] || defaultStatusColor;
     const statusLabel = formatDeadlineStatus(application.status);
 
@@ -156,7 +174,7 @@ export default function ApplicationCard({
                         <div className="bg-gray-50 rounded px-1.5 py-1">
                             <p className="text-gray-600 font-medium">Fee</p>
                             <p className="text-gray-900 font-medium mt-0.5">
-                                {application.applicationFee}
+                                {formatFee(application.applicationFee)}
                             </p>
                         </div>
                         <div className="bg-gray-50 rounded px-1.5 py-1">
