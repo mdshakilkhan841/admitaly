@@ -23,7 +23,6 @@ export default function Home() {
         dedupingInterval: 10000,
         shouldRetryOnError: true,
     });
-    console.log("🚀 ~ Home ~ applications:", applications);
 
     const filteredApplications = useMemo(() => {
         if (!applications) {

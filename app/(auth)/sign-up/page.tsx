@@ -58,8 +58,6 @@ const SignupPage = () => {
                 },
             }
         );
-        console.log("🚀 ~ handleSignUp ~ error:", error);
-        console.log("🚀 ~ handleSignUp ~ data:", data);
     };
 
     return (
