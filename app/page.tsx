@@ -1,41 +1,29 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import ApplicationCard from "@/components/application/application-card";
 import { getApplicationStatus } from "@/lib/deadline-utils";
 import FilterBar from "@/components/filter-bar";
 import Header from "@/components/header";
 import { IApplication } from "@/types";
 import SkeletonApplicationCard from "@/components/skeleton/skeleton-application-card";
-import axios from "axios";
+import useSWR from "swr";
+import fetcher from "@/lib/fetcher";
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
-    const [applications, setApplications] = useState<IApplication[]>([]);
+
+    const {
+        data: applications = [],
+        error,
+        isLoading,
+    } = useSWR<IApplication[]>("/api/applications", fetcher, {
+        keepPreviousData: true,
+        dedupingInterval: 10000,
+        shouldRetryOnError: true,
+    });
     console.log("🚀 ~ Home ~ applications:", applications);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
-
-    useEffect(() => {
-        const fetchApplications = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                const response = await axios.get<IApplication[]>(
-                    "/api/applications"
-                );
-                setApplications(response.data);
-            } catch (err) {
-                setError(err as Error);
-                console.error("Failed to fetch applications:", err);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchApplications();
-    }, []);
 
     const filteredApplications = useMemo(() => {
         if (!applications) {
