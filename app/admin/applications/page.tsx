@@ -81,7 +81,7 @@ export default function ApplicationsManagement() {
                 </div>
             </Header>
 
-            <PageContainer scrollable={false}>
+            <PageContainer>
                 <div className="flex flex-1 flex-col space-y-4">
                     <div className="flex w-full items-center justify-between">
                         <div>
