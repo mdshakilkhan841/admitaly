@@ -1,11 +1,17 @@
 import {
     formatDeadlineStatus,
+    formatDisplayDate,
     getDaysUntilDeadline,
 } from "@/lib/deadline-utils";
 import { IApplication } from "@/types";
 import Image from "next/image";
 
-type ApplicationStatus = "open" | "closing-soon" | "closed" | "opening-soon";
+type ApplicationStatus =
+    | "open"
+    | "closing-soon"
+    | "closed"
+    | "opening-soon"
+    | "";
 
 const statusColors: Record<
     ApplicationStatus,
@@ -44,6 +50,13 @@ const statusColors: Record<
         bgButtonHover: "hover:bg-sky-600",
         border: "border-sky-200",
         text: "text-sky-700",
+    },
+    "": {
+        bg: "bg-gray-50",
+        bgButton: "bg-gray-500",
+        bgButtonHover: "hover:bg-gray-500",
+        border: "border-gray-200",
+        text: "text-gray-700",
     },
 };
 
@@ -122,14 +135,17 @@ export default function ApplicationCard({
                             {application.call && `(${application.call} Call)`}
                         </h3>
                     </div>
-                    <div
-                        className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${statusColor.bg} ${statusColor.text}`}
-                    >
-                        <span
-                            className={`w-2 h-2 rounded-full ${statusColor.bgButton}`}
-                        ></span>
-                        {statusLabel}
-                    </div>
+                    {/* Status Badge */}
+                    {statusLabel && application.status && (
+                        <div
+                            className={`flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium whitespace-nowrap ${statusColor.bg} ${statusColor.text}`}
+                        >
+                            <span
+                                className={`w-2 h-2 rounded-full ${statusColor.bgButton}`}
+                            ></span>
+                            {statusLabel}
+                        </div>
+                    )}
                 </div>
 
                 <div className="px-3 py-2 space-y-2">
@@ -144,29 +160,33 @@ export default function ApplicationCard({
                                 <p
                                     className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
                                 >
-                                    {application.startDate}
+                                    {formatDisplayDate(application.startDate)}
+                                </p>
+                                {statusLabel && (
+                                    <p className="text-xs text-gray-500 mt-0.5">
+                                        {statusLabel}
+                                    </p>
+                                )}
+                            </div>
+                            {/* {application.endDate && ( */}
+                            <div className="w-1/2">
+                                <p className="text-xs text-gray-600 font-medium">
+                                    Deadline
+                                </p>
+                                <p
+                                    className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
+                                >
+                                    {formatDisplayDate(application.endDate)}
                                 </p>
                                 <p className="text-xs text-gray-500 mt-0.5">
-                                    {statusLabel}
+                                    {daysLeft > 0
+                                        ? `${daysLeft} days left`
+                                        : Number.isNaN(daysLeft)
+                                        ? ""
+                                        : "Passed"}
                                 </p>
                             </div>
-                            {application.endDate && (
-                                <div className="w-1/2">
-                                    <p className="text-xs text-gray-600 font-medium">
-                                        Deadline
-                                    </p>
-                                    <p
-                                        className={`text-sm font-semibold ${statusColor.text} mt-0.5`}
-                                    >
-                                        {application.endDate}
-                                    </p>
-                                    <p className="text-xs text-gray-500 mt-0.5">
-                                        {daysLeft > 0
-                                            ? `${daysLeft} days left`
-                                            : "Passed"}
-                                    </p>
-                                </div>
-                            )}
+                            {/* )} */}
                         </div>
                     </div>
 

@@ -7,33 +7,39 @@ export function getDaysUntilDeadline(deadlineString: string): number {
 }
 
 export function getApplicationStatus(
-    startDateString: string,
-    deadlineString: string
-): "open" | "opening-soon" | "closing-soon" | "closed" {
+    startDateString?: string | null,
+    deadlineString?: string | null
+): "open" | "opening-soon" | "closing-soon" | "closed" | "" {
+    if (!startDateString || !deadlineString) {
+        return "";
+    }
+
     const today = dayjs().startOf("day");
     const startDate = dayjs(startDateString);
+
+    if (!startDate.isValid()) return "";
 
     const daysUntilDeadline = getDaysUntilDeadline(deadlineString);
     const daysUntilStart = startDate.diff(today, "day");
 
     if (daysUntilDeadline < 0) return "closed";
     if (daysUntilDeadline <= 10 && daysUntilStart <= 0) return "closing-soon";
-    if (daysUntilStart > 0 && daysUntilStart <= 30) return "opening-soon";
+    if (daysUntilStart > 0 && daysUntilStart <= 10) return "opening-soon";
     if (daysUntilStart <= 0) return "open";
 
-    return "opening-soon";
+    return "";
 }
 
 export function formatDeadlineStatus(
-    status: "open" | "closing-soon" | "closed" | "opening-soon"
-): string {
+    status: "open" | "closing-soon" | "closed" | "opening-soon" | "" | null
+): string | null {
     const statusMap = {
         open: "Open",
         "closing-soon": "Closing Soon",
         "opening-soon": "Opening Soon",
         closed: "Closed",
     };
-    return statusMap[status];
+    return status ? statusMap[status] : null;
 }
 
 export function formatDisplayDate(dateString: string): string {
