@@ -1,19 +1,25 @@
 import { NextResponse } from "next/server";
-import Application from "@/models/application";
 import dbConnect from "@/lib/database";
+import University from "@/models/university";
+import Application from "@/models/application";
 import { authenticateUser } from "@/lib/authenticate-user";
 
-// Increase the timeout for this serverless function
-export const maxDuration = 60; // 60 seconds
-export const dynamic = "force-dynamic";
-
-export async function GET(): Promise<NextResponse> {
+export async function GET() {
     try {
         await dbConnect();
-        const applications = await Application.find({})
-            .sort({ createdAt: -1 })
-            .populate("university", "name image altImage address uniId _id")
-            .lean();
+
+        const applications = await Application.aggregate([
+            {
+                $lookup: {
+                    from: "universities",
+                    localField: "university",
+                    foreignField: "_id",
+                    as: "university",
+                },
+            },
+            { $unwind: "$university" },
+            { $sort: { createdAt: -1 } },
+        ]);
 
         return NextResponse.json(applications);
     } catch (error) {

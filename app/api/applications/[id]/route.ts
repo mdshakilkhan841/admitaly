@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/database";
+import University from "@/models/university";
 import Application from "@/models/application";
 import { authenticateUser } from "@/lib/authenticate-user";
+import mongoose from "mongoose";
 
 export async function GET(
     request: NextRequest,
@@ -12,11 +14,21 @@ export async function GET(
         if (authResponse) return authResponse;
 
         const { id } = await context.params;
-
         await dbConnect();
-        const application = await Application.findById(id)
-            .populate("university", "name image altImage address uniId _id")
-            .lean();
+
+        const [application] = await Application.aggregate([
+            { $match: { _id: new mongoose.Types.ObjectId(id) } },
+            {
+                $lookup: {
+                    from: "universities",
+                    localField: "university",
+                    foreignField: "_id",
+                    as: "university",
+                },
+            },
+            { $unwind: "$university" },
+            { $limit: 1 },
+        ]);
 
         if (!application) {
             return NextResponse.json(
@@ -43,14 +55,25 @@ export async function PUT(
         if (authResponse) return authResponse;
 
         const { id } = await context.params;
-
         await dbConnect();
+
         const body = await request.json();
-        const application = await Application.findByIdAndUpdate(id, body, {
-            new: true,
-        })
-            .populate("university", "name image altImage address uniId _id")
-            .lean();
+        await Application.findByIdAndUpdate(id, body);
+
+        const [application] = await Application.aggregate([
+            { $match: { _id: new mongoose.Types.ObjectId(id) } },
+            {
+                $lookup: {
+                    from: "universities",
+                    localField: "university",
+                    foreignField: "_id",
+                    as: "university",
+                },
+            },
+            { $unwind: "$university" },
+            { $limit: 1 },
+        ]);
+
         if (!application) {
             return NextResponse.json(
                 { error: "Application not found" },
