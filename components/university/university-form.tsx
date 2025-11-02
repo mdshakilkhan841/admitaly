@@ -2,7 +2,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react";
+import { ArrowUpDown, Loader2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { IUniversity } from "@/types";
 
@@ -43,6 +43,14 @@ export default function UniversityForm({
         } finally {
             setIsSubmitting(false);
         }
+    };
+
+    const handleSwipeImage = () => {
+        setFormData({
+            ...formData,
+            image: formData.altImage,
+            altImage: formData.image,
+        });
     };
 
     return (
@@ -95,6 +103,16 @@ export default function UniversityForm({
                     onChange={handleChange}
                 />
             </div>
+
+            <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleSwipeImage}
+            >
+                <ArrowUpDown className="h-4 w-4" />
+            </Button>
+
             <div className="grid gap-2">
                 <Label htmlFor="image">Alternate Image URL</Label>
                 <Input
