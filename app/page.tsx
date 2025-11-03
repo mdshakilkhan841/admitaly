@@ -9,6 +9,8 @@ import { IApplication } from "@/types";
 import SkeletonApplicationCard from "@/components/skeleton/skeleton-application-card";
 import useSWR from "swr";
 import fetcher from "@/lib/fetcher";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -75,8 +77,91 @@ export default function Home() {
         <main className="min-h-screen bg-background">
             <Header />
 
-            <div className="sticky top-0 z-10 bg-gray-100 p-3 border border-gray-200">
-                <div className="container mx-auto space-y-2 sm:px-3">
+            <div className="sticky top-0 z-10 bg-gray-100 ">
+                {/* Center: Study Group Highlight */}
+                <div className="bg-background py-2 border-b">
+                    <div className="container mx-auto max-w-7xl flex items-center justify-center gap-4 px-4">
+                        <div className="flex items-center gap-1">
+                            <Link
+                                href="https://www.facebook.com/share/g/1B76Voj3kR/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors"
+                                title="Join on Facebook"
+                            >
+                                <Image
+                                    src="/logo_agency.jpg"
+                                    alt="Facebook"
+                                    width={36}
+                                    height={36}
+                                />
+                            </Link>
+                            <div>
+                                <p className="text-sm font-semibold text-foreground text-center">
+                                    Study Group
+                                </p>
+                                <p className="text-xs text-muted-foreground text-center">
+                                    Join our community
+                                </p>
+                            </div>
+                        </div>
+                        {/* Social media sharing links with Italian flag theme */}
+                        <div className="flex overflow-hidden gap-4">
+                            <Link
+                                href="https://facebook.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors"
+                                title="Join on Facebook"
+                            >
+                                <Image
+                                    src="/facebook.svg"
+                                    alt="Facebook"
+                                    width={36}
+                                    height={36}
+                                    style={{
+                                        filter: "invert(39%) sepia(57%) saturate(2878%) hue-rotate(206deg) brightness(104%) contrast(97%)",
+                                    }}
+                                />
+                            </Link>
+                            <Link
+                                href="https://wa.me/..." // Replace with your WhatsApp group link
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors"
+                                title="Join on WhatsApp"
+                            >
+                                <Image
+                                    src="/whatsapp.svg"
+                                    alt="WhatsApp"
+                                    width={36}
+                                    height={36}
+                                    style={{
+                                        filter: "invert(53%) sepia(88%) saturate(454%) hue-rotate(94deg) brightness(91%) contrast(86%)",
+                                    }}
+                                />
+                            </Link>
+                            <Link
+                                href="https://m.me/..." // Replace with your Messenger group link
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Join on Messenger"
+                            >
+                                <div
+                                    className="h-8 w-8 bg-gradient-to-r from-purple-500 to-blue-500 transition-opacity hover:opacity-80"
+                                    style={{
+                                        mask: "url(/messenger.svg) no-repeat center",
+                                        WebkitMask:
+                                            "url(/messenger.svg) no-repeat center",
+                                        maskSize: "contain",
+                                    }}
+                                />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container mx-auto space-y-2 sm:px-3 px-3 py-3 border-b">
                     <div className="relative">
                         <input
                             type="text"
