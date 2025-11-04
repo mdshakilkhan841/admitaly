@@ -162,7 +162,7 @@ export default function Home() {
                                 title="Join on Messenger"
                             >
                                 <div
-                                    className="h-8 w-8 bg-gradient-to-r from-purple-500 to-blue-500 transition-opacity hover:opacity-80"
+                                    className="h-8 w-8 bg-linear-to-r from-purple-500 to-blue-500 transition-opacity hover:opacity-80"
                                     style={{
                                         mask: "url(/messenger.svg) no-repeat center",
                                         WebkitMask:
