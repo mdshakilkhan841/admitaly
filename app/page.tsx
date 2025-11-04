@@ -231,6 +231,20 @@ export default function Home() {
                     </div>
                 )}
             </div>
+
+            {/* Copyright Footer */}
+            <div className="flex flex-wrap items-center justify-center bg-gray-100 rounded mt-4 mb-4 gap-1 px-2 py-2 text-xs text-gray-600">
+                <p>{new Date().getFullYear()} ©</p>
+                <Link
+                    href="https://www.facebook.com/GlobalEducationAxis"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline font-medium"
+                >
+                    Global Education Axis
+                </Link>
+                <p>· All rights reserved.</p>
+            </div>
         </main>
     );
 }
