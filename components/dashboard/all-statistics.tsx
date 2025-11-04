@@ -1,202 +1,108 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
+import useSWR from "swr";
 import {
     AlertTriangle,
     Building2,
     CheckCircle2,
     Clock,
-    XCircle,
+    GraduationCap,
+    NotebookPen,
 } from "lucide-react";
 import StatsCard from "./stats-card";
 import { Card } from "@/components/ui/card";
 import ApplicationsTable from "./applications-table";
+import fetcher from "@/lib/fetcher";
+import { XCircle } from "lucide-react";
+import { formatDisplayDate } from "@/lib/deadline-utils";
 
 const AllStatistics = () => {
-    // Dummy data (replace later with API)
-    const [stats, setStats] = useState({
-        totalUniversities: 54,
-        active: 12,
-        openingSoon: 5,
-        closingSoon: 3,
-        closed: 34,
+    const { data: stats, error } = useSWR("/api/statistics", fetcher, {
+        revalidateOnFocus: false,
     });
+    console.log("🚀 ~ AllStatistics ~ stats:", stats);
 
-    const recentApplications = [
-        {
-            id: 1,
-            university: "University of Bologna",
-            deadline: "2025-12-20",
-            status: "Active",
-        },
-        {
-            id: 2,
-            university: "Politecnico di Milano",
-            deadline: "2025-12-05",
-            status: "Closing Soon",
-        },
-        {
-            id: 3,
-            university: "Sapienza University of Rome",
-            deadline: "2025-12-15",
-            status: "Active",
-        },
-        {
-            id: 4,
-            university: "University of Pisa",
-            deadline: "2025-10-15",
-            status: "Closed",
-        },
-        {
-            id: 5,
-            university: "University of Florence",
-            deadline: "2025-10-25",
-            status: "Closed",
-        },
-        {
-            id: 6,
-            university: "University of Bologna",
-            deadline: "2025-12-20",
-            status: "Active",
-        },
-        {
-            id: 7,
-            university: "Politecnico di Milano",
-            deadline: "2025-12-05",
-            status: "Closing Soon",
-        },
-        {
-            id: 8,
-            university: "Sapienza University of Rome",
-            deadline: "2025-12-15",
-            status: "Active",
-        },
-        {
-            id: 9,
-            university: "University of Pisa",
-            deadline: "2025-10-15",
-            status: "Closed",
-        },
-        {
-            id: 10,
-            university: "University of Florence",
-            deadline: "2025-10-25",
-            status: "Closed",
-        },
-        {
-            id: 11,
-            university: "University of Bologna",
-            deadline: "2025-12-20",
-            status: "Active",
-        },
-        {
-            id: 12,
-            university: "Politecnico di Milano",
-            deadline: "2025-12-05",
-            status: "Closing Soon",
-        },
-        {
-            id: 13,
-            university: "Sapienza University of Rome",
-            deadline: "2025-12-15",
-            status: "Active",
-        },
-        {
-            id: 14,
-            university: "University of Pisa",
-            deadline: "2025-10-15",
-            status: "Closed",
-        },
-        {
-            id: 15,
-            university: "University of Florence",
-            deadline: "2025-10-25",
-            status: "Closed",
-        },
-        {
-            id: 16,
-            university: "University of Bologna",
-            deadline: "2025-12-20",
-            status: "Active",
-        },
-        {
-            id: 17,
-            university: "Politecnico di Milano",
-            deadline: "2025-12-05",
-            status: "Closing Soon",
-        },
-        {
-            id: 18,
-            university: "Sapienza University of Rome",
-            deadline: "2025-12-15",
-            status: "Active",
-        },
-    ];
+    if (error) return <div>Failed to load statistics.</div>;
+    if (!stats) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            </div>
+        );
+    }
 
-    const passedApplications = [
-        {
-            id: 1,
-            university: "University of Pisa",
-            deadline: "2025-10-15",
-            status: "Closed",
-        },
-        {
-            id: 2,
-            university: "University of Florence",
-            deadline: "2025-10-25",
-            status: "Closed",
-        },
-    ];
+    const recentApplicationsForTable =
+        stats.recentApplications?.map((app: any) => ({
+            id: app._id,
+            university: app.name,
+            deadline: formatDisplayDate(app.endDate),
+            status: app.status,
+        })) || [];
+
+    const passedApplicationsForTable =
+        stats.passedApplications?.map((app: any) => ({
+            id: app._id,
+            university: app.name,
+            deadline: formatDisplayDate(app.endDate),
+            status: app.status,
+        })) || [];
 
     return (
         <>
             {/* === Summary Stats Section === */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                <StatsCard
-                    title="Total Universities"
-                    value={stats.totalUniversities}
-                    icon={Building2}
-                    color="text-blue-600"
-                />
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                 <StatsCard
                     title="Active Applications"
-                    value={stats.active}
+                    value={stats.active || 0}
                     icon={CheckCircle2}
                     color="text-green-600"
                 />
                 <StatsCard
                     title="Opening Soon"
-                    value={stats.openingSoon}
+                    value={stats.openingSoon || 0}
                     icon={Clock}
                     color="text-yellow-600"
                 />
                 <StatsCard
                     title="Closing Soon"
-                    value={stats.closingSoon}
+                    value={stats.closingSoon || 0}
                     icon={AlertTriangle}
                     color="text-orange-600"
                 />
                 <StatsCard
                     title="Closed Applications"
-                    value={stats.closed}
+                    value={stats.closed || 0}
                     icon={XCircle}
                     color="text-red-600"
                 />
+                <StatsCard
+                    title="Total Applications"
+                    value={stats.totalApplications || 0}
+                    icon={NotebookPen}
+                    color="text-gray-600"
+                />
+                <StatsCard
+                    title="Total Universities"
+                    value={stats.totalUniversities || 0}
+                    icon={GraduationCap}
+                    color="text-gray-600"
+                />
             </div>
             {/* === Recent Applications === */}
-            <div className="flex gap-4">
-                <Card className="p-4 sm:w-1/2">
+            <div className="gap-4 grid grid-cols-1 lg:grid-cols-2">
+                <Card className="p-4">
                     <h3 className="text-lg font-semibold">
                         Recent Applications
                     </h3>
-                    <ApplicationsTable data={recentApplications} />
+                    <ApplicationsTable data={recentApplicationsForTable} />
                 </Card>
 
                 {/* === Passed Applications === */}
-                <Card className="p-4 sm:w-1/2">
+                <Card className="p-4">
                     <h3 className="text-lg font-semibold">
                         Passed (Closed) Applications
                     </h3>
-                    <ApplicationsTable data={passedApplications} />
+                    <ApplicationsTable data={passedApplicationsForTable} />
                 </Card>
             </div>
         </>

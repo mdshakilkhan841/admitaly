@@ -11,9 +11,10 @@ type ApplicationStatus =
     | "closing-soon"
     | "closed"
     | "opening-soon"
+    | "upcoming"
     | "";
 
-const statusColors: Record<
+export const statusColors: Record<
     ApplicationStatus,
     {
         bg: string;
@@ -50,6 +51,13 @@ const statusColors: Record<
         bgButtonHover: "hover:bg-sky-600",
         border: "border-sky-200",
         text: "text-sky-700",
+    },
+    upcoming: {
+        bg: "bg-purple-50",
+        bgButton: "bg-purple-600",
+        bgButtonHover: "hover:bg-purple-700",
+        border: "border-purple-200",
+        text: "text-purple-700",
     },
     "": {
         bg: "bg-gray-50",
