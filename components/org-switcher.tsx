@@ -2,7 +2,7 @@
 
 import { Check, ChevronsUpDown, GalleryVerticalEnd } from "lucide-react";
 import * as React from "react";
-import Logo from "@/public/global-edu.png";
+import Logo from "@/public/global-edu.jpg";
 
 import {
     DropdownMenu,

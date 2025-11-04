@@ -3,31 +3,32 @@ import Image from "next/image";
 
 export default function Header() {
     return (
-        <header className="border-b ">
+        <header className="border-b">
             {/* Main header content */}
-            <div className="container mx-auto max-w-7xl px-2 py-1">
+            <div className="container mx-auto max-w- px-2 py-2">
                 <div className="flex items-center justify-between">
                     {/* Left: Logo and branding */}
                     <div className="flex items-center gap-2">
-                        <div className="w-14 h-14 rounded-lg flex items-center justify-center">
+                        <div className="flex items-center justify-center">
                             <Image
-                                src="/logo_agency.jpg"
+                                src="/logo_icon.png"
                                 alt="Admitaly Logo"
-                                width={80}
-                                height={80}
+                                width={120}
+                                height={10}
                                 style={{
                                     objectFit: "cover",
                                 }}
                             />
                         </div>
-                        <div>
-                            <h1 className="text-2xl font-bold text-foreground tracking-tight">
-                                Admitaly
+                        {/* <div>
+                            <h1 className="text-3xl font-bold leading-7">
+                                <span className="text-[#008C45]">admi</span>
+                                <span className="text-[#CD212A]">taly</span>
                             </h1>
-                            <p className="text-xs text-muted-foreground font-medium">
-                                University Deadlines
+                            <p className="text-[0.5rem] line-clamp-none text-muted-foreground tracking-tight leading-0">
+                                All Italian University Deadlines
                             </p>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Right: Social links and academic year */}

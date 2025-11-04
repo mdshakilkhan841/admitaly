@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "./ui/button";
+
 interface FilterBarProps {
     statusFilter: string;
     onStatusChange: (status: string) => void;
@@ -21,17 +23,19 @@ export default function FilterBar({
     return (
         <div className="flex flex-wrap gap-2">
             {filters.map((filter) => (
-                <button
+                <Button
+                    size="sm"
+                    variant="outline"
                     key={filter.value}
                     onClick={() => onStatusChange(filter.value)}
-                    className={`px-2.5 py-1 text-xs font-medium rounded transition-colors ${
+                    className={`px-2.5 py-1 text-xs font-medium rounded transition-colors h-6 ${
                         statusFilter === filter.value
                             ? "bg-green-600 text-white"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                 >
                     {filter.label}
-                </button>
+                </Button>
             ))}
         </div>
     );

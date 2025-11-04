@@ -77,20 +77,34 @@ export default function Home() {
         <main className="min-h-screen bg-background">
             <Header />
 
-            <div className="sticky top-0 z-10 bg-gray-100 ">
+            <div className="sticky top-0 z-10 bg-gray-100 shadow">
                 {/* Center: Study Group Highlight */}
                 <div className="bg-background py-2 border-b">
                     <div className="container mx-auto max-w-7xl flex items-center justify-center gap-4 px-4">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2">
                             <Link
-                                href="https://www.facebook.com/share/g/1B76Voj3kR/"
+                                href="https://www.facebook.com/share/g/1FwyozYf1s/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors"
+                                className="flex h-8 w-8 items-center justify-center rounded transition-colors overflow-hidden"
                                 title="Join on Facebook"
                             >
                                 <Image
                                     src="/logo_agency.jpg"
+                                    alt="Facebook"
+                                    width={36}
+                                    height={36}
+                                />
+                            </Link>
+                            <Link
+                                href="https://www.facebook.com/GlobalEducationAxis"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex h-8 w-8 items-center justify-center rounded transition-colors overflow-hidden"
+                                title="Join on Facebook"
+                            >
+                                <Image
+                                    src="/global-edu.jpg"
                                     alt="Facebook"
                                     width={36}
                                     height={36}
@@ -106,9 +120,9 @@ export default function Home() {
                             </div>
                         </div>
                         {/* Social media sharing links with Italian flag theme */}
-                        <div className="flex overflow-hidden gap-4">
+                        <div className="flex overflow-hidden gap-2">
                             <Link
-                                href="https://facebook.com"
+                                href="https://www.facebook.com/ItalyStudentConnect"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors"
@@ -125,7 +139,7 @@ export default function Home() {
                                 />
                             </Link>
                             <Link
-                                href="https://wa.me/..." // Replace with your WhatsApp group link
+                                href="https://wa.me/..."
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors"
@@ -142,7 +156,7 @@ export default function Home() {
                                 />
                             </Link>
                             <Link
-                                href="https://m.me/..." // Replace with your Messenger group link
+                                href="https://m.me/j/AbZFLgtKWq0QSnab/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 title="Join on Messenger"
@@ -161,7 +175,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="container mx-auto space-y-2 sm:px-3 px-3 py-3 border-b">
+                <div className="container mx-auto space-y-2 sm:px-3 px-3 py-3">
                     <div className="relative">
                         <input
                             type="text"
