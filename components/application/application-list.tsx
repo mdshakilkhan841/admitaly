@@ -253,158 +253,169 @@ const ApplicationList = ({
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {filteredApplications.map((application, index) => (
-                            <TableRow key={application._id}>
-                                <TableCell>
-                                    <Checkbox
-                                        checked={selectedRows.has(
-                                            application._id
-                                        )}
-                                        onCheckedChange={(checked) => {
-                                            setSelectedRows((prev) => {
-                                                const newSet = new Set(prev);
-                                                if (checked) {
-                                                    newSet.add(application._id);
-                                                } else {
-                                                    newSet.delete(
-                                                        application._id
-                                                    );
-                                                }
-                                                return newSet;
-                                            });
-                                        }}
-                                    />
-                                </TableCell>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell>
-                                    <div className="flex items-center gap-4">
-                                        <Avatar>
-                                            <AvatarImage
-                                                src={
-                                                    application.university
-                                                        ?.image
-                                                }
-                                                alt={
-                                                    application.university?.name
-                                                }
-                                            />
-                                            <AvatarFallback>
-                                                {application.university?.name?.charAt(
-                                                    0
-                                                )}
-                                            </AvatarFallback>
-                                        </Avatar>
-                                        <span className="font-medium">
-                                            {application.university?.name}
-                                        </span>
-                                    </div>
-                                </TableCell>
-                                <TableCell className="hidden md:table-cell">
-                                    {application.call}
-                                </TableCell>
-                                <TableCell className="hidden lg:table-cell">
-                                    {formatDisplayDate(application.startDate)}
-                                </TableCell>
-                                <TableCell>
-                                    {formatDisplayDate(application.endDate)}
-                                </TableCell>
-                                <TableCell>
-                                    <Badge
-                                        className={getStatusColor(
-                                            getApplicationStatus(
-                                                application.startDate,
-                                                application.endDate
-                                            )
-                                        )}
-                                    >
-                                        {formatDeadlineStatus(
-                                            getApplicationStatus(
-                                                application.startDate,
-                                                application.endDate
-                                            )
-                                        )}
-                                    </Badge>
-                                </TableCell>
-                                <TableCell>
-                                    <span className="font-medium">
-                                        {getDaysUntilDeadline(
-                                            application.endDate
-                                        ) > 0
-                                            ? `${getDaysUntilDeadline(
-                                                  application.endDate
-                                              )} days`
-                                            : "Passed"}
-                                    </span>
-                                </TableCell>
-                                <TableCell className="hidden lg:table-cell">
-                                    {application.applicationFee}
-                                </TableCell>
-                                <TableCell className="hidden lg:table-cell">
-                                    {application.cgpa}
-                                </TableCell>
+                        {filteredApplications.map((application, index) => {
+                            const status = getApplicationStatus(
+                                application.startDate,
+                                application.endDate
+                            );
+                            const daysLeft = getDaysUntilDeadline(
+                                application.endDate
+                            );
 
-                                <TableCell className="hidden lg:table-cell">
-                                    {application.languageProficiency.join(", ")}
-                                </TableCell>
-                                <TableCell className="hidden lg:table-cell">
-                                    {application.others.join(", ")}
-                                </TableCell>
-                                <TableCell>
-                                    {application.applicationLink ? (
-                                        <Button
-                                            asChild
-                                            variant="outline"
-                                            size="icon"
+                            return (
+                                <TableRow key={application._id}>
+                                    <TableCell>
+                                        <Checkbox
+                                            checked={selectedRows.has(
+                                                application._id
+                                            )}
+                                            onCheckedChange={(checked) => {
+                                                setSelectedRows((prev) => {
+                                                    const newSet = new Set(
+                                                        prev
+                                                    );
+                                                    if (checked) {
+                                                        newSet.add(
+                                                            application._id
+                                                        );
+                                                    } else {
+                                                        newSet.delete(
+                                                            application._id
+                                                        );
+                                                    }
+                                                    return newSet;
+                                                });
+                                            }}
+                                        />
+                                    </TableCell>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>
+                                        <div className="flex items-center gap-4">
+                                            <Avatar>
+                                                <AvatarImage
+                                                    src={
+                                                        application.university
+                                                            ?.image
+                                                    }
+                                                    alt={
+                                                        application.university
+                                                            ?.name
+                                                    }
+                                                />
+                                                <AvatarFallback>
+                                                    {application.university?.name?.charAt(
+                                                        0
+                                                    )}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <span className="font-medium">
+                                                {application.university?.name}
+                                            </span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="hidden md:table-cell">
+                                        {application.call}
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {formatDisplayDate(
+                                            application.startDate
+                                        )}
+                                    </TableCell>
+                                    <TableCell>
+                                        {formatDisplayDate(application.endDate)}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Badge
+                                            className={getStatusColor(status)}
                                         >
-                                            <a
-                                                href={
-                                                    application.applicationLink
-                                                }
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                aria-label="Application Link"
-                                            >
-                                                <LinkIcon className="h-4 w-4" />
-                                            </a>
-                                        </Button>
-                                    ) : (
-                                        <span className="text-xs text-muted-foreground">
-                                            N/A
+                                            {formatDeadlineStatus(status) ||
+                                                "-"}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>
+                                        <span className="font-medium">
+                                            {daysLeft > 0
+                                                ? `${daysLeft} days left`
+                                                : Number.isNaN(daysLeft)
+                                                ? "-"
+                                                : "Passed"}
                                         </span>
-                                    )}
-                                </TableCell>
-                                <TableCell className="text-right pr-6">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon">
-                                                <MoreHorizontal className="h-4 w-4" />
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.applicationFee}
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.cgpa}
+                                    </TableCell>
+
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.languageProficiency.join(
+                                            ", "
+                                        )}
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.others.join(", ")}
+                                    </TableCell>
+                                    <TableCell>
+                                        {application.applicationLink ? (
+                                            <Button
+                                                asChild
+                                                variant="outline"
+                                                size="icon"
+                                            >
+                                                <a
+                                                    href={
+                                                        application.applicationLink
+                                                    }
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label="Application Link"
+                                                >
+                                                    <LinkIcon className="h-4 w-4" />
+                                                </a>
                                             </Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem
-                                                onClick={() =>
-                                                    handleEdit(application)
-                                                }
-                                            >
-                                                <Pencil className="mr-2 h-4 w-4" />
-                                                Edit
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem
-                                                onClick={() =>
-                                                    handleDelete(
-                                                        application._id
-                                                    )
-                                                }
-                                                className="text-red-600 focus:text-red-600"
-                                            >
-                                                <Trash className="mr-2 h-4 w-4" />
-                                                Delete
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                                        ) : (
+                                            <span className="text-xs text-muted-foreground">
+                                                N/A
+                                            </span>
+                                        )}
+                                    </TableCell>
+                                    <TableCell className="text-right pr-6">
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                >
+                                                    <MoreHorizontal className="h-4 w-4" />
+                                                </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem
+                                                    onClick={() =>
+                                                        handleEdit(application)
+                                                    }
+                                                >
+                                                    <Pencil className="mr-2 h-4 w-4" />
+                                                    Edit
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem
+                                                    onClick={() =>
+                                                        handleDelete(
+                                                            application._id
+                                                        )
+                                                    }
+                                                    className="text-red-600 focus:text-red-600"
+                                                >
+                                                    <Trash className="mr-2 h-4 w-4" />
+                                                    Delete
+                                                </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
                     </TableBody>
                 </Table>
             </div>
@@ -537,7 +548,8 @@ const ApplicationList = ({
                                         <Badge
                                             className={getStatusColor(status)}
                                         >
-                                            {formatDeadlineStatus(status)}
+                                            {formatDeadlineStatus(status) ||
+                                                "-"}
                                         </Badge>
                                         <p className="text-xs text-muted-foreground mt-1">
                                             {daysLeft > 0

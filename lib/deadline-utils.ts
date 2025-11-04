@@ -46,8 +46,9 @@ export function formatDeadlineStatus(
         "opening-soon": "Opening Soon",
         closed: "Closed",
         upcoming: "Upcoming",
+        "": null,
     };
-    return status ? statusMap[status] : null;
+    return statusMap[status];
 }
 
 export function formatDisplayDate(dateString: string): string {
@@ -70,7 +71,7 @@ export function getStatusColor(
         "opening-soon": "bg-blue-100 text-blue-800",
         closed: "bg-red-100 text-red-800",
         upcoming: "bg-gray-100 text-gray-800",
-        "": "bg-background",
+        "": "bg-background text-gray-800",
     };
     return colorMap[status];
 }
