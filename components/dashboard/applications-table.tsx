@@ -1,4 +1,6 @@
+import { formatDeadlineStatus, getStatusColor } from "@/lib/deadline-utils";
 import { statusColors } from "../application/application-card";
+import { Badge } from "../ui/badge";
 
 type ApplicationStatus = keyof typeof statusColors;
 
@@ -17,7 +19,7 @@ const ApplicationsTable = ({
         id: string;
         university?: string;
         deadline?: string;
-        status?: ApplicationStatus | string | undefined;
+        status?: ApplicationStatus;
     }[];
 }) => {
     return (
@@ -59,11 +61,14 @@ const ApplicationsTable = ({
                                         {app.university}
                                     </td>
                                     <td className="px-3 py-2">
-                                        <span
-                                            className={`px-2 py-1 text-xs font-medium rounded-full ${statusColor.bg} ${statusColor.text}`}
+                                        <Badge
+                                            className={getStatusColor(
+                                                app.status
+                                            )}
                                         >
-                                            {app.status}
-                                        </span>
+                                            {formatDeadlineStatus(app.status) ||
+                                                "-"}
+                                        </Badge>
                                     </td>
                                     <td className="px-3 py-2">
                                         {app.deadline}

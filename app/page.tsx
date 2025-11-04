@@ -83,7 +83,7 @@ export default function Home() {
                     <div className="container mx-auto max-w-7xl flex items-center justify-center gap-4 px-4">
                         <div className="flex items-center gap-2">
                             <Link
-                                href="https://www.facebook.com/share/g/1FwyozYf1s/"
+                                href="https://www.facebook.com/ItalyStudentConnect"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex h-8 w-8 items-center justify-center rounded transition-colors overflow-hidden"
@@ -91,7 +91,7 @@ export default function Home() {
                             >
                                 <Image
                                     src="/logo_agency.jpg"
-                                    alt="Facebook"
+                                    alt="Facebook-Page"
                                     width={36}
                                     height={36}
                                 />
@@ -122,7 +122,7 @@ export default function Home() {
                         {/* Social media sharing links with Italian flag theme */}
                         <div className="flex overflow-hidden gap-2">
                             <Link
-                                href="https://www.facebook.com/ItalyStudentConnect"
+                                href="https://www.facebook.com/share/g/1FwyozYf1s/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex h-8 w-8 items-center justify-center rounded-full text-white transition-colors"
@@ -130,7 +130,7 @@ export default function Home() {
                             >
                                 <Image
                                     src="/facebook.svg"
-                                    alt="Facebook"
+                                    alt="Facebook-Group"
                                     width={36}
                                     height={36}
                                     style={{

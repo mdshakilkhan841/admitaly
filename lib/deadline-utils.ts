@@ -32,7 +32,7 @@ export function getApplicationStatus(
 }
 
 export function formatDeadlineStatus(
-    status:
+    status?:
         | "open"
         | "closing-soon"
         | "closed"
@@ -48,6 +48,7 @@ export function formatDeadlineStatus(
         upcoming: "Upcoming",
         "": null,
     };
+    if (!status) return null;
     return statusMap[status];
 }
 
@@ -57,7 +58,7 @@ export function formatDisplayDate(dateString: string): string {
 }
 
 export function getStatusColor(
-    status:
+    status?:
         | "open"
         | "closing-soon"
         | "closed"
@@ -73,5 +74,5 @@ export function getStatusColor(
         upcoming: "bg-gray-100 text-gray-800",
         "": "bg-background text-gray-800",
     };
-    return colorMap[status];
+    return status ? colorMap[status] : colorMap[""];
 }
