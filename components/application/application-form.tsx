@@ -88,6 +88,8 @@ export default function ApplicationForm({
 
     const [open, setOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [dateError, setDateError] = useState<string | null>(null);
+    const [universityError, setUniversityError] = useState<string | null>(null);
 
     const [formData, setFormData] = useState<IApplicationFormData>({
         university: application?.university?._id || "",
@@ -107,14 +109,29 @@ export default function ApplicationForm({
     });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
+        const { name, value } = e.target;
+        const newFormData = { ...formData, [name]: value };
+        setFormData(newFormData);
+
+        if (name === "startDate" || name === "endDate") {
+            const { startDate, endDate } = newFormData;
+            if (
+                startDate &&
+                endDate &&
+                dayjs(endDate).isBefore(dayjs(startDate))
+            ) {
+                setDateError("End date cannot be before start date.");
+            } else {
+                setDateError(null);
+            }
+        }
     };
 
     const handleSelectChange = (value: string) => {
         setFormData({ ...formData, university: value });
+        if (value) {
+            setUniversityError(null);
+        }
     };
 
     const handleSessionChange = (value: string) => {
@@ -127,6 +144,14 @@ export default function ApplicationForm({
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!formData.university) {
+            setUniversityError("University is required.");
+            return;
+        }
+        if (dateError) {
+            // Prevent submission if there's a date error
+            return;
+        }
         setIsSubmitting(true);
         try {
             const submissionData = {
@@ -206,6 +231,9 @@ export default function ApplicationForm({
                         </Command>
                     </PopoverContent>
                 </Popover>
+                {universityError && (
+                    <p className="text-sm text-red-500">{universityError}</p>
+                )}
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -334,6 +362,8 @@ export default function ApplicationForm({
                 />
             </div>
 
+            {dateError && <p className="text-sm text-red-500">{dateError}</p>}
+
             <div className="flex justify-end space-x-3 pt-4">
                 <Button
                     type="button"
@@ -343,7 +373,10 @@ export default function ApplicationForm({
                 >
                     Cancel
                 </Button>
-                <Button type="submit" disabled={isSubmitting}>
+                <Button
+                    type="submit"
+                    disabled={isSubmitting || !!dateError || !!universityError}
+                >
                     {application ? "Update" : "Create"}
                 </Button>
             </div>
