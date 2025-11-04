@@ -9,7 +9,7 @@ export function getDaysUntilDeadline(deadlineString: string): number {
 export function getApplicationStatus(
     startDateString?: string | null,
     deadlineString?: string | null
-): "open" | "opening-soon" | "closing-soon" | "closed" | "" {
+): "open" | "opening-soon" | "closing-soon" | "closed" | "upcoming" | "" {
     if (!startDateString || !deadlineString) {
         return "";
     }
@@ -25,19 +25,27 @@ export function getApplicationStatus(
     if (daysUntilDeadline < 0) return "closed";
     if (daysUntilDeadline <= 10 && daysUntilStart <= 0) return "closing-soon";
     if (daysUntilStart > 0 && daysUntilStart <= 10) return "opening-soon";
+    if (daysUntilStart > 10) return "upcoming";
     if (daysUntilStart <= 0) return "open";
 
     return "";
 }
 
 export function formatDeadlineStatus(
-    status: "open" | "closing-soon" | "closed" | "opening-soon" | "" | null
+    status:
+        | "open"
+        | "closing-soon"
+        | "closed"
+        | "opening-soon"
+        | "upcoming"
+        | ""
 ): string | null {
     const statusMap = {
         open: "Open",
         "closing-soon": "Closing Soon",
         "opening-soon": "Opening Soon",
         closed: "Closed",
+        upcoming: "Upcoming",
     };
     return status ? statusMap[status] : null;
 }
@@ -48,14 +56,21 @@ export function formatDisplayDate(dateString: string): string {
 }
 
 export function getStatusColor(
-    status: "open" | "closing-soon" | "closed" | "opening-soon" | ""
+    status:
+        | "open"
+        | "closing-soon"
+        | "closed"
+        | "opening-soon"
+        | "upcoming"
+        | ""
 ): string {
     const colorMap = {
         open: "bg-green-100 text-green-800",
         "closing-soon": "bg-orange-100 text-orange-800",
         "opening-soon": "bg-blue-100 text-blue-800",
         closed: "bg-red-100 text-red-800",
-        "": "",
+        upcoming: "bg-gray-100 text-gray-800",
+        "": "bg-background",
     };
     return colorMap[status];
 }
