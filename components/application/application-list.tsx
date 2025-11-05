@@ -201,7 +201,7 @@ const ApplicationList = ({
                 <Table>
                     <TableHeader className="bg-muted/50">
                         <TableRow>
-                            <TableHead className="w-12">
+                            <TableHead>
                                 <Checkbox
                                     checked={
                                         selectedRows.size ===
@@ -223,7 +223,10 @@ const ApplicationList = ({
                                     }}
                                 />
                             </TableHead>
-                            <TableHead className="w-12">#</TableHead>
+                            <TableHead>#</TableHead>
+                            <TableHead className="text-right">
+                                Actions
+                            </TableHead>
                             <TableHead>University</TableHead>
                             <TableHead className="hidden md:table-cell">
                                 Call
@@ -247,9 +250,6 @@ const ApplicationList = ({
                                 Others
                             </TableHead>
                             <TableHead>Link</TableHead>
-                            <TableHead className="text-right">
-                                Actions
-                            </TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -289,97 +289,6 @@ const ApplicationList = ({
                                         />
                                     </TableCell>
                                     <TableCell>{index + 1}</TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center gap-4">
-                                            <Avatar>
-                                                <AvatarImage
-                                                    src={
-                                                        application.university
-                                                            ?.image
-                                                    }
-                                                    alt={
-                                                        application.university
-                                                            ?.name
-                                                    }
-                                                />
-                                                <AvatarFallback>
-                                                    {application.university?.name?.charAt(
-                                                        0
-                                                    )}
-                                                </AvatarFallback>
-                                            </Avatar>
-                                            <span className="font-medium">
-                                                {application.university?.name}
-                                            </span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell className="hidden md:table-cell">
-                                        {application.call}
-                                    </TableCell>
-                                    <TableCell className="hidden lg:table-cell">
-                                        {formatDisplayDate(
-                                            application.startDate
-                                        )}
-                                    </TableCell>
-                                    <TableCell>
-                                        {formatDisplayDate(application.endDate)}
-                                    </TableCell>
-                                    <TableCell>
-                                        <Badge
-                                            className={getStatusColor(status)}
-                                        >
-                                            {formatDeadlineStatus(status) ||
-                                                "-"}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell>
-                                        <span className="font-medium">
-                                            {daysLeft > 0
-                                                ? `${daysLeft} days left`
-                                                : Number.isNaN(daysLeft)
-                                                ? "-"
-                                                : "Passed"}
-                                        </span>
-                                    </TableCell>
-                                    <TableCell className="hidden lg:table-cell">
-                                        {application.applicationFee}
-                                    </TableCell>
-                                    <TableCell className="hidden lg:table-cell">
-                                        {application.cgpa}
-                                    </TableCell>
-
-                                    <TableCell className="hidden lg:table-cell">
-                                        {application.languageProficiency.join(
-                                            ", "
-                                        )}
-                                    </TableCell>
-                                    <TableCell className="hidden lg:table-cell">
-                                        {application.others.join(", ")}
-                                    </TableCell>
-                                    <TableCell>
-                                        {application.applicationLink ? (
-                                            <Button
-                                                asChild
-                                                variant="outline"
-                                                size="icon"
-                                            >
-                                                <a
-                                                    href={
-                                                        application.applicationLink
-                                                    }
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    aria-label="Application Link"
-                                                >
-                                                    <LinkIcon className="h-4 w-4" />
-                                                </a>
-                                            </Button>
-                                        ) : (
-                                            <span className="text-xs text-muted-foreground">
-                                                N/A
-                                            </span>
-                                        )}
-                                    </TableCell>
                                     <TableCell className="text-right pr-6">
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
@@ -412,6 +321,97 @@ const ApplicationList = ({
                                                 </DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="flex items-center gap-4">
+                                            <Avatar>
+                                                <AvatarImage
+                                                    src={
+                                                        application.university
+                                                            ?.image
+                                                    }
+                                                    alt={
+                                                        application.university
+                                                            ?.name
+                                                    }
+                                                />
+                                                <AvatarFallback>
+                                                    {application.university?.name?.charAt(
+                                                        0
+                                                    )}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <span className="font-medium">
+                                                {application.university?.name}
+                                            </span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="hidden md:table-cell">
+                                        {application.call || "-"}
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {formatDisplayDate(
+                                            application.startDate
+                                        )}
+                                    </TableCell>
+                                    <TableCell>
+                                        {formatDisplayDate(application.endDate)}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Badge
+                                            className={getStatusColor(status)}
+                                        >
+                                            {formatDeadlineStatus(status) ||
+                                                "-"}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell>
+                                        <span className="font-medium">
+                                            {daysLeft > 0
+                                                ? `${daysLeft} days left`
+                                                : Number.isNaN(daysLeft)
+                                                ? "-"
+                                                : "Passed"}
+                                        </span>
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.applicationFee || "-"}
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.cgpa || "-"}
+                                    </TableCell>
+
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.languageProficiency.join(
+                                            ", "
+                                        ) || "-"}
+                                    </TableCell>
+                                    <TableCell className="hidden lg:table-cell">
+                                        {application.others.join(", ") || "-"}
+                                    </TableCell>
+                                    <TableCell>
+                                        {application.applicationLink ? (
+                                            <Button
+                                                asChild
+                                                variant="outline"
+                                                size="icon"
+                                            >
+                                                <a
+                                                    href={
+                                                        application.applicationLink
+                                                    }
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    aria-label="Application Link"
+                                                >
+                                                    <LinkIcon className="h-4 w-4" />
+                                                </a>
+                                            </Button>
+                                        ) : (
+                                            <span className="text-xs text-muted-foreground">
+                                                N/A
+                                            </span>
+                                        )}
                                     </TableCell>
                                 </TableRow>
                             );
