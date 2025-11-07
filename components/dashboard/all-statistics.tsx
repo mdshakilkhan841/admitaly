@@ -20,7 +20,6 @@ const AllStatistics = () => {
     const { data: stats, error } = useSWR("/api/statistics", fetcher, {
         revalidateOnFocus: false,
     });
-    console.log("🚀 ~ AllStatistics ~ stats:", stats);
 
     if (error) return <div>Failed to load statistics.</div>;
     if (!stats) {

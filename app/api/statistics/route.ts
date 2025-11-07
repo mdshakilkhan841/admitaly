@@ -369,7 +369,7 @@ export async function GET() {
                                         },
                                     },
                                 },
-                                { $sort: { createdAt: -1 } },
+                                { $sort: { updatedAt: -1 } },
                                 { $limit: Limit },
                                 {
                                     $lookup: {
@@ -387,7 +387,6 @@ export async function GET() {
                                         startDate: "$__start",
                                         endDate: "$__end",
                                         status: 1,
-                                        createdAt: 1,
                                     },
                                 },
                             ],
@@ -395,6 +394,7 @@ export async function GET() {
                             // ✅ Passed apps (only closed)
                             passedApplications: [
                                 { $match: { status: "closed" } },
+                                { $sort: { updatedAt: -1 } },
                                 {
                                     $lookup: {
                                         from: "universities",
@@ -411,7 +411,6 @@ export async function GET() {
                                         startDate: "$__start",
                                         endDate: "$__end",
                                         status: 1,
-                                        createdAt: 1,
                                     },
                                 },
                             ],
