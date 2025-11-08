@@ -5,6 +5,8 @@ import {
 } from "@/lib/deadline-utils";
 import { IApplication } from "@/types";
 import Image from "next/image";
+import { BookOpen } from "lucide-react";
+import Link from "next/link";
 
 type ApplicationStatus =
     | "open"
@@ -216,12 +218,23 @@ export default function ApplicationCard({
                     </div>
 
                     {/* CGPA */}
+                    {/* <div className="grid grid-cols-2 gap-1.5 text-xs"> */}
                     <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
                         <p className="text-gray-600 font-medium">CGPA</p>
                         <p className="text-gray-900 font-medium mt-0.5">
                             {application.cgpa}
                         </p>
                     </div>
+                    {/* <Link
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`rounded px-1.5 py-1 text-xs flex items-center justify-center text-gray-600 font-medium transition-colors ${statusColor.bg} border ${statusColor.border} ${statusColor.text}`}
+                        >
+                            <BookOpen className="h-4 w-4 mr-1.5" />
+                            <span>Course Link</span>
+                        </Link> */}
+                    {/* </div> */}
 
                     {/* Others */}
 

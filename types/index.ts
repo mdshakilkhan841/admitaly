@@ -7,6 +7,7 @@ export interface IUniversity {
     address?: string;
     image?: string;
     altImage?: string;
+    course?: string;
 }
 
 export interface IApplication {

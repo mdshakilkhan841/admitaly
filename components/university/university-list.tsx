@@ -3,7 +3,7 @@ import React, { useMemo, useState } from "react";
 import useSWR from "swr";
 import Modal from "../Modal";
 import UniversityForm from "./university-form";
-import { MoreHorizontal, Pencil, Trash } from "lucide-react";
+import { LinkIcon, MoreHorizontal, Pencil, Trash } from "lucide-react";
 import axios from "axios";
 import fetcher from "@/lib/fetcher";
 import { toast } from "sonner";
@@ -200,8 +200,11 @@ const UniversityList = ({
                                 />
                             </TableHead>
                             <TableHead className="w-16">#</TableHead>
-                            <TableHead className="w-[400px] font-semibold">
+                            <TableHead className="w-[300px] font-semibold">
                                 University
+                            </TableHead>
+                            <TableHead className="font-semibold">
+                                Course
                             </TableHead>
                             <TableHead className="font-semibold">
                                 Address
@@ -260,6 +263,28 @@ const UniversityList = ({
                                             {university.name}
                                         </span>
                                     </div>
+                                </TableCell>
+                                <TableCell>
+                                    {university.course ? (
+                                        <Button
+                                            asChild
+                                            variant="outline"
+                                            size="icon"
+                                        >
+                                            <a
+                                                href={university.course}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                aria-label="Application Link"
+                                            >
+                                                <LinkIcon className="h-4 w-4" />
+                                            </a>
+                                        </Button>
+                                    ) : (
+                                        <span className="text-xs text-muted-foreground">
+                                            -
+                                        </span>
+                                    )}
                                 </TableCell>
                                 <TableCell>{university.address}</TableCell>
                                 <TableCell className="text-right pr-6">

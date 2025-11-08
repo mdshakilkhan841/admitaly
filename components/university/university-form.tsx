@@ -24,6 +24,7 @@ export default function UniversityForm({
         image: university?.image || "",
         altImage: university?.altImage || "",
         uniId: university?.uniId || "",
+        course: university?.course || "",
     });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -95,10 +96,22 @@ export default function UniversityForm({
             </div>
 
             <div className="grid gap-2">
+                <Label htmlFor="course">Course URL</Label>
+                <Input
+                    name="course"
+                    id="course"
+                    type="url"
+                    value={formData.course}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="grid gap-2">
                 <Label htmlFor="image">Image URL</Label>
                 <Input
                     name="image"
                     id="image"
+                    type="url"
                     value={formData.image}
                     onChange={handleChange}
                 />
@@ -118,6 +131,7 @@ export default function UniversityForm({
                 <Input
                     name="altImage"
                     id="altImage"
+                    type="url"
                     value={formData.altImage}
                     onChange={handleChange}
                 />

@@ -15,6 +15,9 @@ const UniversitySchema = new mongoose.Schema({
     image: {
         type: String,
     },
+    course: {
+        type: String,
+    },
     altImage: {
         type: String,
     },
