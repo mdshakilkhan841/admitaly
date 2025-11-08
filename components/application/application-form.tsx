@@ -253,6 +253,10 @@ export default function ApplicationForm({
                             <SelectItem value="3rd">3rd</SelectItem>
                             <SelectItem value="4th">4th</SelectItem>
                             <SelectItem value="5th">5th</SelectItem>
+                            <SelectItem value="supplementary">
+                                SUPPLEMENTARY
+                            </SelectItem>
+                            <SelectItem value="special">SPECIAL</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
