@@ -24,6 +24,7 @@ import {
     Languages,
     Info,
     EuroIcon,
+    Copy,
 } from "lucide-react";
 import {
     Table,
@@ -115,6 +116,24 @@ const ApplicationList = ({
     const handleEdit = (application: IApplication) => {
         setSelectedApplication(application);
         setIsModalOpen(true);
+    };
+
+    const handleDuplicate = async (application: IApplication) => {
+        try {
+            const { _id, createdAt, updatedAt, ...duplicationData } =
+                application;
+            const newApplicationData = {
+                ...duplicationData,
+                university: application.university._id,
+            };
+
+            await axios.post("/api/applications", newApplicationData);
+            mutate(); // Re-fetch the applications list
+            toast.success("Application duplicated successfully!");
+        } catch (error) {
+            console.error("Error duplicating application:", error);
+            toast.error("Failed to duplicate application.");
+        }
     };
 
     const handleDelete = async (id: string) => {
@@ -307,6 +326,16 @@ const ApplicationList = ({
                                                 >
                                                     <Pencil className="mr-2 h-4 w-4" />
                                                     Edit
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem
+                                                    onClick={() =>
+                                                        handleDuplicate(
+                                                            application
+                                                        )
+                                                    }
+                                                >
+                                                    <Copy className="mr-2 h-4 w-4" />
+                                                    Duplicate
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem
                                                     onClick={() =>

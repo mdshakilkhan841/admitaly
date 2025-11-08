@@ -28,6 +28,11 @@ export async function GET(
             },
             { $unwind: "$university" },
             { $limit: 1 },
+            {
+                $project: {
+                    __v: 0,
+                },
+            },
         ]);
 
         if (!application) {
@@ -72,6 +77,11 @@ export async function PUT(
             },
             { $unwind: "$university" },
             { $limit: 1 },
+            {
+                $project: {
+                    __v: 0,
+                },
+            },
         ]);
 
         if (!application) {

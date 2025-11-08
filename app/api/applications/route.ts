@@ -19,6 +19,11 @@ export async function GET() {
             },
             { $unwind: "$university" },
             { $sort: { createdAt: -1 } },
+            {
+                $project: {
+                    __v: 0,
+                },
+            },
         ]);
 
         return NextResponse.json(applications);
