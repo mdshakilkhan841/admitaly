@@ -8,7 +8,7 @@ export default function VisitorCounter() {
             </div>
             <Image
                 // src="https://hitwebcounter.com/counter/counter.php?page=21455916&style=0007&nbdigits=6&type=page&initCount=0"
-                src="https://hitwebcounter.com/counter/counter.php?page=21455918&style=0009&nbdigits=6&type=page&initCount=0"
+                src="https://hitwebcounter.com/counter/counter.php?page=21455932&style=0009&nbdigits=6&type=page&initCount=1500"
                 title="Free Tools"
                 alt="counters"
                 className="w-28"
