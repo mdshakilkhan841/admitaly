@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import ApplicationCard from "@/components/application/application-card";
 import { getApplicationStatus } from "@/lib/deadline-utils";
 import FilterBar from "@/components/filter-bar";
@@ -11,10 +11,13 @@ import useSWR from "swr";
 import fetcher from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
+import VisitorCounter from "@/components/visitor-counter";
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
+    const [isSticky, setIsSticky] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     const {
         data: applications = [],
@@ -25,6 +28,29 @@ export default function Home() {
         dedupingInterval: 10000,
         shouldRetryOnError: true,
     });
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY < lastScrollY) {
+                // Scrolling up
+                setIsSticky(true);
+            } else if (currentScrollY > lastScrollY + 50) {
+                // Scrolling down with a little threshold to prevent flickering
+                setIsSticky(false);
+            }
+
+            setLastScrollY(currentScrollY);
+        };
+
+        // Add scroll event listener
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [lastScrollY]);
 
     const filteredApplications = useMemo(() => {
         if (!applications) {
@@ -77,7 +103,14 @@ export default function Home() {
         <main className="min-h-screen bg-background">
             <Header />
 
-            <div className="sticky top-0 z-10 bg-gray-100 shadow">
+            {/* Conditionally apply sticky positioning */}
+            <div
+                className={`${
+                    isSticky
+                        ? "sticky top-0 z-10 bg-gray-100 shadow transition-all duration-300"
+                        : "relative"
+                } bg-gray-100`}
+            >
                 {/* Center: Study Group Highlight */}
                 <div className="bg-background py-2 border-b">
                     <div className="container mx-auto max-w-7xl flex items-center justify-center gap-4 px-4">
@@ -245,6 +278,7 @@ export default function Home() {
                 </Link>
                 <p>· All rights reserved.</p>
             </div>
+            <VisitorCounter />
         </main>
     );
 }
