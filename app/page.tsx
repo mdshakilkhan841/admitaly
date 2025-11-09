@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import ApplicationCard from "@/components/application/application-card";
 import { getApplicationStatus } from "@/lib/deadline-utils";
 import FilterBar from "@/components/filter-bar";
@@ -17,7 +17,8 @@ export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
     const [statusFilter, setStatusFilter] = useState("all");
     const [isSticky, setIsSticky] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const [isScrollButtonVisible, setIsScrollButtonVisible] = useState(false);
+    const lastScrollY = useRef(0);
 
     const {
         data: applications = [],
@@ -32,25 +33,30 @@ export default function Home() {
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-
-            if (currentScrollY < lastScrollY) {
+            // Sticky header logic
+            if (currentScrollY < lastScrollY.current) {
                 // Scrolling up
                 setIsSticky(true);
-            } else if (currentScrollY > lastScrollY + 50) {
+            } else if (currentScrollY > lastScrollY.current + 50) {
                 // Scrolling down with a little threshold to prevent flickering
                 setIsSticky(false);
             }
 
-            setLastScrollY(currentScrollY);
+            // Scroll-to-top button visibility
+            if (currentScrollY > 300) {
+                setIsScrollButtonVisible(true);
+            } else {
+                setIsScrollButtonVisible(false);
+            }
+
+            lastScrollY.current = currentScrollY;
         };
 
         // Add scroll event listener
         window.addEventListener("scroll", handleScroll, { passive: true });
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [lastScrollY]);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     const filteredApplications = useMemo(() => {
         if (!applications) {
@@ -279,6 +285,18 @@ export default function Home() {
                 <p>· All rights reserved.</p>
             </div>
             <VisitorCounter />
+
+            {/* Scroll to top button */}
+            <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className={`fixed bottom-5 right-5 z-50 h-10 w-10 rounded-full border border-border bg-background/20 text-foreground shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-accent hover:text-accent-foreground ${
+                    isScrollButtonVisible
+                        ? "opacity-100"
+                        : "opacity-0 pointer-events-none"
+                }`}
+            >
+                ↑
+            </button>
         </main>
     );
 }
