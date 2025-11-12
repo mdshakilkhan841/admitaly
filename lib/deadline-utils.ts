@@ -23,7 +23,7 @@ export function getApplicationStatus(
     const daysUntilStart = startDate.diff(today, "day");
 
     if (daysUntilDeadline < 0) return "closed";
-    if (daysUntilDeadline <= 10 && daysUntilStart <= 0) return "closing-soon";
+    if (daysUntilDeadline <= 5 && daysUntilStart <= 0) return "closing-soon";
     if (daysUntilStart > 0 && daysUntilStart <= 10) return "opening-soon";
     if (daysUntilStart > 10) return "upcoming";
     if (daysUntilStart <= 0) return "open";
