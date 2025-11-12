@@ -96,10 +96,17 @@ export default function Home() {
                     ?.toLowerCase()
                     .includes(searchQuery.toLowerCase());
 
-            const matchesStatus =
-                statusFilter === "all" ||
-                application.status === statusFilter ||
-                application.applicationFee === statusFilter;
+            let matchesStatus;
+            if (statusFilter === "open") {
+                matchesStatus =
+                    application.status === "open" ||
+                    application.status === "closing-soon";
+            } else {
+                matchesStatus =
+                    statusFilter === "all" ||
+                    application.status === statusFilter ||
+                    application.applicationFee === statusFilter;
+            }
 
             return matchesSearch && matchesStatus;
         });
