@@ -5,7 +5,7 @@ import {
 } from "@/lib/deadline-utils";
 import { IApplication } from "@/types";
 import Image from "next/image";
-import { BookOpen } from "lucide-react";
+import { BookOpen, BookText } from "lucide-react";
 import Link from "next/link";
 
 type ApplicationStatus =
@@ -218,23 +218,31 @@ export default function ApplicationCard({
                     </div>
 
                     {/* CGPA */}
-                    {/* <div className="grid grid-cols-2 gap-1.5 text-xs"> */}
-                    <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
-                        <p className="text-gray-600 font-medium">CGPA</p>
-                        <p className="text-gray-900 font-medium mt-0.5">
-                            {application.cgpa}
-                        </p>
+                    <div
+                        className={`grid ${
+                            application.university.course
+                                ? "grid-cols-2"
+                                : "grid-cols-1"
+                        }  gap-1.5 text-xs`}
+                    >
+                        <div className="bg-gray-50 rounded px-1.5 py-1 text-xs">
+                            <p className="text-gray-600 font-medium">CGPA</p>
+                            <p className="text-gray-900 font-medium mt-0.5">
+                                {application.cgpa}
+                            </p>
+                        </div>
+                        {application.university.course && (
+                            <Link
+                                href={application.university.course}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`rounded px-1.5 py-1 text-xs flex items-center justify-center text-gray-600 font-medium transition-colors ${statusColor.bg} border ${statusColor.border} ${statusColor.text}`}
+                            >
+                                <BookText className="h-4 w-4 mr-1.5" />
+                                <span>See Courses</span>
+                            </Link>
+                        )}
                     </div>
-                    {/* <Link
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`rounded px-1.5 py-1 text-xs flex items-center justify-center text-gray-600 font-medium transition-colors ${statusColor.bg} border ${statusColor.border} ${statusColor.text}`}
-                        >
-                            <BookOpen className="h-4 w-4 mr-1.5" />
-                            <span>Course Link</span>
-                        </Link> */}
-                    {/* </div> */}
 
                     {/* Others */}
 
@@ -249,14 +257,14 @@ export default function ApplicationCard({
                         </div>
                     )}
 
-                    <a
+                    <Link
                         href={application.applicationLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`block w-full text-center px-2 py-1.5 text-xs font-medium rounded ${statusColor.bgButton} text-white ${statusColor.bgButtonHover} transition-colors mt-1`}
                     >
                         Apply Link
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
