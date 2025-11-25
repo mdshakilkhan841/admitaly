@@ -12,6 +12,24 @@ import fetcher from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
 import VisitorCounter from "@/components/visitor-counter";
+import promo1 from "@/public/promo1.jpeg";
+import promo2 from "@/public/promo2.jpeg";
+import { ApplicationStatus } from "@/lib/deadline-utils"; // Import ApplicationStatus
+import { StaticImageData } from "next/image";
+
+interface IPromoCard {
+    type: "promo";
+    id: string;
+    href: string;
+    image: StaticImageData;
+    alt: string;
+}
+
+// A new type for applications that includes the calculated status
+type IApplicationWithStatus = IApplication & { status: ApplicationStatus };
+
+// Combine application and promo card types for the list
+type ListItem = IApplicationWithStatus | IPromoCard;
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -58,7 +76,7 @@ export default function Home() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const filteredApplications = useMemo(() => {
+    const filteredApplications = useMemo((): IApplicationWithStatus[] => {
         if (!applications) {
             return [];
         }
@@ -111,6 +129,78 @@ export default function Home() {
             return matchesSearch && matchesStatus;
         });
     }, [applications, searchQuery, statusFilter]);
+
+    const PromotionalCard = ({
+        href,
+        image,
+        alt,
+    }: Omit<IPromoCard, "type" | "id">) => (
+        <Link
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white rounded shadow-lg overflow-hidden flex items-center justify-center"
+        >
+            <Image src={image} alt={alt} className="object-contain h-auto" />
+        </Link>
+    );
+
+    const itemsToRender = useMemo(() => {
+        if (filteredApplications.length === 0) {
+            return [];
+        }
+
+        const promoCards: IPromoCard[] = [
+            {
+                type: "promo",
+                id: "promo1",
+                href: "https://www.facebook.com/GlobalEducationAxis",
+                image: promo1,
+                alt: "Global Education Axis Promotion",
+            },
+            {
+                type: "promo",
+                id: "promo2",
+                href: "https://www.facebook.com/ItalyStudentConnect",
+                image: promo2,
+                alt: "Italy Student Connect Promotion",
+            },
+        ];
+
+        const combinedList: ListItem[] = [...filteredApplications];
+        const numPromos = promoCards.length;
+
+        // Find the number of applications that are not closed.
+        // Since closed applications are sorted to the end, we can find the first one.
+        const firstClosedIndex = filteredApplications.findIndex(
+            (app) => app.status === "closed"
+        );
+        const numOpenApplications =
+            firstClosedIndex === -1
+                ? filteredApplications.length
+                : firstClosedIndex;
+
+        // Generate unique random indices to insert promo cards
+        const promoIndices = new Set<number>();
+        // Start from index 1 to avoid placing a promo card at the very beginning
+        while (
+            promoIndices.size < numPromos &&
+            promoIndices.size < numOpenApplications
+        ) {
+            const randomIndex =
+                Math.floor(Math.random() * (numOpenApplications - 1)) + 1;
+            promoIndices.add(randomIndex);
+        }
+
+        // Insert promo cards at the generated indices, from last to first
+        Array.from(promoIndices)
+            .sort((a, b) => b - a)
+            .forEach((index, i) => {
+                combinedList.splice(index, 0, promoCards[i % numPromos]);
+            });
+
+        return combinedList;
+    }, [filteredApplications]);
 
     return (
         <main className="min-h-screen bg-background">
@@ -257,14 +347,31 @@ export default function Home() {
                     <div className="flex justify-center items-center text-red-500">
                         Failed to load applications.
                     </div>
-                ) : filteredApplications.length > 0 ? (
+                ) : itemsToRender.length > 0 ? (
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mx-3">
-                        {filteredApplications.map((application) => (
-                            <ApplicationCard
-                                key={application._id}
-                                application={application}
-                            />
-                        ))}
+                        {itemsToRender.map((item) => {
+                            // Use a type guard to differentiate between IApplication and IPromoCard
+                            if ("_id" in item) {
+                                return (
+                                    <ApplicationCard
+                                        key={item._id}
+                                        application={item}
+                                    />
+                                );
+                            }
+                            // Check if it's a promo card to be safe, although it's the only other type
+                            if ("type" in item && item.type === "promo") {
+                                return (
+                                    <PromotionalCard
+                                        key={item.id}
+                                        href={item.href}
+                                        image={item.image}
+                                        alt={item.alt}
+                                    />
+                                );
+                            }
+                            return null; // Should not happen with current data structure
+                        })}
                     </div>
                 ) : (
                     <div className="flex flex-col items-center justify-center rounded border border-dashed border-gray-200 bg-gray-50 py-6 mx-3">

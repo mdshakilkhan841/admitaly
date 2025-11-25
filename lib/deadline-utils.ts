@@ -1,5 +1,13 @@
 import dayjs from "dayjs";
 
+export type ApplicationStatus =
+    | "open"
+    | "opening-soon"
+    | "closing-soon"
+    | "closed"
+    | "upcoming"
+    | "";
+
 export function getDaysUntilDeadline(deadlineString: string): number {
     const deadline = dayjs(deadlineString);
     const today = dayjs().startOf("day");
@@ -9,7 +17,7 @@ export function getDaysUntilDeadline(deadlineString: string): number {
 export function getApplicationStatus(
     startDateString?: string | null,
     deadlineString?: string | null
-): "open" | "opening-soon" | "closing-soon" | "closed" | "upcoming" | "" {
+): ApplicationStatus {
     if (!startDateString || !deadlineString) {
         return "";
     }
@@ -32,13 +40,7 @@ export function getApplicationStatus(
 }
 
 export function formatDeadlineStatus(
-    status?:
-        | "open"
-        | "closing-soon"
-        | "closed"
-        | "opening-soon"
-        | "upcoming"
-        | ""
+    status?: ApplicationStatus
 ): string | null {
     const statusMap = {
         open: "Open",
@@ -57,15 +59,7 @@ export function formatDisplayDate(dateString: string): string {
     return dayjs(dateString).format("MMM D, YYYY");
 }
 
-export function getStatusColor(
-    status?:
-        | "open"
-        | "closing-soon"
-        | "closed"
-        | "opening-soon"
-        | "upcoming"
-        | ""
-): string {
+export function getStatusColor(status?: ApplicationStatus): string {
     const colorMap = {
         open: "bg-green-100 text-green-800",
         "closing-soon": "bg-orange-100 text-orange-800",

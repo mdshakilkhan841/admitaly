@@ -2,19 +2,12 @@ import {
     formatDeadlineStatus,
     formatDisplayDate,
     getDaysUntilDeadline,
+    ApplicationStatus,
 } from "@/lib/deadline-utils";
 import { IApplication } from "@/types";
 import Image from "next/image";
 import { BookOpen, BookText } from "lucide-react";
 import Link from "next/link";
-
-type ApplicationStatus =
-    | "open"
-    | "closing-soon"
-    | "closed"
-    | "opening-soon"
-    | "upcoming"
-    | "";
 
 export const statusColors: Record<
     ApplicationStatus,
