@@ -18,6 +18,10 @@ const PromotionSchema = new mongoose.Schema({
     textDesign: {
         type: String,
     },
+    order: {
+        type: Number,
+        default: 0,
+    },
 });
 
 export default mongoose.models.Promotion ||

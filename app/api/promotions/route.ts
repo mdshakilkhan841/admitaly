@@ -10,7 +10,7 @@ export async function GET(request: Request): Promise<NextResponse> {
         if (authResponse) return authResponse;
 
         await dbConnect();
-        const promotions = await Promotion.find({});
+        const promotions = await Promotion.find({}).sort({ order: 1 });
         return NextResponse.json(promotions);
     } catch (error) {
         return NextResponse.json(
@@ -46,6 +46,12 @@ export async function POST(request: Request): Promise<NextResponse> {
         // Upload image to Cloudinary
         const uploadResult = await uploadImage(buffer, "promotions");
 
+        // Determine order: place at the end
+        const last = await Promotion.findOne()
+            .sort({ order: -1 })
+            .select("order");
+        const nextOrder = (last?.order ?? 0) + 1;
+
         // Create promotion document
         const promotion = await Promotion.create({
             type: type || "promo",
@@ -53,9 +59,48 @@ export async function POST(request: Request): Promise<NextResponse> {
             image: uploadResult.secure_url,
             imagePublicId: uploadResult.public_id,
             textDesign: textDesign || "",
+            order: nextOrder,
         });
 
         return NextResponse.json(promotion, { status: 201 });
+    } catch (error) {
+        return NextResponse.json(
+            { error: (error as Error).message },
+            { status: 500 }
+        );
+    }
+}
+
+export async function PATCH(request: Request): Promise<NextResponse> {
+    try {
+        const authResponse = await authenticateUser(request);
+        if (authResponse) return authResponse;
+
+        await dbConnect();
+
+        const body = await request.json();
+        const { order } = body;
+
+        if (!Array.isArray(order)) {
+            return NextResponse.json(
+                { error: "Invalid input: 'order' must be an array of ids." },
+                { status: 400 }
+            );
+        }
+
+        // Bulk update orders
+        const bulkOps = order.map((id: string, idx: number) => ({
+            updateOne: {
+                filter: { _id: id },
+                update: { $set: { order: idx } },
+            },
+        }));
+
+        if (bulkOps.length > 0) {
+            await Promotion.bulkWrite(bulkOps);
+        }
+
+        return NextResponse.json({ message: "Order updated" });
     } catch (error) {
         return NextResponse.json(
             { error: (error as Error).message },

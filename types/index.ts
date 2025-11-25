@@ -17,6 +17,7 @@ export interface IPromotion {
     image?: string;
     imagePublicId?: string;
     textDesign?: string;
+    order?: number;
 }
 
 export interface IApplication {

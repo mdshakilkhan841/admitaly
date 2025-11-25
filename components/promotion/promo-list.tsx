@@ -8,13 +8,19 @@ import axios from "axios";
 import fetcher from "@/lib/fetcher";
 import { toast } from "sonner";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
+    DndContext,
+    closestCenter,
+    PointerSensor,
+    useSensor,
+    useSensors,
+} from "@dnd-kit/core";
+import {
+    arrayMove,
+    SortableContext,
+    useSortable,
+    verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -24,6 +30,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IPromotion } from "@/types";
+import SortableCard from "./SortableCard";
 
 const PromoList = ({
     isModalOpen,
@@ -55,18 +62,55 @@ const PromoList = ({
 
     const filteredPromotions = useMemo(() => {
         if (!promotions) return [];
-
-        // 1. Filter based on searchQuery
-        const filtered = promotions.filter(
-            (promo) =>
-                promo.type?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                promo.href?.toLowerCase().includes(searchQuery.toLowerCase())
+        // sort by order then filter by search
+        const sorted = [...promotions].sort(
+            (a, b) => (a.order ?? 0) - (b.order ?? 0)
         );
-
-        // 2. Sort based on sortBy
-
-        return filtered;
+        return sorted.filter(
+            (promo) =>
+                promo.href?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                promo.textDesign
+                    ?.toLowerCase()
+                    .includes(searchQuery.toLowerCase())
+        );
     }, [promotions, searchQuery]);
+
+    // Local order state for drag-and-drop
+    const [items, setItems] = useState<string[]>([]);
+    React.useEffect(() => {
+        if (filteredPromotions) {
+            setItems(filteredPromotions.map((p) => p._id));
+        }
+    }, [filteredPromotions]);
+
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 5,
+            },
+        })
+    );
+
+    async function handleDragEnd(event: any) {
+        const { active, over } = event;
+        if (!over) return;
+        if (active.id !== over.id) {
+            const oldIndex = items.indexOf(active.id);
+            const newIndex = items.indexOf(over.id);
+            const newItems = arrayMove(items, oldIndex, newIndex);
+            setItems(newItems);
+
+            // Persist order to backend
+            try {
+                await axios.patch(url, { order: newItems });
+                mutate();
+                toast.success("Order updated");
+            } catch (error) {
+                console.error("Failed to update order:", error);
+                toast.error("Failed to persist order");
+            }
+        }
+    }
 
     const handleEdit = (promotion: IPromotion) => {
         setSelectedPromotion(promotion);
@@ -168,138 +212,46 @@ const PromoList = ({
                     </Button>
                 </div>
             )}
-            <div className="rounded-md border overflow-auto">
-                <Table>
-                    <TableHeader className="bg-muted/50">
-                        <TableRow>
-                            <TableHead className="w-12">
-                                <Checkbox
-                                    checked={
-                                        selectedRows.size ===
-                                            filteredPromotions?.length &&
-                                        filteredPromotions.length > 0
-                                    }
-                                    onCheckedChange={(checked) => {
-                                        if (checked) {
-                                            setSelectedRows(
-                                                new Set(
-                                                    filteredPromotions.map(
-                                                        (p) => p._id
-                                                    )
-                                                )
-                                            );
-                                        } else {
-                                            setSelectedRows(new Set());
-                                        }
+            <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+            >
+                <SortableContext
+                    items={items}
+                    strategy={verticalListSortingStrategy}
+                >
+                    <div className="flex flex-col gap-2">
+                        {items.map((id, index) => {
+                            const promotion = filteredPromotions.find(
+                                (p) => p._id === id
+                            );
+                            if (!promotion) return null;
+                            return (
+                                <SortableCard
+                                    key={promotion._id}
+                                    promotion={promotion}
+                                    index={index}
+                                    selected={selectedRows.has(promotion._id)}
+                                    onSelect={(checked: boolean) => {
+                                        setSelectedRows((prev) => {
+                                            const newSet = new Set(prev);
+                                            if (checked) {
+                                                newSet.add(promotion._id);
+                                            } else {
+                                                newSet.delete(promotion._id);
+                                            }
+                                            return newSet;
+                                        });
                                     }}
+                                    onEdit={() => handleEdit(promotion)}
+                                    onDelete={() => handleDelete(promotion._id)}
                                 />
-                            </TableHead>
-                            <TableHead className="w-16">#</TableHead>
-                            <TableHead className="font-semibold">
-                                Image
-                            </TableHead>
-                            <TableHead className="font-semibold">URL</TableHead>
-                            <TableHead className="font-semibold">
-                                Design Text
-                            </TableHead>
-                            <TableHead className="text-right font-semibold w-[100px]">
-                                Actions
-                            </TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {filteredPromotions?.map((promotion, index) => (
-                            <TableRow key={promotion._id}>
-                                <TableCell>
-                                    <Checkbox
-                                        checked={selectedRows.has(
-                                            promotion._id
-                                        )}
-                                        onCheckedChange={(checked) => {
-                                            setSelectedRows((prev) => {
-                                                const newSet = new Set(prev);
-                                                if (checked) {
-                                                    newSet.add(promotion._id);
-                                                } else {
-                                                    newSet.delete(
-                                                        promotion._id
-                                                    );
-                                                }
-                                                return newSet;
-                                            });
-                                        }}
-                                    />
-                                </TableCell>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell>
-                                    {promotion.image ? (
-                                        <div className="w-96 border border-input rounded-lg overflow-hidden">
-                                            <img
-                                                src={promotion.image}
-                                                alt={promotion.type}
-                                                className="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                    ) : (
-                                        <div className="w-72 h-32 border border-input rounded-lg bg-muted flex items-center justify-center text-muted-foreground">
-                                            No image
-                                        </div>
-                                    )}
-                                </TableCell>
-                                <TableCell>
-                                    {promotion.href ? (
-                                        <a
-                                            href={promotion.href}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-blue-600 hover:underline truncate block max-w-xs"
-                                        >
-                                            {promotion.href}
-                                        </a>
-                                    ) : (
-                                        <span className="text-xs text-muted-foreground">
-                                            -
-                                        </span>
-                                    )}
-                                </TableCell>
-                                <TableCell>
-                                    <span className="text-sm text-muted-foreground truncate block max-w-xs">
-                                        {promotion.textDesign || "-"}
-                                    </span>
-                                </TableCell>
-                                <TableCell className="text-right pr-6">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon">
-                                                <MoreHorizontal className="h-4 w-4" />
-                                            </Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem
-                                                onClick={() =>
-                                                    handleEdit(promotion)
-                                                }
-                                            >
-                                                <Pencil className="mr-2 h-4 w-4" />
-                                                Edit
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem
-                                                onClick={() =>
-                                                    handleDelete(promotion._id)
-                                                }
-                                                className="text-red-600 focus:text-red-600"
-                                            >
-                                                <Trash className="mr-2 h-4 w-4" />
-                                                Delete
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </div>
+                            );
+                        })}
+                    </div>
+                </SortableContext>
+            </DndContext>
 
             <Modal
                 isOpen={isModalOpen}
