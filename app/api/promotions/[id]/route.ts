@@ -1,17 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/database";
 import Promotion from "@/models/promotion";
 import { authenticateUser } from "@/lib/authenticate-user";
 import { uploadImage, deleteImage } from "@/lib/cloudinary";
 
 export async function PUT(
-    request: Request,
-    context: any
-): Promise<NextResponse> {
-    const { params } = context as { params: { id: string } };
+    request: NextRequest,
+    context: { params: Promise<{ id: string }> }
+) {
     try {
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
+
+        const { id } = await context.params;
 
         await dbConnect();
 
@@ -29,7 +30,7 @@ export async function PUT(
 
         // If a new file is provided, upload it and delete the old one
         if (file) {
-            const promotion = await Promotion.findById(params.id);
+            const promotion = await Promotion.findById(id);
             if (!promotion) {
                 return NextResponse.json(
                     { error: "Promotion not found" },
@@ -56,11 +57,9 @@ export async function PUT(
             updateData.imagePublicId = uploadResult.public_id;
         }
 
-        const promotion = await Promotion.findByIdAndUpdate(
-            params.id,
-            updateData,
-            { new: true }
-        );
+        const promotion = await Promotion.findByIdAndUpdate(id, updateData, {
+            new: true,
+        });
 
         if (!promotion) {
             return NextResponse.json(
@@ -79,17 +78,18 @@ export async function PUT(
 }
 
 export async function DELETE(
-    request: Request,
-    context: any
-): Promise<NextResponse> {
-    const { params } = context as { params: { id: string } };
+    request: NextRequest,
+    context: { params: Promise<{ id: string }> }
+) {
     try {
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
 
+        const { id } = await context.params;
+
         await dbConnect();
 
-        const promotion = await Promotion.findById(params.id);
+        const promotion = await Promotion.findById(id);
         if (!promotion) {
             return NextResponse.json(
                 { error: "Promotion not found" },
@@ -109,7 +109,7 @@ export async function DELETE(
             }
         }
 
-        await Promotion.deleteOne({ _id: params.id });
+        await Promotion.deleteOne({ _id: id });
 
         return NextResponse.json({
             message: "Promotion deleted successfully",
