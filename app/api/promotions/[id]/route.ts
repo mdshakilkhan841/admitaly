@@ -6,8 +6,9 @@ import { uploadImage, deleteImage } from "@/lib/cloudinary";
 
 export async function PUT(
     request: Request,
-    { params }: { params: { id: string } }
+    context: any
 ): Promise<NextResponse> {
+    const { params } = context as { params: { id: string } };
     try {
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
@@ -79,8 +80,9 @@ export async function PUT(
 
 export async function DELETE(
     request: Request,
-    { params }: { params: { id: string } }
+    context: any
 ): Promise<NextResponse> {
+    const { params } = context as { params: { id: string } };
     try {
         const authResponse = await authenticateUser(request);
         if (authResponse) return authResponse;
