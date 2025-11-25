@@ -12,16 +12,15 @@ import fetcher from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
 import VisitorCounter from "@/components/visitor-counter";
-import promo1 from "@/public/promo1.jpeg";
-import promo2 from "@/public/promo2.jpeg";
 import { ApplicationStatus } from "@/lib/deadline-utils"; // Import ApplicationStatus
 import { StaticImageData } from "next/image";
+import { IPromotion } from "@/types";
 
 interface IPromoCard {
     type: "promo";
     id: string;
     href: string;
-    image: StaticImageData;
+    image: StaticImageData | string;
     alt: string;
 }
 
@@ -47,6 +46,16 @@ export default function Home() {
         dedupingInterval: 10000,
         shouldRetryOnError: true,
     });
+
+    const { data: promotions = [] } = useSWR<IPromotion[]>(
+        "/api/promotions",
+        fetcher,
+        {
+            keepPreviousData: true,
+            dedupingInterval: 10000,
+            shouldRetryOnError: true,
+        }
+    );
 
     useEffect(() => {
         const handleScroll = () => {
@@ -141,7 +150,19 @@ export default function Home() {
             rel="noopener noreferrer"
             className="bg-white rounded shadow-lg overflow-hidden flex items-center justify-center"
         >
-            <Image src={image} alt={alt} className="object-contain h-auto" />
+            {typeof image === "string" ? (
+                <img
+                    src={image}
+                    alt={alt}
+                    className="object-contain h-auto w-full"
+                />
+            ) : (
+                <Image
+                    src={image}
+                    alt={alt}
+                    className="object-contain h-auto"
+                />
+            )}
         </Link>
     );
 
@@ -150,22 +171,16 @@ export default function Home() {
             return [];
         }
 
-        const promoCards: IPromoCard[] = [
-            {
-                type: "promo",
-                id: "promo1",
-                href: "https://www.facebook.com/GlobalEducationAxis",
-                image: promo1,
-                alt: "Global Education Axis Promotion",
-            },
-            {
-                type: "promo",
-                id: "promo2",
-                href: "https://www.facebook.com/ItalyStudentConnect",
-                image: promo2,
-                alt: "Italy Student Connect Promotion",
-            },
-        ];
+        // Convert database promotions to IPromoCard format
+        const promoCards: IPromoCard[] = promotions
+            .filter((promo) => promo.image && promo.href)
+            .map((promo) => ({
+                type: "promo" as const,
+                id: promo._id,
+                href: promo.href!,
+                image: promo.image!,
+                alt: promo.textDesign || "Promotion",
+            }));
 
         const combinedList: ListItem[] = [...filteredApplications];
         const numPromos = promoCards.length;
@@ -200,7 +215,7 @@ export default function Home() {
             });
 
         return combinedList;
-    }, [filteredApplications]);
+    }, [filteredApplications, promotions]);
 
     return (
         <main className="min-h-screen bg-background">
