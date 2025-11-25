@@ -5,6 +5,7 @@ import {
     UserCog,
     NotebookPen,
     GraduationCap,
+    GalleryVertical,
 } from "lucide-react";
 
 import { LucideIcon } from "lucide-react";
@@ -46,6 +47,11 @@ export const sidebarData: SidebarData = {
                     title: "Applications",
                     url: "/admin/applications",
                     icon: NotebookPen,
+                },
+                {
+                    title: "Promotions",
+                    url: "/admin/promotions",
+                    icon: GalleryVertical,
                 },
             ],
         },

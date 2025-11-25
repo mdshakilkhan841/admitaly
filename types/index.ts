@@ -10,6 +10,15 @@ export interface IUniversity {
     course?: string;
 }
 
+export interface IPromotion {
+    _id: string;
+    type?: string;
+    href?: string;
+    image?: string;
+    imagePublicId?: string;
+    textDesign?: string;
+}
+
 export interface IApplication {
     _id: string;
     university: IUniversity;

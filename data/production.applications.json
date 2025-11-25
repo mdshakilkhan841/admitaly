@@ -1,0 +1,1770 @@
+[{
+  "_id": {
+    "$oid": "690600b10d89cd8084d867fc"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e027"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://www.polimi.it/en/prospective-students/how-to-apply",
+  "applicationFee": "50",
+  "startDate": "2025-10-01",
+  "endDate": "2025-12-01",
+  "cgpa": "3.3 out of 4",
+  "others": [
+    "Statement of Purpose*"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS-6"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T12:44:33.946Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-01T13:08:35.552Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69060458fbbd944f44cfb5fa"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e02a"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unipd.it/",
+  "applicationFee": "55-60",
+  "startDate": "2025-11-02",
+  "endDate": "2026-02-02",
+  "cgpa": "3.10",
+  "others": [
+    "Motivation Letter*"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS-5.5"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:00:08.180Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-01T13:00:08.180Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690607987fae4b9906e6c52f"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e044"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unimc.it/",
+  "applicationFee": "No Fee",
+  "startDate": "2025-12-01",
+  "endDate": "",
+  "cgpa": "NO REQUIREMENT",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:14:00.615Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-09T08:24:21.752Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690608717fae4b9906e6c533"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e026"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unimib.it/",
+  "applicationFee": "30",
+  "startDate": "2025-11-05",
+  "endDate": "2026-01-16",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:17:37.579Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-08T17:38:27.111Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690608e47fae4b9906e6c537"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e055"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unibg.it/",
+  "applicationFee": "30",
+  "startDate": "2025-11-24",
+  "endDate": "2026-01-15",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS-5.5"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:19:32.218Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-24T19:17:24.576Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690609708b64ebcbb895d890"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03b"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unipv.eu/",
+  "applicationFee": "35",
+  "startDate": "2025-11-12",
+  "endDate": "2025-11-20",
+  "cgpa": "2.65",
+  "others": [
+    "Program Specific Requirements Different. (Please check carefully)"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS-5.5"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:21:52.984Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T05:23:02.642Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690609ea8b64ebcbb895d89a"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e029"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unito.it/",
+  "applicationFee": "60",
+  "startDate": "2025-11-25",
+  "endDate": "2026-01-29",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "Different for each program: MOI / IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:23:54.077Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-22T19:35:43.394Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69060b688b64ebcbb895d8b2"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e043"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://international.unicam.it/admissions/pre-admissions-2026-2027",
+  "applicationFee": "20",
+  "startDate": "2025-11-15",
+  "endDate": "2026-03-31",
+  "cgpa": "75%, 3.2",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI/IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:30:16.539Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-14T18:30:12.904Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69060df76a5a81c63c9e7ecf"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e024"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://studenti.unibo.it/sol/welcome.htm?siteLanguage=en",
+  "applicationFee": "Program Specific: No Fee / €20 / €50",
+  "startDate": "2025-11-28",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "Program Specific: MOI / IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-01T13:41:11.847Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-01T13:41:11.847Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69073104823d43258824bf66"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e02c"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unifi.it/",
+  "applicationFee": "20",
+  "startDate": "2025-12-02",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T10:23:00.838Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T10:23:00.838Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69077ca35d20a36927c5254d"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e021"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://www.uniroma1.it/en/admissions",
+  "applicationFee": "30",
+  "startDate": "2025-12-05",
+  "endDate": "",
+  "cgpa": "Program Specific",
+  "others": [],
+  "languageProficiency": [
+    "IELTS Required"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T15:45:39.542Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T15:45:39.542Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69077cec5d20a36927c52551"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e047"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://pica.cineca.it/login",
+  "applicationFee": "20 Euro",
+  "startDate": "2025-11-11",
+  "endDate": "2026-02-25",
+  "cgpa": "NO REQUIREMENT",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS B2"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T15:46:52.035Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-18T15:43:18.857Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69077d585d20a36927c52555"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e02b"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://applymscenglish.unipi.it/en/studenti",
+  "applicationFee": "10",
+  "startDate": "2025-12-12",
+  "endDate": "",
+  "cgpa": "NO REQUIREMENT",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T15:48:40.369Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T15:48:40.369Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69077dfc5d20a36927c5255a"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e05b"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://www.international.univpm.it/international-admissions-ay-2025-26-final/",
+  "applicationFee": "10",
+  "startDate": "2025-12-16",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T15:51:24.263Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T15:51:24.263Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69077e515d20a36927c52560"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03e"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "30",
+  "startDate": "2025-12-18",
+  "endDate": "",
+  "cgpa": "NO REQUIREMENT",
+  "others": [],
+  "languageProficiency": [],
+  "createdAt": {
+    "$date": "2025-11-02T15:52:49.143Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T15:52:49.143Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69077f745d20a36927c52570"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e058"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unive.it/",
+  "applicationFee": "30",
+  "startDate": "2025-12-17",
+  "endDate": "2026-01-14",
+  "cgpa": "2.8",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T15:57:40.516Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-07T16:41:26.169Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6907804a5d20a36927c52575"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e028"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://www.polito.it/en/education/applying-studying-graduating/admissions-and-enrolment/master-s-degree-programmes/applicants-with-a-non-italian-qualification",
+  "applicationFee": "50",
+  "startDate": "2025-12-19",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI",
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:01:14.343Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T16:01:14.343Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690780e75d20a36927c52579"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e055"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unibg.it/",
+  "applicationFee": "30",
+  "startDate": "2026-01-01",
+  "endDate": "2026-01-31",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS-5.5"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:03:51.728Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-24T19:17:33.714Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690781bb5d20a36927c5257e"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e02d"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unisi.it/",
+  "applicationFee": "50",
+  "startDate": "2026-01-07",
+  "endDate": "2026-05-06",
+  "cgpa": "3.00",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:07:23.064Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-24T19:32:05.554Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690781e65d20a36927c52582"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e04b"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-01-01",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:08:06.096Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T16:08:06.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6907825e5d20a36927c52587"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03a"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://communication-eng.unipr.it/index.php/admission-procedures/",
+  "applicationFee": "No Fee",
+  "startDate": "2025-12-10",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "Communication Engineering"
+  ],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:10:06.859Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T16:10:06.859Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690782bb5d20a36927c5258c"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e02a"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unipd.it/",
+  "applicationFee": "60",
+  "startDate": "2026-01-07",
+  "endDate": "2026-03-07",
+  "cgpa": "3.10",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:11:39.960Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-10T07:23:14.863Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690782f45d20a36927c52590"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03b"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unipv.eu/",
+  "applicationFee": "35",
+  "startDate": "2026-01-12",
+  "endDate": "2026-01-20",
+  "cgpa": "2.65",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:12:36.686Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-08T19:56:03.870Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690783af5d20a36927c52598"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e042"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.units.it/",
+  "applicationFee": "10",
+  "startDate": "2026-01-07",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:15:43.678Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T16:15:43.678Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6907849c5d20a36927c525a8"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e026"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unimib.it/",
+  "applicationFee": "30",
+  "startDate": "2026-02-10",
+  "endDate": "2026-03-20",
+  "cgpa": "Not specified",
+  "others": [
+    "Statement of Purpose*"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:19:40.944Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-10T07:08:56.018Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69078c255d20a36927c52604"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e051"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-01-15",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI/IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-02T16:51:49.218Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-02T16:51:49.218Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690a381878d3362dac5e239e"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e032"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unisa.it/en/university",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-03",
+  "endDate": "",
+  "cgpa": "NO CGPA REQUIREMENT",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-04T17:30:00.481Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-04T17:30:00.481Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1a0106c1ace762e120e5"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e022"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://delphi.uniroma2.it/totem/jsp/homeStudenti.jsp?language=EN",
+  "applicationFee": "30",
+  "startDate": "2025-11-10",
+  "endDate": "2026-05-29",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:33:53.528Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-13T07:50:20.306Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1a4f06c1ace762e120ea"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e025"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://cas.unimi.it/login?service=https%3A%2F%2Fstudente.unimi.it%2Fammissioni%2Fa%2FmagistraliLibero%2FcheckLogin.asp",
+  "applicationFee": "30",
+  "startDate": "2026-01-22",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:35:11.468Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T09:35:11.468Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1a8906c1ace762e120ef"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03a"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://www.idem.unipr.it/",
+  "applicationFee": "No Fee",
+  "startDate": "2026-02-20",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:36:09.990Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T09:36:09.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1b0806c1ace762e120f5"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e035"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://unime.gomovein.com/locallogin/6048f07331d07d290335f052/eng",
+  "applicationFee": "30",
+  "startDate": "2025-11-24",
+  "endDate": "2025-12-22",
+  "cgpa": "BSC: 70% | MS: CGPA 3.50 ",
+  "others": [],
+  "languageProficiency": [
+    "IELTS*",
+    "MOI (Only for Specific Country)"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:38:16.370Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T18:43:52.095Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1b44b46be59da6a4d74a"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e034"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://www.unict.it/en/news-events/university-catania-scholarships-202526",
+  "applicationFee": "10",
+  "startDate": "2026-02-10",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:39:16.528Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T09:39:16.528Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1bc0b46be59da6a4d750"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e056"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "20",
+  "startDate": "2026-02-05",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:41:20.700Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T09:41:20.700Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1c0cb46be59da6a4d75a"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e038"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-01-10",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "Open For: Innovation management for sustainable tourism"
+  ],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:42:36.281Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T09:42:36.281Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b1c64b46be59da6a4d760"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03c"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://www.esse3.unimore.it/AddressBook/IndirizziSubmit.do",
+  "applicationFee": "No Fee",
+  "startDate": "2026-02-10",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T09:44:04.376Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T09:44:04.376Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b4d58cd2e1f01ec99fe8d"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e053"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unisa.it/en/university",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-03",
+  "endDate": "",
+  "cgpa": "NO CGPA REQUIREMENT",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T13:12:56.893Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T13:12:56.893Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b4ea71d195ca312c1339d"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03f"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://www.unibz.it/en/applicants/international/international-degree-seeking-applicants/",
+  "applicationFee": "€50",
+  "startDate": "2026-01-31",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T13:18:31.902Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T13:18:31.902Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b4ff41d195ca312c133a5"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e037"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unica.it/unica/en/crs_70_90_futuri_studenti.page",
+  "applicationFee": "No Fee",
+  "startDate": "",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T13:24:04.451Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T13:24:04.451Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b743e9ffe2b6e8cb70e3d"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e031"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-03-22",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T15:58:54.170Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T15:58:54.170Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b74669ffe2b6e8cb70e40"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e05f"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-03",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T15:59:34.626Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T15:59:34.626Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b75189ffe2b6e8cb70e45"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e054"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unica.it/unica/en/crs_70_90_futuri_studenti.page",
+  "applicationFee": "No Fee",
+  "startDate": "2025-02-04",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:02:32.419Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:02:32.419Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b75919ffe2b6e8cb70e4a"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e046"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unica.it/unica/en/crs_70_90_futuri_studenti.page",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-05",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:04:33.963Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:04:33.963Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b76789ffe2b6e8cb70e52"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e040"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://www.univr.it/en/our-services/international-degree-seeking-students",
+  "applicationFee": "No Fee",
+  "startDate": "2026-02-17",
+  "endDate": "",
+  "cgpa": "MINIMUM 3 CGPA REQUIRED",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:08:24.074Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:08:24.074Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b777d9ffe2b6e8cb70e61"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e057"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unica.it/unica/en/crs_70_90_futuri_studenti.page",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-07",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI;IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:12:45.309Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:12:45.309Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b78019ffe2b6e8cb70e66"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e041"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "20",
+  "startDate": "2026-05-14",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:14:57.039Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:14:57.039Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b78c29ffe2b6e8cb70e6c"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e023"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unica.it/unica/en/crs_70_90_futuri_studenti.page",
+  "applicationFee": "No Fee",
+  "startDate": "2026-05-05",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:18:10.644Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:18:10.644Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b79099ffe2b6e8cb70e72"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03d"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "20",
+  "startDate": "2026-01-15",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:19:21.566Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:19:21.566Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690b79569ffe2b6e8cb70e7a"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e04c"
+  },
+  "call": "1st",
+  "session": "2026-2027",
+  "applicationLink": "https://web.unica.it/unica/en/crs_70_90_futuri_studenti.page",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-05",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP"
+  ],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-05T16:20:38.289Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-05T16:20:38.289Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690dd42b396656557b5ffc8d"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e04e"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-03",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "Send Email to Program Coordinator"
+  ],
+  "languageProficiency": [],
+  "createdAt": {
+    "$date": "2025-11-07T11:12:43.405Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-07T11:12:43.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690dd467396656557b5ffc91"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e02e"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-03",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "Direct Pre Enrollment on Universitaly"
+  ],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-07T11:13:43.348Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-07T11:13:43.348Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690dd4bb396656557b5ffc96"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e030"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "Direct Pre Enrollment on Universitaly"
+  ],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-07T11:15:07.621Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-07T11:15:07.621Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690dd4e1396656557b5ffc9b"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e036"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://immaweb.unipa.it/immareg/facelets/anag/ins_anag_generale.seam?partnerId=IMMAWEB",
+  "applicationFee": "No Fee",
+  "startDate": "2026-01-13",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-07T11:15:45.178Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-07T11:15:45.178Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690dd52c396656557b5ffca2"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e048"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "",
+  "applicationFee": "No Fee",
+  "startDate": "2026-04-03",
+  "endDate": "",
+  "cgpa": "Not specified",
+  "others": [
+    "Direct Pre Enrollment on Universitaly"
+  ],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-07T11:17:00.436Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-07T11:17:00.436Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690e15850dd5e675ec045bcf"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03b"
+  },
+  "call": "3rd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unipv.eu/",
+  "applicationFee": "35",
+  "startDate": "2026-03-10",
+  "endDate": "2026-03-18",
+  "cgpa": "2.65",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-07T15:51:33.474Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-08T19:55:48.125Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690e218f9e18be179182976a"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e058"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unive.it/",
+  "applicationFee": "30",
+  "startDate": "2026-02-04",
+  "endDate": "2026-03-04",
+  "cgpa": "2.8",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "English Proficiency"
+  ],
+  "createdAt": {
+    "$date": "2025-11-07T16:42:55.714Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-07T16:43:47.154Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690f28c2e03563c206fb2983"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e026"
+  },
+  "call": "3rd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unimib.it/courses/search/id/224830-1gg24k",
+  "applicationFee": "30",
+  "startDate": "2026-03-16",
+  "endDate": "2026-04-16",
+  "cgpa": "Not specified",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "IELTS",
+    "MOI (some Programme)"
+  ],
+  "createdAt": {
+    "$date": "2025-11-08T11:25:54.457Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-08T19:37:36.257Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "690fa0206d6956a9832df5d9"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e03b"
+  },
+  "call": "4th",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unipv.eu/",
+  "applicationFee": "35",
+  "startDate": "2026-06-05",
+  "endDate": "2026-06-11",
+  "cgpa": "Not specified",
+  "others": [],
+  "languageProficiency": [
+    "MOI",
+    "IELTS"
+  ],
+  "createdAt": {
+    "$date": "2025-11-08T19:55:12.195Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-10T07:05:26.937Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69104f7815460dc9534a8462"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e044"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unimc.it/",
+  "applicationFee": "No Fee",
+  "startDate": "2026-01-07",
+  "endDate": "",
+  "cgpa": "NO REQUIREMENT",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-09T08:23:20.962Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-09T08:24:28.879Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69104f9415460dc9534a8469"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e044"
+  },
+  "call": "3rd",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unimc.it/",
+  "applicationFee": "No Fee",
+  "startDate": "2026-02-02",
+  "endDate": "",
+  "cgpa": "NO REQUIREMENT",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-09T08:23:48.523Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-09T08:24:13.372Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69104fd615460dc9534a8475"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e044"
+  },
+  "call": "4th",
+  "session": "2026-2027",
+  "applicationLink": "https://apply.unimc.it/",
+  "applicationFee": "No Fee",
+  "startDate": "2026-03-02",
+  "endDate": "2026-03-31",
+  "cgpa": "NO REQUIREMENT",
+  "others": [],
+  "languageProficiency": [
+    "MOI"
+  ],
+  "createdAt": {
+    "$date": "2025-11-09T08:24:54.246Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-09T08:25:21.772Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6917124e68768400a99b8856"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e027"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://www.polimi.it/en/prospective-students/how-to-apply",
+  "applicationFee": "50",
+  "startDate": "2026-01-13",
+  "endDate": "2026-02-26",
+  "cgpa": "3.3",
+  "others": [
+    "Statement of Purpose*"
+  ],
+  "languageProficiency": [
+    "MOI | IELTS-6"
+  ],
+  "createdAt": {
+    "$date": "2025-11-14T11:28:14.961Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-14T11:31:36.042Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f61bcf804e220ebcb4513"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e035"
+  },
+  "call": "2nd",
+  "session": "2026-2027",
+  "applicationLink": "https://unime.gomovein.com/locallogin/6048f07331d07d290335f052/eng",
+  "applicationFee": "30",
+  "startDate": "2026-02-01",
+  "endDate": "2026-03-31",
+  "cgpa": "BSC: 70% | MS: CGPA 3.50 ",
+  "others": [],
+  "languageProficiency": [
+    "IELTS*",
+    "MOI (Only for Specific Country)"
+  ],
+  "createdAt": {
+    "$date": "2025-11-20T18:45:16.860Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T18:45:47.115Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "691f61f3f804e220ebcb451c"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e035"
+  },
+  "call": "3rd",
+  "session": "2026-2027",
+  "applicationLink": "https://unime.gomovein.com/locallogin/6048f07331d07d290335f052/eng",
+  "applicationFee": "30",
+  "startDate": "2026-04-13",
+  "endDate": "2026-05-10",
+  "cgpa": "BSC: 70% | MS: CGPA 3.50 ",
+  "others": [],
+  "languageProficiency": [
+    "IELTS*",
+    "MOI (Only for Specific Country)"
+  ],
+  "createdAt": {
+    "$date": "2025-11-20T18:46:11.187Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-20T18:46:39.087Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69237bc82ad254153134f9aa"
+  },
+  "university": {
+    "$oid": "6905f7c676acfda41909e039"
+  },
+  "call": "",
+  "session": "2026-2027",
+  "applicationLink": "https://unige.it/en/internazionale/procedura-prevalutazione-lauree-magistrali-inglese-solo-studenti-non-eu-residenti-all",
+  "applicationFee": "30",
+  "startDate": "2025-11-26",
+  "endDate": "2026-03-20",
+  "cgpa": "70%",
+  "others": [
+    "SOP",
+    "LOR"
+  ],
+  "languageProficiency": [
+    "MOI",
+    "IELTS B2"
+  ],
+  "createdAt": {
+    "$date": "2025-11-23T21:25:28.652Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-23T21:26:31.040Z"
+  },
+  "__v": 0
+}]
