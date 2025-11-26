@@ -150,6 +150,16 @@ const PromoList = ({
         }
     };
 
+    const handleSelectAll = () => {
+        if (selectedRows.size === filteredPromotions.length) {
+            // Deselect all
+            setSelectedRows(new Set());
+        } else {
+            // Select all
+            setSelectedRows(new Set(filteredPromotions.map((p) => p._id)));
+        }
+    };
+
     const handleSubmit = async (
         formData: FormData,
         existingPromotion?: IPromotion | null
@@ -200,16 +210,36 @@ const PromoList = ({
 
     return (
         <div>
-            {selectedRows.size > 0 && (
+            {filteredPromotions.length > 0 && (
                 <div className="flex items-center gap-2 mb-4">
                     <Button
-                        variant="destructive"
+                        variant={
+                            selectedRows.size === filteredPromotions.length
+                                ? "default"
+                                : "outline"
+                        }
                         size="sm"
-                        onClick={handleBulkDelete}
+                        onClick={handleSelectAll}
                     >
-                        <Trash className="mr-2 h-4 w-4" />
-                        Delete Selected ({selectedRows.size})
+                        {selectedRows.size === filteredPromotions.length
+                            ? "Deselect All"
+                            : "Select All"}
                     </Button>
+                    {selectedRows.size > 0 && (
+                        <>
+                            <span className="text-sm text-gray-600">
+                                {selectedRows.size} selected
+                            </span>
+                            <Button
+                                variant="destructive"
+                                size="sm"
+                                onClick={handleBulkDelete}
+                            >
+                                <Trash className="mr-2 h-4 w-4" />
+                                Delete Selected
+                            </Button>
+                        </>
+                    )}
                 </div>
             )}
             <DndContext
@@ -221,7 +251,7 @@ const PromoList = ({
                     items={items}
                     strategy={verticalListSortingStrategy}
                 >
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-3">
                         {items.map((id, index) => {
                             const promotion = filteredPromotions.find(
                                 (p) => p._id === id
