@@ -148,6 +148,53 @@ const PromoList = ({
         }
     };
 
+    // Duplicate a promotion. If the promotion contains an image URL, fetch the image
+    // and include it as a file in the FormData so the backend can re-upload it to
+    // Cloudinary and create a new promotion document.
+    const handleDuplicate = async (promotion: IPromotion) => {
+        try {
+            const formData = new FormData();
+            formData.append("type", promotion.type || "promo");
+            formData.append("href", promotion.href || "");
+            formData.append("textDesign", promotion.textDesign || "");
+            formData.append("status", promotion.status || "active");
+
+            // If there is an image URL, fetch it and append as a File
+            if (promotion.image) {
+                try {
+                    const res = await fetch(promotion.image);
+                    const blob = await res.blob();
+                    // derive a filename from the URL or fallback
+                    const urlParts = promotion.image.split("/");
+                    const filename =
+                        urlParts[urlParts.length - 1] || "image.png";
+                    const file = new File([blob], filename, {
+                        type: blob.type,
+                    });
+                    formData.append("file", file);
+                } catch (err) {
+                    // If fetching the image fails, continue and duplicate without the image
+                    console.error(
+                        "Failed to fetch promo image for duplication:",
+                        err
+                    );
+                }
+            }
+
+            await axios.post(`/api/promotions`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
+
+            mutate();
+            toast.success("Promotion duplicated successfully");
+        } catch (error) {
+            console.error("Error duplicating promotion:", error);
+            toast.error("Failed to duplicate promotion");
+        }
+    };
+
     const handleBulkDelete = async () => {
         if (
             confirm(
@@ -344,6 +391,9 @@ const PromoList = ({
                                             });
                                         }}
                                         onEdit={() => handleEdit(promotion)}
+                                        onDuplicate={() =>
+                                            handleDuplicate(promotion)
+                                        }
                                         onDelete={() =>
                                             handleDelete(promotion._id)
                                         }

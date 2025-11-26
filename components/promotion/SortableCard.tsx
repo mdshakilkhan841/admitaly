@@ -9,7 +9,13 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, Pencil, Trash, GripVertical } from "lucide-react";
+import {
+    MoreHorizontal,
+    Pencil,
+    Trash,
+    GripVertical,
+    Copy,
+} from "lucide-react";
 import { IPromotion } from "@/types";
 
 interface SortableCardProps {
@@ -18,6 +24,7 @@ interface SortableCardProps {
     selected: boolean;
     onSelect: (checked: boolean) => void;
     onEdit: () => void;
+    onDuplicate: () => void;
     onDelete: () => void;
 }
 
@@ -27,6 +34,7 @@ const SortableCard: React.FC<SortableCardProps> = ({
     selected,
     onSelect,
     onEdit,
+    onDuplicate,
     onDelete,
 }) => {
     const {
@@ -151,6 +159,10 @@ const SortableCard: React.FC<SortableCardProps> = ({
                     <DropdownMenuContent align="end">
                         <DropdownMenuItem onClick={onEdit}>
                             <Pencil className="mr-2 h-4 w-4" /> Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem onClick={onDuplicate}>
+                            <Copy className="mr-2 h-4 w-4" />
+                            Duplicate
                         </DropdownMenuItem>
                         <DropdownMenuItem
                             onClick={onDelete}
