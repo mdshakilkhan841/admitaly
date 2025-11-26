@@ -78,7 +78,7 @@ const SortableCard: React.FC<SortableCardProps> = ({
 
                 {/* Index */}
                 <div className="shrink-0 w-8 text-center text-xs font-semibold text-gray-500 bg-gray-100 rounded px-2 py-1">
-                    #{index + 1}
+                    #{Number(promotion.order) + 1}
                 </div>
 
                 {/* Mobile Drag Handle (Visible on Mobile) */}

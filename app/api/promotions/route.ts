@@ -11,7 +11,18 @@ export async function GET(request: Request): Promise<NextResponse> {
         if (authResponse) return authResponse;
 
         await dbConnect();
-        const promotions = await Promotion.find({}).sort({ order: 1 });
+
+        // Parse query parameters
+        const url = new URL(request.url);
+        const status = url.searchParams.get("status");
+
+        // Build filter query
+        const filter: any = {};
+        if (status) {
+            filter.status = status;
+        }
+
+        const promotions = await Promotion.find(filter).sort({ order: -1 });
         return NextResponse.json(promotions);
     } catch (error) {
         return NextResponse.json(

@@ -12,16 +12,16 @@ import fetcher from "@/lib/fetcher";
 import Image from "next/image";
 import Link from "next/link";
 import VisitorCounter from "@/components/visitor-counter";
-import { ApplicationStatus } from "@/lib/deadline-utils"; // Import ApplicationStatus
-import { StaticImageData } from "next/image";
+import { ApplicationStatus } from "@/lib/deadline-utils"; // Import
 import { IPromotion } from "@/types";
 
 interface IPromoCard {
     type: "promo";
     id: string;
     href: string;
-    image: StaticImageData | string;
+    image: string;
     alt: string;
+    textDesign?: string;
 }
 
 // A new type for applications that includes the calculated status
@@ -48,7 +48,7 @@ export default function Home() {
     });
 
     const { data: promotions = [] } = useSWR<IPromotion[]>(
-        "/api/promotions",
+        "/api/promotions?status=active",
         fetcher,
         {
             keepPreviousData: true,
@@ -142,48 +142,53 @@ export default function Home() {
     const PromotionalCard = ({
         href,
         image,
-        alt,
-    }: Omit<IPromoCard, "type" | "id">) => (
-        <Link
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white rounded shadow-lg overflow-hidden flex items-center justify-center"
-        >
-            {typeof image === "string" ? (
-                <img
-                    src={image}
-                    alt={alt}
-                    className="object-contain h-auto w-full"
-                />
-            ) : (
-                <Image
-                    src={image}
-                    alt={alt}
-                    className="object-contain h-auto"
-                />
-            )}
-        </Link>
-    );
+        textDesign,
+    }: {
+        href: string;
+        image: string;
+        textDesign: string;
+    }) => {
+        return (
+            <Link
+                href={href || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded shadow-lg overflow-hidden flex items-center justify-center"
+            >
+                {image ? (
+                    <img
+                        src={image}
+                        alt="Italy Student Connect BD"
+                        className="object-contain h-auto"
+                    />
+                ) : textDesign ? (
+                    <div
+                        className="w-full text-center"
+                        dangerouslySetInnerHTML={{ __html: textDesign }}
+                    />
+                ) : (
+                    <div className="text-center">
+                        <p className="text-sm font-medium text-gray-900">
+                            Italy Student Connect BD
+                        </p>
+                    </div>
+                )}
+            </Link>
+        );
+    };
 
     const itemsToRender = useMemo(() => {
         if (filteredApplications.length === 0) {
             return [];
         }
 
-        // Convert database promotions to IPromoCard format
-        const promoCards: IPromoCard[] = promotions
-            .filter((promo) => promo.image && promo.href)
-            .map((promo) => ({
-                type: "promo" as const,
-                id: promo._id,
-                href: promo.href!,
-                image: promo.image!,
-                alt: promo.textDesign || "Promotion",
-            }));
-
         const combinedList: ListItem[] = [...filteredApplications];
-        const numPromos = promoCards.length;
+        const numPromos = promotions.length;
+
+        // If no promotions, return applications only
+        if (numPromos === 0) {
+            return combinedList;
+        }
 
         // Find the number of applications that are not closed.
         // Since closed applications are sorted to the end, we can find the first one.
@@ -195,23 +200,57 @@ export default function Home() {
                 ? filteredApplications.length
                 : firstClosedIndex;
 
-        // Generate unique random indices to insert promo cards
-        const promoIndices = new Set<number>();
-        // Start from index 1 to avoid placing a promo card at the very beginning
-        while (
-            promoIndices.size < numPromos &&
-            promoIndices.size < numOpenApplications
-        ) {
-            const randomIndex =
-                Math.floor(Math.random() * (numOpenApplications - 1)) + 1;
-            promoIndices.add(randomIndex);
+        // Generate random ascending order indices for promo placement
+        // Ensure at least 2 promos in first 10 applications
+        const promoIndices: number[] = [];
+        const minIndex = 2;
+        const maxIndex = Math.min(10, numOpenApplications);
+
+        // Place first promo randomly between 2-10
+        const firstPromoIndex =
+            Math.floor(Math.random() * (maxIndex - minIndex + 1)) + minIndex;
+        promoIndices.push(firstPromoIndex);
+
+        // Place second promo randomly between first promo and 10
+        if (numPromos > 1 && maxIndex > firstPromoIndex) {
+            const secondPromoIndex = Math.floor(
+                Math.random() * (maxIndex - firstPromoIndex) +
+                    firstPromoIndex +
+                    1
+            );
+            if (secondPromoIndex <= maxIndex) {
+                promoIndices.push(secondPromoIndex);
+            }
         }
 
-        // Insert promo cards at the generated indices, from last to first
-        Array.from(promoIndices)
+        // Place remaining promos with random ascending intervals
+        let currentIndex =
+            promoIndices.length > 0
+                ? promoIndices[promoIndices.length - 1]
+                : 10;
+        for (let i = promoIndices.length; i < numPromos; i++) {
+            const randomSpacing = Math.floor(Math.random() * 15) + 5; // Random spacing between 5-20
+            currentIndex += randomSpacing;
+            if (currentIndex < numOpenApplications + promoIndices.length) {
+                promoIndices.push(currentIndex);
+            }
+        }
+
+        // Insert promotions at the generated indices, from last to first
+        promoIndices
             .sort((a, b) => b - a)
             .forEach((index, i) => {
-                combinedList.splice(index, 0, promoCards[i % numPromos]);
+                const promoIndex = i % numPromos;
+                if (
+                    promoIndex < promotions.length &&
+                    index <= combinedList.length
+                ) {
+                    combinedList.splice(
+                        index,
+                        0,
+                        promotions[promoIndex] as any
+                    );
+                }
             });
 
         return combinedList;
@@ -364,9 +403,9 @@ export default function Home() {
                     </div>
                 ) : itemsToRender.length > 0 ? (
                     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 mx-3">
-                        {itemsToRender.map((item) => {
-                            // Use a type guard to differentiate between IApplication and IPromoCard
-                            if ("_id" in item) {
+                        {itemsToRender?.map((item: any) => {
+                            // Check if it's an application (IApplication has university property)
+                            if (item?.university) {
                                 return (
                                     <ApplicationCard
                                         key={item._id}
@@ -374,18 +413,15 @@ export default function Home() {
                                     />
                                 );
                             }
-                            // Check if it's a promo card to be safe, although it's the only other type
-                            if ("type" in item && item.type === "promo") {
-                                return (
-                                    <PromotionalCard
-                                        key={item.id}
-                                        href={item.href}
-                                        image={item.image}
-                                        alt={item.alt}
-                                    />
-                                );
-                            }
-                            return null; // Should not happen with current data structure
+                            // It's a promotion
+                            return (
+                                <PromotionalCard
+                                    key={item._id}
+                                    href={item.href || ""}
+                                    image={item.image || ""}
+                                    textDesign={item.textDesign || ""}
+                                />
+                            );
                         })}
                     </div>
                 ) : (
