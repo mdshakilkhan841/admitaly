@@ -59,12 +59,12 @@ const SortableCard: React.FC<SortableCardProps> = ({
             <div className="w-12 text-xs text-muted-foreground">
                 #{index + 1}
             </div>
-            <div className="w-40 h-20 border border-input rounded overflow-hidden bg-muted flex items-center justify-center">
+            <div className="w-96 border border-input rounded overflow-hidden bg-muted flex items-center justify-center">
                 {promotion.image ? (
                     <img
                         src={promotion.image}
                         alt={promotion.textDesign || "Promotion image"}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                     />
                 ) : (
                     <span className="text-muted-foreground">No image</span>

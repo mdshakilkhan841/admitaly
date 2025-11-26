@@ -3,6 +3,7 @@ import dbConnect from "@/lib/database";
 import Promotion from "@/models/promotion";
 import { authenticateUser } from "@/lib/authenticate-user";
 import { uploadImage } from "@/lib/cloudinary";
+import mongoose from "mongoose";
 
 export async function GET(request: Request): Promise<NextResponse> {
     try {
@@ -28,23 +29,18 @@ export async function POST(request: Request): Promise<NextResponse> {
         await dbConnect();
 
         const formData = await request.formData();
-        const file = formData.get("file") as File;
+        const file = formData.get("file") as File | null;
         const type = formData.get("type") as string;
         const href = formData.get("href") as string;
         const textDesign = formData.get("textDesign") as string;
 
-        if (!file) {
+        // Either file or textDesign must be provided
+        if (!file && !textDesign) {
             return NextResponse.json(
-                { error: "No file provided" },
+                { error: "Either image file or text design must be provided" },
                 { status: 400 }
             );
         }
-
-        // Convert file to buffer
-        const buffer = Buffer.from(await file.arrayBuffer());
-
-        // Upload image to Cloudinary
-        const uploadResult = await uploadImage(buffer, "promotions");
 
         // Determine order: place at the end
         const last = await Promotion.findOne()
@@ -52,12 +48,23 @@ export async function POST(request: Request): Promise<NextResponse> {
             .select("order");
         const nextOrder = (last?.order ?? 0) + 1;
 
+        // Upload image if file is provided
+        let imageUrl = "";
+        let imagePublicId = "";
+
+        if (file) {
+            const buffer = Buffer.from(await file.arrayBuffer());
+            const uploadResult = await uploadImage(buffer, "promotions");
+            imageUrl = uploadResult.secure_url;
+            imagePublicId = uploadResult.public_id;
+        }
+
         // Create promotion document
         const promotion = await Promotion.create({
             type: type || "promo",
             href: href || "",
-            image: uploadResult.secure_url,
-            imagePublicId: uploadResult.public_id,
+            image: imageUrl || undefined,
+            imagePublicId: imagePublicId || undefined,
             textDesign: textDesign || "",
             order: nextOrder,
         });
@@ -88,20 +95,32 @@ export async function PATCH(request: Request): Promise<NextResponse> {
             );
         }
 
+        // Validate all IDs are valid MongoDB ObjectIds
+        const validIds = order.map((id: string) => {
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                throw new Error(`Invalid promotion ID: ${id}`);
+            }
+            return new mongoose.Types.ObjectId(id);
+        });
+
         // Bulk update orders
-        const bulkOps = order.map((id: string, idx: number) => ({
-            updateOne: {
-                filter: { _id: id },
-                update: { $set: { order: idx } },
-            },
-        }));
+        const bulkOps = validIds.map(
+            (id: mongoose.Types.ObjectId, idx: number) => ({
+                updateOne: {
+                    filter: { _id: id },
+                    update: { $set: { order: idx } },
+                },
+            })
+        );
 
         if (bulkOps.length > 0) {
-            await Promotion.bulkWrite(bulkOps);
+            const result = await Promotion.bulkWrite(bulkOps);
+            // console.log("Bulk write result:", result);
         }
 
-        return NextResponse.json({ message: "Order updated" });
+        return NextResponse.json({ message: "Order updated successfully" });
     } catch (error) {
+        console.error("PATCH error:", error);
         return NextResponse.json(
             { error: (error as Error).message },
             { status: 500 }
