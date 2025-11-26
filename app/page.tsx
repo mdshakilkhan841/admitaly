@@ -156,7 +156,7 @@ export default function Home() {
                 href={href || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded shadow-lg overflow-hidden relative flex items-center justify-center"
+                className="bg-white rounded shadow-lg relative flex items-center justify-center"
             >
                 {image ? (
                     <>
@@ -170,12 +170,19 @@ export default function Home() {
                         </div>
                     </>
                 ) : textDesign ? (
-                    <div
-                        className="w-full text-center p-4"
-                        dangerouslySetInnerHTML={{ __html: textDesign }}
-                    />
+                    <>
+                        <div
+                            className="w-full text-center p-4"
+                            dangerouslySetInnerHTML={{ __html: textDesign }}
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <Lottie animationData={Celebrations} loop={true} />
+                        </div>
+                    </>
                 ) : (
-                    <Lottie animationData={Celebrations} loop={true} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <Lottie animationData={Celebrations} loop={true} />
+                    </div>
                 )}
             </Link>
         );
