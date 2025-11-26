@@ -14,6 +14,9 @@ import Link from "next/link";
 import VisitorCounter from "@/components/visitor-counter";
 import { ApplicationStatus } from "@/lib/deadline-utils"; // Import
 import { IPromotion } from "@/types";
+import Lottie from "lottie-react";
+import Celebrations from "@/lottie/celebrations-begin.json";
+import Confetti from "@/lottie/Confetti.json";
 
 interface IPromoCard {
     type: "promo";
@@ -153,25 +156,26 @@ export default function Home() {
                 href={href || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded shadow-lg overflow-hidden flex items-center justify-center"
+                className="bg-white rounded shadow-lg overflow-hidden relative flex items-center justify-center"
             >
                 {image ? (
-                    <img
-                        src={image}
-                        alt="Italy Student Connect BD"
-                        className="object-contain h-auto"
-                    />
+                    <>
+                        <img
+                            src={image}
+                            alt="Italy Student Connect BD"
+                            className="object-contain h-auto w-full"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <Lottie animationData={Confetti} loop={true} />
+                        </div>
+                    </>
                 ) : textDesign ? (
                     <div
-                        className="w-full text-center"
+                        className="w-full text-center p-4"
                         dangerouslySetInnerHTML={{ __html: textDesign }}
                     />
                 ) : (
-                    <div className="text-center">
-                        <p className="text-sm font-medium text-gray-900">
-                            Italy Student Connect BD
-                        </p>
-                    </div>
+                    <Lottie animationData={Celebrations} loop={true} />
                 )}
             </Link>
         );
