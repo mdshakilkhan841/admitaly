@@ -31,7 +31,7 @@ import {
 import { UserAvatarProfile } from "@/components/user-avatar-profile";
 import Link from "next/link";
 import { redirect, usePathname } from "next/navigation";
-import { sidebarData, SidebarData } from "@/data/sidebar-data";
+import { sidebarData, ISidebarData } from "@/data/sidebar-data";
 import { ChevronsUpDown, ChevronRight, LogOut, CircleUser } from "lucide-react";
 import { OrgSwitcher } from "@/components/org-switcher";
 import { authClient } from "@/lib/auth-client";
@@ -127,7 +127,7 @@ export default function AppSidebar() {
     );
 }
 
-export function NavGroup({ title, items }: SidebarData["navGroups"][0]) {
+export function NavGroup({ title, items }: ISidebarData["navGroups"][0]) {
     const pathname = usePathname();
 
     return (
@@ -146,12 +146,15 @@ export function NavGroup({ title, items }: SidebarData["navGroups"][0]) {
                             <SidebarMenuItem>
                                 <CollapsibleTrigger asChild>
                                     <SidebarMenuButton
+                                        asChild
                                         tooltip={item.title}
                                         isActive={pathname === item.url}
                                     >
-                                        {Icon && <Icon />}
-                                        <span>{item.title}</span>
-                                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                        <Link href={item.url || "#"}>
+                                            {Icon && <Icon />}
+                                            <span>{item.title}</span>
+                                            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                        </Link>
                                     </SidebarMenuButton>
                                 </CollapsibleTrigger>
                                 <CollapsibleContent>
@@ -171,6 +174,9 @@ export function NavGroup({ title, items }: SidebarData["navGroups"][0]) {
                                                             subItem.url || "#"
                                                         }
                                                     >
+                                                        {subItem.icon && (
+                                                            <subItem.icon />
+                                                        )}
                                                         <span>
                                                             {subItem.title}
                                                         </span>

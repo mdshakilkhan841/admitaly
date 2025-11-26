@@ -6,11 +6,13 @@ import {
     NotebookPen,
     GraduationCap,
     GalleryVertical,
+    ArchiveRestore,
+    LayoutList,
 } from "lucide-react";
 
 import { LucideIcon } from "lucide-react";
 
-export type SidebarData = {
+export type ISidebarData = {
     navGroups: {
         title: string;
         items: {
@@ -28,7 +30,7 @@ export type SidebarData = {
     }[];
 };
 
-export const sidebarData: SidebarData = {
+export const sidebarData: ISidebarData = {
     navGroups: [
         {
             title: "Overview",
