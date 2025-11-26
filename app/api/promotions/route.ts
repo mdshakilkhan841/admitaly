@@ -33,6 +33,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         const type = formData.get("type") as string;
         const href = formData.get("href") as string;
         const textDesign = formData.get("textDesign") as string;
+        const status = formData.get("status") as string;
 
         // Either file or textDesign must be provided
         if (!file && !textDesign) {
@@ -66,6 +67,7 @@ export async function POST(request: Request): Promise<NextResponse> {
             image: imageUrl || undefined,
             imagePublicId: imagePublicId || undefined,
             textDesign: textDesign || "",
+            status: status || "active",
             order: nextOrder,
         });
 

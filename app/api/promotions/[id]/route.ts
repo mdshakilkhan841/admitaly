@@ -21,11 +21,13 @@ export async function PUT(
         const type = formData.get("type") as string;
         const href = formData.get("href") as string;
         const textDesign = formData.get("textDesign") as string;
+        const status = formData.get("status") as string;
 
         const updateData: any = {
             type: type || "promo",
             href: href || "",
             textDesign: textDesign || "",
+            status: status || "active",
         };
 
         // If a new file is provided, upload it and delete the old one

@@ -5,6 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Loader2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { IPromotion } from "@/types";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 interface PromoFormProps {
     promotion: IPromotion | null;
@@ -28,6 +35,7 @@ export default function PromoForm({
         type: promotion?.type || "promo",
         href: promotion?.href || "",
         textDesign: promotion?.textDesign || "",
+        status: promotion?.status || "active",
     });
     const [file, setFile] = useState<File | null>(null);
 
@@ -61,6 +69,7 @@ export default function PromoForm({
             form.append("type", formData.type);
             form.append("href", formData.href);
             form.append("textDesign", formData.textDesign);
+            form.append("status", formData.status);
 
             if (file) {
                 form.append("file", file);
@@ -76,16 +85,41 @@ export default function PromoForm({
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid gap-2">
-                <Label htmlFor="type">Promotion Type</Label>
-                <Input
-                    type="text"
-                    name="type"
-                    id="type"
-                    placeholder="e.g., promo, banner, featured"
-                    value={formData.type}
-                    onChange={handleChange}
-                />
+            <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                    <Label htmlFor="type">Promotion Type</Label>
+                    <Select
+                        onValueChange={(value) =>
+                            setFormData({ ...formData, type: value })
+                        }
+                        value={formData.type}
+                    >
+                        <SelectTrigger id="type" className="w-full">
+                            <SelectValue placeholder="Select a type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="promo">Promo</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="grid gap-2">
+                    <Label htmlFor="status">Status</Label>
+                    <Select
+                        onValueChange={(value) =>
+                            setFormData({ ...formData, status: value })
+                        }
+                        value={formData.status}
+                    >
+                        <SelectTrigger id="status" className="w-full">
+                            <SelectValue placeholder="Select a status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="active">Active</SelectItem>
+                            <SelectItem value="archived">Archived</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
             </div>
 
             <div className="grid gap-2">

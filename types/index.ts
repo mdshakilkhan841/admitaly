@@ -17,6 +17,7 @@ export interface IPromotion {
     image?: string;
     imagePublicId?: string;
     textDesign?: string;
+    status?: string;
     order?: number;
 }
 

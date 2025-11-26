@@ -18,6 +18,11 @@ const PromotionSchema = new mongoose.Schema({
     textDesign: {
         type: String,
     },
+    status: {
+        type: String,
+        default: "active",
+        enum: ["archived", "active"],
+    },
     order: {
         type: Number,
         default: 0,
